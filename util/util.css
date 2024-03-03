@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Roboto&family=Varela+Round&display=swap');
+@page {
+  margin: 0;
+  size: A4;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('path_to_your_montserrat_font_file.woff2') format('woff2'),
+       url('path_to_your_montserrat_font_file.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}

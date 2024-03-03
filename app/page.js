@@ -1,113 +1,366 @@
-import Image from "next/image";
+"use client"
+
+import { CV } from "@/components/CV";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
+  const initialData = {
+    name: "PIERRE DORGE",
+    phoneNumber1: "(+41) 78 235 16 00",
+    phoneNumber2: "(+33) 06 07 63 99 87",
+    addressLine1: "Kaferhölzstrasse 54",
+    addressLine2: "Zürich, Switzerland",
+    email1: "pdorge@student.ethz.com",
+    email2: "pierre.dorge@lleedpartners.com",
+    education: [{
+        university:"EIDGENOSSISCHE TECHNISCHE HOCHSCHULE ZURICH, ETHZ",
+        universityLocation: "Zurich, ZH ,Switzerland",
+        timeline: "2021-",
+        stream: "Master of Science in Computer Science ",
+        major:"Machine Intelligence, minor in Information Security"
+    },
+    {
+        university:"ÉCOLE POLYTECHNIQUE FÉDÉRALE DE LAUSANNE, EPFL",
+        universityLocation: "Lausanne, VD, Switzerland",
+        timeline: "2017-2020",
+        stream: "Bachelor of Science in Commmunication Systems",
+        major:"Computer Architecture and Databases"
+        }
+    ],
+    work: [{
+        company: "LLEED AND PARTNERS, Digital Consulting",
+        location: "Geneva, GE, Switzerland",
+        position:"Co-Founder / Technology",
+        timeline: "06/2020-",
+        task:`Co-founded a digital consulting firm, working with large multinational companies contributing to their digital transforma-
+        tion, with references such as Louis Dreyfus Company and Rio Tinto. Our projects involved optimizing metals sales and processing
+        unstructured data for OTC trading. www.lleedpartners.com`
+    },
+    {
+        company: "Louis Dreyfus Company",
+        location: "Singapore",
+        position:"Junior Data Scientist Engineer",
+        timeline: "06/2019-03/2020",
+        task:`Developed internal web applications involving data aggregation, natural language processing and more. My work in the
+        field of FFA trading led to starting my company in which LDC and Rio Tinto are clients`
+        },
+        {
+            company: "ECCO2 Solutions AG, Energy Optimization Startup",
+            location: "Givisiez, FR, Switzerland",
+            position:"Junior Software Engineer",
+            timeline: "08/2019-09/2020",
+            task:`Contributed to designing the architecture of a complex software solution involving IoT in C# using the
+            .Net Framework.`
+        },
+        {
+            company: "Junior Entreprise EPFL",
+            location: "Lausanne, VD, Switzerland",
+            position:"IT Consultant ",
+            timeline: "06/2019-09/2020",
+            task:`Worked on 2 projects, designed the NO SQL database architecture and developed web applications using React JS and
+            Node JS.`
+        },
+        {
+            company: "Energisme, Energy Optimization Startup",
+            location: "Bourlogne-Billancourt 92, France",
+            position:"Summer Software Developer Intern",
+            timeline: "08/2018-09/2018",
+            task:`Developed a web tool to generate Finite State Machines for graphics animations`
+        }],
+    academic: [{
+        company: "Align Technologies, Dental Med-tech Company",
+        location: "Zurich, ZH, Switzerland",
+        position: "Computer Vision Research Intern - Masters Semester Project at ETHZ",
+        timeline: "03/2022 - 07/2022",
+        task:`Using computer vision techniques and machine learning to analyze 3D scans of teeth in order to identify dental illnesses`
+    },
+    {
+        company: "Miraex, Quantum Technology Startup",
+        location: "Lausanne, VD, Switzerland",
+        position: "AI research Intern - Bachelor Thesis Project at EPFL",
+        timeline: "02/2020 - 07/20200",
+        task:`Performed pattern detection on acoustic signals using signal processing methods such as Wavelet Transform
+        analysis and machine learning models such as SVMs, auto encoders and convolutional encoders.`
+        }],
+    coursework: [{
+        subject: "Mathematics",
+        topics:`Calculus, Linear Algebra, Information Theory, Signal Processing, Discrete Mathematics, Set Theory, Algebra, Algo-
+        rithms, Statistics, Probability Theory, Stochastic Processes, Computational Statistics, Computational Intelligence Lab`
+    },
+        {
+            subject: "Computer Science",
+            topics:`Advanced Machine Learning, Probabilistic Artificial Intelligence, Parallelism and Concurrency, OO Program-
+            ming, Functional Programming, Database Systems, Computer Architecture, Network Security, Theory of Computation, Visual
+            Computing, Digital Signatures`
+        },
+        {
+            subject: "Programming",
+            topics:`C, R, Python (Django and data science libraries), Java, SQL, Scala (and Spark), C# (.NET), Javascript (React Js,
+                Node Js), SQL, Assembly, LaTex`
+        }],
+    additionalInfo: [{
+        subject: "Personal Interests",
+        description:"Blockchain, Politics, Music, Study of Latin and Ancient Greek."
+    },
+    {
+        subject: "Activites",
+        description:`Classical Guitar and Solfeggio in regional conservatory with DEM and CEM state certificates (9 years of practice and
+            ability to teach), Tennis, Soccer, Hiking, Chess`
+        },
+        {
+            subject: "Languages (speaking and writing)",
+            description:"French (Native), English (Native), Spanish (B1)"
+        }]
+  }
+  
+  const [data, setData] = useState(initialData);
+
+  const router = useRouter();
+
+  const handleRemove = (category, index) => {
+    if (category === "education") {
+      if (data.education.length === 1) {
+        // If there's only one education entry, prevent deletion
+        alert("At least one education entry must be present.");
+        return;
+      }
+      
+      const updatedEducation = [...data.education];
+      updatedEducation.splice(index, 1); // Remove the item at the given index
+      setData({ ...data, education: updatedEducation });
+    }
+
+    if (category === "work") {
+      if (data.work.length === 1) {
+        // If there's only one work entry, prevent deletion
+        alert("At least one work entry must be present.");
+        return;
+      }
+      
+      const updatedWork = [...data.work];
+      updatedWork.splice(index, 1); // Remove the item at the given index
+      setData({ ...data, work: updatedWork });
+    }
+
+    if (category === "academic") {
+      if (data.academic.length === 1) {
+        // If there's only one academic entry, prevent deletion
+        alert("At least one academic entry must be present.");
+        return;
+      }
+      
+      const updatedAcademic = [...data.academic];
+      updatedAcademic.splice(index, 1); // Remove the item at the given index
+      setData({ ...data, academic: updatedAcademic });
+    }
+
+    if (category === "coursework") {
+      if (data.coursework.length === 1) {
+        // If there's only one coursework entry, prevent deletion
+        alert("At least one coursework entry must be present.");
+        return;
+      }
+      
+      const updatedCoursework = [...data.coursework];
+      updatedCoursework.splice(index, 1); // Remove the item at the given index
+      setData({ ...data, coursework: updatedCoursework });
+    }
+
+    if (category === "additionalInfo") {
+      if (data.additionalInfo.length === 1) {
+        // If there's only one additionalInfo entry, prevent deletion
+        alert("At least one additionalInfo entry must be present.");
+        return;
+      }
+      
+      const updatedAdditionalInfo = [...data.additionalInfo];
+      updatedAdditionalInfo.splice(index, 1); // Remove the item at the given index
+      setData({ ...data, additionalInfo: updatedAdditionalInfo });
+    }
+    // Add more conditions for other categories if needed
+  };
+  const handleEducationChange = (index, field, value) => {
+    const updatedEducation = [...data.education];
+    updatedEducation[index][field] = value;
+    setData({ ...data, education: updatedEducation });
+  };
+  const handleWorkChange = (index, field, value) => {
+    const updatedWork = [...data.work];
+    updatedWork[index][field] = value;
+    setData({ ...data, work: updatedWork });
+  };
+  const handleAcademicChange = (index, field, value) => {
+    const updatedAcademic = [...data.academic];
+    updatedAcademic[index][field] = value;
+    setData({ ...data, academic: updatedAcademic });
+  };
+
+  const handleCourseworkChange = (index, field, value) => {
+    const updatedCoursework = [...data.coursework];
+    updatedCoursework[index][field] = value;
+    setData({ ...data, coursework: updatedCoursework });
+  };
+
+  const handleAdditionalInfoChange = (index, field, value) => {
+    const updatedAdditionalInfo = [...data.additionalInfo];
+    updatedAdditionalInfo[index][field] = value;
+    setData({ ...data, additionalInfo: updatedAdditionalInfo });
+  };
+
+  const handleGeneratePdf = () => {
+    localStorage.setItem("data", JSON.stringify(data));
+    router.push("/viewPDF");
+}
+
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="main w-screen min-h-screen lg:flex">
+      <style>
+        {`
+        button{
+          background-color:red;
+          color:white;
+          border-radius:4px;
+          padding:5px;
+        }
+
+        input{
+          background-color:black;
+          color:white;
+        }
+        `}
+      </style>
+      <div className="preview lg:w-[50%]">
+        <CV data={data} />
+      </div>
+      <div className="change-things  lg:w-[50%] p-[20px]">
+        <div className="details flex flex-col p-[10px] border-black border-b-2">
+          <h1 className="text-center font-bold text-2xl">Details</h1>
+          <div className="name ">
+          <input className="p-[4px] rounded mb-[10px]" type="text" value={data.name} onChange={(e)=>{setData({...data,name:e.target.value})}}/>
+        </div>
+        <div className="phoneNumbers flex justify-between">
+          <input className="p-[4px] rounded mb-[10px]" type="text" value={data.phoneNumber1} onChange={(e)=>{setData({...data,phoneNumber1:e.target.value})}}/>
+          <input className="p-[4px] rounded mb-[10px]" type="text" value={data.phoneNumber2} onChange={(e)=>{setData({...data,phoneNumber2:e.target.value})}}/>
+        </div>
+        <div className="address flex justify-between">
+          <input className="p-[4px] rounded mb-[10px]" type="text" value={data.addressLine1} onChange={(e)=>{setData({...data,addressLine1:e.target.value})}}/>
+          <input className="p-[4px] rounded mb-[10px]" type="text" value={data.addressLine2} onChange={(e)=>{setData({...data,addressLine2:e.target.value})}}/>
+        </div>
+        <div className="emails flex justify-between">
+          <input className="p-[4px] rounded mb-[10px]" type="text" value={data.email1} onChange={(e)=>{setData({...data,email1:e.target.value})}}/>
+          <input className="p-[4px] rounded mb-[10px]" type="text" value={data.email2} onChange={(e)=>{setData({...data,email2:e.target.value})}}/>
+        </div>
+        </div>
+        <div className="education flex flex-col p-[10px] border-black border-b-2">
+          <h1 className="text-center font-bold text-2xl">Education</h1>
+          {
+            data.education.map((item, i) => (
+              <div className={`edu ${i + 1} flex flex-col`}>
+                <div className="flex justify-between mb-[10px]">
+                <h2>Education {i + 1}</h2>
+                <button onClick={()=>{handleRemove("education",i)}}>Remove</button>
+                </div>
+                <div className="line1 flex justify-between">
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.university}  onChange={(e) => handleEducationChange(i, "university", e.target.value)}/>
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.universityLocation} onChange={(e) => handleEducationChange(i, "universityLocation", e.target.value)}  />
+                </div>
+                <div className="line2 flex justify-between">
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.timeline}  onChange={(e) => handleEducationChange(i, "timeline", e.target.value)} />
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.stream} onChange={(e) => handleEducationChange(i, "stream", e.target.value)}  />
+                </div>
+                <div className="line3">
+                  <input className="w-full p-[4px] rounded mb-[10px]" type="text" value={item.major} onChange={(e) => handleEducationChange(i, "major", e.target.value)}  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div className="work flex flex-col p-[10px] border-black border-b-2">
+        <h1 className="text-center font-bold text-2xl">Work Experience</h1>
+          {
+            data.work.map((item, i) => (
+              <div className={`work ${i + 1} flex flex-col`}>
+                <div className="flex justify-between mb-[10px]">
+                <h2>Work {i + 1}</h2>
+                <button onClick={()=>{handleRemove("work",i)}}>Remove</button>
+                </div>
+                <div className="line1 flex justify-between">
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.company}  onChange={(e) => handleWorkChange(i, "company", e.target.value)}/>
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.location}  onChange={(e) => handleWorkChange(i, "location", e.target.value)}/>
+                </div>
+                <div className="line2 flex justify-between">
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.timeline}  onChange={(e) => handleWorkChange(i, "timeline", e.target.value)}/>
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.position}  onChange={(e) => handleWorkChange(i, "position", e.target.value)}/>
+                </div>
+                <div className="line3">
+                  <input className="w-full p-[4px] rounded mb-[10px]" type="text" value={item.task}  onChange={(e) => handleWorkChange(i, "task", e.target.value)}/>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div className="academic flex flex-col p-[10px] border-black border-b-2">
+        <h1 className="text-center font-bold text-2xl">Academic Experience</h1>
+          {
+            data.academic.map((item, i) => (
+              <div className={`academic ${i + 1} flex flex-col`}>
+                <div className="flex justify-between mb-[10px]">
+                <h2>Academic {i + 1}</h2>
+                <button onClick={()=>{handleRemove("academic",i)}}>Remove</button>
+                </div>
+                <div className="line1 flex justify-between">
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.company}  onChange={(e) => handleAcademicChange(i, "company", e.target.value)}/>
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.location}  onChange={(e) => handleAcademicChange(i, "location", e.target.value)}/>
+                </div>
+                <div className="line2 flex justify-between">
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.timeline}  onChange={(e) => handleAcademicChange(i, "timeline", e.target.value)}/>
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.position}  onChange={(e) => handleAcademicChange(i, "position", e.target.value)}/>
+                </div>
+                <div className="line3">
+                  <input className="w-full p-[4px] rounded mb-[10px]" type="text" value={item.task}  onChange={(e) => handleAcademicChange(i, "task", e.target.value)}/>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div className="coursework flex flex-col p-[10px] border-black border-b-2">
+        <h1 className="text-center font-bold text-2xl">Coursework Experience</h1>
+          {
+            data.coursework.map((item, i) => (
+              <div className={`coursework ${i + 1} flex flex-col`}>
+                <div className="flex justify-between mb-[10px]">
+                <h2>Coursework {i + 1}</h2>
+                <button onClick={()=>{handleRemove("coursework",i)}}>Remove</button>
+                </div>
+                <div className="line1">
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.subject}  onChange={(e) => handleCourseworkChange(i, "subject", e.target.value)}/>
+                  <input className="p-[4px] w-full rounded mb-[10px]" type="text" value={item.topics}  onChange={(e) => handleCourseworkChange(i, "topics", e.target.value)}/>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div className="additionalInfo flex flex-col p-[10px] border-black border-b-2">
+        <h1 className="text-center font-bold text-2xl">Additional Information</h1>
+          {
+            data.additionalInfo.map((item, i) => (
+              <div className={`additionalInfo ${i + 1} flex flex-col`}>
+                <div className="flex justify-between mb-[10px]">
+                <h2>Additional Information {i + 1}</h2>
+                <button onClick={()=>{handleRemove("additionalInfo",i)}}>Remove</button>
+                </div>
+                <div className="line1">
+                  <input className="p-[4px] rounded mb-[10px]" type="text" value={item.subject}  onChange={(e) => handleAdditionalInfoChange(i, "subject", e.target.value)}/>
+                  <input className="p-[4px] w-full rounded mb-[10px]" type="text" value={item.description}  onChange={(e) => handleAdditionalInfoChange(i, "description", e.target.value)}/>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <button className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]" onClick={handleGeneratePdf}>Generate PDF</button>
+    </div>
   );
 }
