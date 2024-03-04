@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 "use client"
 
 import { CV } from "@/components/CV";
@@ -208,6 +209,44 @@ export default function Home() {
     setData({ ...data, additionalInfo: updatedAdditionalInfo });
   };
 
+  const handleAdd = (category) => {
+    if (category === "education") {      
+      const updatedEducation = [...data.education];
+      const previousElement = updatedEducation[updatedEducation.length - 1];
+      updatedEducation.push({ ...previousElement });//even by chance dont directly put previousElement, they
+      //will share common reference
+      setData({ ...data, education: updatedEducation });
+    }
+
+    if (category === "work") {     
+      const updatedWork = [...data.work];
+      const previousElement = updatedWork[updatedWork.length - 1];
+      updatedWork.push({ ...previousElement });
+      setData({ ...data, work: updatedWork });
+    }
+
+    if (category === "academic") {
+      const updatedAcademic = [...data.academic];
+      const previousElement = updatedAcademic[updatedAcademic.length - 1];
+      updatedAcademic.push({ ...previousElement });
+      setData({ ...data, academic: updatedAcademic });
+    }
+
+    if (category === "coursework") {
+      const updatedCoursework = [...data.coursework];
+      const previousElement = updatedCoursework[updatedCoursework.length - 1];
+      updatedCoursework.push({ ...previousElement });
+      setData({ ...data, coursework: updatedCoursework });
+    }
+
+    if (category === "additionalInfo") {
+      const updatedAdditionalInfo = [...data.additionalInfo];
+      const previousElement = updatedAdditionalInfo[updatedAdditionalInfo.length - 1];
+      updatedAdditionalInfo.push({ ...previousElement });
+      setData({ ...data, additionalInfo: updatedAdditionalInfo });
+    }
+  }
+
   const handleGeneratePdf = () => {
     localStorage.setItem("data", JSON.stringify(data));
     router.push("/viewPDF");
@@ -255,12 +294,15 @@ export default function Home() {
         </div>
         <div className="education flex flex-col p-[10px] border-black border-b-2">
           <h1 className="text-center font-bold text-2xl">Education</h1>
+          <div className="add text-center p-[5px]">
+          <button className="bg-[green]" onClick={()=>{handleAdd("education")}}>Add More</button>
+          </div>
           {
             data.education.map((item, i) => (
               <div className={`edu ${i + 1} flex flex-col`}>
                 <div className="flex justify-between mb-[10px]">
                 <h2>Education {i + 1}</h2>
-                <button onClick={()=>{handleRemove("education",i)}}>Remove</button>
+                  <button onClick={() => { handleRemove("education", i) }}>Remove</button>
                 </div>
                 <div className="line1 flex justify-between">
                   <input className="p-[4px] rounded mb-[10px]" type="text" value={item.university}  onChange={(e) => handleEducationChange(i, "university", e.target.value)}/>
@@ -278,13 +320,16 @@ export default function Home() {
           }
         </div>
         <div className="work flex flex-col p-[10px] border-black border-b-2">
-        <h1 className="text-center font-bold text-2xl">Work Experience</h1>
+          <h1 className="text-center font-bold text-2xl">Work Experience</h1>
+          <div className="add text-center p-[5px]">
+          <button className="bg-[green]" onClick={()=>{handleAdd("work")}}>Add More</button>
+          </div>
           {
             data.work.map((item, i) => (
               <div className={`work ${i + 1} flex flex-col`}>
                 <div className="flex justify-between mb-[10px]">
                 <h2>Work {i + 1}</h2>
-                <button onClick={()=>{handleRemove("work",i)}}>Remove</button>
+                  <button onClick={() => { handleRemove("work", i) }}>Remove</button>
                 </div>
                 <div className="line1 flex justify-between">
                   <input className="p-[4px] rounded mb-[10px]" type="text" value={item.company}  onChange={(e) => handleWorkChange(i, "company", e.target.value)}/>
@@ -302,13 +347,16 @@ export default function Home() {
           }
         </div>
         <div className="academic flex flex-col p-[10px] border-black border-b-2">
-        <h1 className="text-center font-bold text-2xl">Academic Experience</h1>
+          <h1 className="text-center font-bold text-2xl">Academic Experience</h1>
+          <div className="add text-center p-[5px]">
+          <button className="bg-[green]" onClick={()=>{handleAdd("academic")}}>Add More</button>
+          </div>
           {
             data.academic.map((item, i) => (
               <div className={`academic ${i + 1} flex flex-col`}>
                 <div className="flex justify-between mb-[10px]">
                 <h2>Academic {i + 1}</h2>
-                <button onClick={()=>{handleRemove("academic",i)}}>Remove</button>
+                  <button onClick={() => { handleRemove("academic", i) }}>Remove</button>
                 </div>
                 <div className="line1 flex justify-between">
                   <input className="p-[4px] rounded mb-[10px]" type="text" value={item.company}  onChange={(e) => handleAcademicChange(i, "company", e.target.value)}/>
@@ -326,13 +374,16 @@ export default function Home() {
           }
         </div>
         <div className="coursework flex flex-col p-[10px] border-black border-b-2">
-        <h1 className="text-center font-bold text-2xl">Coursework Experience</h1>
+          <h1 className="text-center font-bold text-2xl">Coursework Experience</h1>
+          <div className="add text-center p-[5px]">
+          <button className="bg-[green]" onClick={()=>{handleAdd("coursework")}}>Add More</button>
+          </div>
           {
             data.coursework.map((item, i) => (
               <div className={`coursework ${i + 1} flex flex-col`}>
                 <div className="flex justify-between mb-[10px]">
                 <h2>Coursework {i + 1}</h2>
-                <button onClick={()=>{handleRemove("coursework",i)}}>Remove</button>
+                  <button onClick={() => { handleRemove("coursework", i) }}>Remove</button>
                 </div>
                 <div className="line1">
                   <input className="p-[4px] rounded mb-[10px]" type="text" value={item.subject}  onChange={(e) => handleCourseworkChange(i, "subject", e.target.value)}/>
@@ -343,13 +394,16 @@ export default function Home() {
           }
         </div>
         <div className="additionalInfo flex flex-col p-[10px] border-black border-b-2">
-        <h1 className="text-center font-bold text-2xl">Additional Information</h1>
+          <h1 className="text-center font-bold text-2xl">Additional Information</h1>
+          <div className="add text-center p-[5px]">
+          <button className="bg-[green]" onClick={()=>{handleAdd("additionalInfo")}}>Add More</button>
+          </div>
           {
             data.additionalInfo.map((item, i) => (
               <div className={`additionalInfo ${i + 1} flex flex-col`}>
                 <div className="flex justify-between mb-[10px]">
                 <h2>Additional Information {i + 1}</h2>
-                <button onClick={()=>{handleRemove("additionalInfo",i)}}>Remove</button>
+                  <button onClick={() => { handleRemove("additionalInfo", i) }}>Remove</button>
                 </div>
                 <div className="line1">
                   <input className="p-[4px] rounded mb-[10px]" type="text" value={item.subject}  onChange={(e) => handleAdditionalInfoChange(i, "subject", e.target.value)}/>
