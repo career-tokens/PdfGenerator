@@ -6,7 +6,7 @@ import { join } from "path";
 
 const onedoc = new Onedoc(process.env.ONEDOC_API_KEY as string);
 
-export async function GET(request){
+export async function POST(request){
   const requestData = await request.json();
   const { data , template } = requestData;
   const { file, error } = await onedoc.render({

@@ -12,7 +12,7 @@ import React, { useState, useEffect } from "react";
           const data = JSON.parse(localStorage.getItem("data"));
           const template = localStorage.getItem("template");
           const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/v1/getPDF`, {
-            method: "GET",
+            method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
