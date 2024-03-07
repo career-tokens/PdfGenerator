@@ -6,7 +6,7 @@ import { join } from "path";
 
 const onedoc = new Onedoc(process.env.ONEDOC_API_KEY as string);
 
-export async function POST(request) {
+export async function GET(request){
   const requestData = await request.json();
   const { data , template } = requestData;
   const { file, error } = await onedoc.render({
@@ -32,8 +32,4 @@ export async function POST(request) {
       "Content-Type": "application/pdf",
     },
   });
-}
-
-export async function GET() {
-  return new Response("hi server is working")
 }
