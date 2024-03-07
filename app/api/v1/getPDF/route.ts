@@ -8,9 +8,9 @@ const onedoc = new Onedoc(process.env.ONEDOC_API_KEY as string);
 
 export async function POST(request) {
   const requestData = await request.json();
-  const { data } = requestData;
+  const { data , template } = requestData;
   const { file, error } = await onedoc.render({
-    html: await compile(OneDocPdf({data})),
+    html: await compile(OneDocPdf({data,template})),
     test: false,
     assets: [
       {

@@ -51,14 +51,16 @@ export default function PaymentPdfEditor() {
 
   const handleGeneratePdf = () => {
     localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("template", "payment");
     router.push("/viewPDF");
 }
 
 
   return (
     <div className="main w-screen min-h-screen lg:flex">
-      <style>
+      <style jsx global>
         {`
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap');
         button{
           background-color:red;
           color:white;
@@ -116,13 +118,13 @@ export default function PaymentPdfEditor() {
               </div>
         <div className="items mb-[10px]">
           <div className="mb-[10px] flex justify-between">
-            <span>Items bought</span>
+            <span className="font-bold">Items bought</span>
             <button className="bg-[green]" onClick={handleAddItem}>Add Item</button>
           </div>
                   {data.items.map((item, i) => (
                     <div className="item mb-[10px]">
-                      <div className="flex justify-between">
-                        <span className="font-bold">Item {i + 1}</span>
+                      <div className="flex justify-between mb-[10px]">
+                        <span>Item {i + 1}</span>
                         <button onClick={()=>{handleRemoveItem(i)}}>Remove</button>
                       </div>
                               <div className="flex justify-between">
@@ -134,9 +136,6 @@ export default function PaymentPdfEditor() {
               </div>
         </div>
       </div>
-      <style>
-        {`@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap')`}
-      </style>
       <button className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]" onClick={handleGeneratePdf}>Generate PDF</button>
     </div>
   );

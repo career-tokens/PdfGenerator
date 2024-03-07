@@ -10,13 +10,13 @@ import React, { useState, useEffect } from "react";
     const fetchPdf = async () => {
         try {        
           const data = JSON.parse(localStorage.getItem("data"));
-
+          const template = localStorage.getItem("template");
           const response = await fetch("/api/v1/getPDF", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ data })
+            body: JSON.stringify({ data , template })
           });
         const blob = await response.blob();
         setPdfData(URL.createObjectURL(blob));

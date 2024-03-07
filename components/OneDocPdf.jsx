@@ -4,10 +4,11 @@ import React from 'react'
 import { CV } from './CV'
 import { Payment } from './Payment'
 
-export const OneDocPdf = ({data}) => {
+export const OneDocPdf = ({data,template}) => {
     return (
             <Tailwind>
-            <Payment data={data}/>
+        {template === "payment" && <Payment data={data} />}
+        {template==="cv"&&<CV data={data}/>}
             </Tailwind>
   )
 }
