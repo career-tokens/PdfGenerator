@@ -38,9 +38,11 @@ export default function Home() {
     </div>
       <div className="templates text-center h-[100vh] flex flex-col justify-center items-center relative">
       <WavyBackground className="max-w-4xl mx-auto pb-40">
-        <div className="flex flex-col gap-y-[3vh]">
-        <div className="text-2xl md:text-3xl text-white font-bold inter-var ">Currently available templates:</div>
-          <div className="flex justify-center gap-x-[2vw]">
+        <div className="flex flex-col gap-y-[3vh] relative mt-[20vh]">
+            <div className="text-2xl md:text-3xl text-white font-bold inter-var ">
+              Currently available templates:
+            </div>
+          <div className="available-templates flex justify-center gap-x-[2vw]">
             <Link href="/cv">
               <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
                 CV      
@@ -51,9 +53,14 @@ export default function Home() {
                 Payment-Invoice      
               </button>
             </Link>
+            </div>
+            <Link href="/pricing" className="mt-[25vh]">
+            <button className="px-12 py-4 rounded-full bg-[#1ED760] z-20 font-bold text-white tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200">
+              CUSTOM TEMPLATES
+            </button>
+            </Link>
           </div>
-          </div>
-          </WavyBackground>
+        </WavyBackground>
     </div>
     </>
   );
