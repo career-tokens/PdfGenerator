@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@onedoc/client": "^0.1.28",
-    "@onedoc/react-print": "^0.1.98",
+    "@onedoc/react-print": "^0.1.113",
     "@radix-ui/react-label": "^2.0.2",
     "@tabler/icons-react": "^2.47.0",
     "clsx": "^2.1.0",
