@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-key */
 "use client";
 import { useScroll, useTransform } from "framer-motion";
 import React from "react";
 import { GoogleGeminiEffect } from "../components/ui/google-gemini-effect";
 import Link from "next/link";
 import { WavyBackground } from "../components/ui/wavy-background";
+import { AnimatedTooltip } from "../components/ui/animated-tooltip";
 
 export default function Home() {
   const ref = React.useRef(null);
@@ -20,6 +22,9 @@ export default function Home() {
 
   return (
     <>
+    <div className="fixed z-[100] bottom-[0vh] flex flex-row items-center justify-start mb-10 w-full pl-[5vw]">
+      <AnimatedTooltip items={people} />
+    </div>
     <div
       className="h-[400vh] bg-black w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
       ref={ref}
@@ -65,3 +70,22 @@ export default function Home() {
     </>
   );
 }
+
+const people = [
+  {
+    id: 1,
+    name: "Mainak Mukherjee",
+    designation: [<p>Full-Stack Developer.</p>,<p>I made this app on top of OneDoc API.</p>,<p>Click icon to checkout my github.</p>],
+    image:
+      "https://res.cloudinary.com/dxprcmmcz/image/upload/v1709922950/1709131580678_b6hnmm.jpg",
+    link:"https://github.com/career-tokens"
+  },
+  {
+    id: 2,
+    name: "OneDoc Team",
+    designation: [<p>OneDoc API sure is awesome!</p>,<p>Make sure to check out their website by clicking the icon.</p>],
+    image:
+      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAAwElEQVR4AZ3SIQyDMBCF4ecF3ot5g3dT+Nk5NGoGhSV4SVLvUIiZmSoUCT6Zr628LTcIry1Zlv3qmk+c6EG+9DP6xdrFH6LJoeUmwRHUGGKNoJqxQlS1o0GS2dBha3i8szo6xX3hyYmmj9uKq5UihPjgTFsIJ0Wj8ywRGsUOQO4lxk6x1e0Jtoo9BjnAXtEucoR3RY7QhTgzniXAomG0jM8MHeEl/mzCTAg7BJg5Rn9lLOMDmwo02ygBam7596jTXgktLRuhzuk6AAAAAElFTkSuQmCC",
+    link:"https://www.onedoclabs.com/"
+  }
+];
