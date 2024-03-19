@@ -10,22 +10,22 @@
   },
   "dependencies": {
     "@onedoc/client": "^0.1.28",
-    "@onedoc/react-print": "^0.1.113",
+    "@onedoc/react-print": "^0.1.126",
     "@radix-ui/react-label": "^2.0.2",
     "@tabler/icons-react": "^2.47.0",
+    "autoprefixer": "^10.4.17",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.8",
     "fs": "^0.0.1-security",
     "mini-svg-data-uri": "^1.4.4",
     "next": "14.1.0",
+    "postcss": "^8.4.35",
     "react": "^18",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "simplex-noise": "^4.0.1",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss": "^3.4.1",
-    "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35"
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
     "@types/node": "^20",
