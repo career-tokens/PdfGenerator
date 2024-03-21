@@ -47,7 +47,7 @@ export default function Home() {
             <div className="text-2xl md:text-3xl text-white font-bold inter-var ">
               Currently available templates:
             </div>
-          <div className="available-templates flex justify-center gap-x-[2vw]">
+          <div className="available-templates flex flex-wrap w-[300px] sm:w-[500px] justify-center gap-x-[2vw] gap-y-[2vh]">
             <Link href="/cv">
               <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
                 CV      
@@ -56,6 +56,11 @@ export default function Home() {
             <Link href="/payment">
               <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
                 Payment-Invoice      
+              </button>
+              </Link>
+              <Link href="/airbnb">
+              <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
+                Airbnb Receipt      
               </button>
             </Link>
             </div>

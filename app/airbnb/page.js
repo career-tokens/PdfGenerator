@@ -7,57 +7,46 @@ import { useState } from "react";
 import { Input } from "../../components/ui/input";
 
 export default function AirbnbPDFGenerator() {
-    const initialData = {
-        company: "VIRINK",
-        name: "Kira Kosmacheva",
-        image:"data:image/jpeg;base64,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",
-        receipt_id: "2204-1411",
-        invoice_id: "7E2BA474-0012",
-        starting_date: "June 1,2023",
-        ending_date:"June 1,2024",
-        bank: "8454",
-        items: [{
-            name: "Virink Pro",
-            price: 8000
-        },
+  const initialData={
+    description: "3 nights in Putrajaya , Malaysia",
+    bookedBy: "Cikgu Mohd Nor Mohamed",
+    date: "Sunday, Oct 22, 2017",
+    checkIn: ["Oct 31", "2017"],
+    checkOut: ["Nov 3", "2017"],
+    address: ["PUTRAJAYA's HEART.5mins from Putrajaya Sentral", "13 Jalan P11f/13 Saujana Aster Condominium", "Putrajaya,Wilayah Persekutuan Putrajaya 62300", "Malaysia"],
+    hostedBy: ["Fazly Azry", "+60 12 291 3374"],
+    travelers: ["Cikgu Mohd Nor Mohamed"],
+    basicCost: {
+        costPerNight: 90.00,
+        nights:3
+    },
+    additionalCost: [{
+        type: "Cleaning Fees",
+        cost:30.00
+    },
         {
-            name: "Virink Lite",
-            price: 4000
-        }]
-    };
-  
+            type: "Service Fees",
+            cost:37.18
+        }],
+    payment: {
+        card: "MASTERCARD",
+        lastFourDigits:"0780"
+    },
+    time: "10.47AM +08",
+    receiptId:"HM3TCST2J3"
+}
   const [data, setData] = useState(initialData);
 
   const router = useRouter();
 
-  const handleRemoveItem = (index) => {      
-      const updatedItems = [...data.items];
-      updatedItems.splice(index, 1); // Remove the item at the given index
-      setData({ ...data, items: updatedItems });
-  };
-  const handleChangeItem = (index, field, value) => {
-    const updatedItems = [...data.items];
-    updatedItems[index][field] = value;
-    setData({ ...data, items: updatedItems });
-  };
-
-  const handleAddItem = () => {     
-      const updatedItems = [...data.items];
-      const previousElement = updatedItems[updatedItems.length - 1];
-      updatedItems.push({ ...previousElement });//even by chance dont directly put previousElement, they
-      //will share common reference
-      setData({ ...data, items: updatedItems });
-  }
-
   const handleGeneratePdf = () => {
     localStorage.setItem("data", JSON.stringify(data));
-    localStorage.setItem("template", "payment");
+    localStorage.setItem("template", "airbnb");
     router.push("/viewPDF");
-}
-
-
+  }
+  
   return (
-    <div className="main w-screen min-h-screen lg:flex">
+    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start">
       <style jsx global>
         {`
         @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap');
@@ -66,74 +55,154 @@ export default function AirbnbPDFGenerator() {
           color:white;
           border-radius:4px;
           padding:5px;
+          padding-top:3px;
+          padding-bottom:3px;
         }
 
         input{
           background-color:black;
           color:white;
         }
+        p{
+          padding-bottom:4px;
+        }
         `}
       </style>
-      <div className="preview lg:w-[50%]">
-        <Airbnb />
+      <div className="preview w-[700px] scale-50 lg:w-[50%] mt-[-250px] mb-[-250px] lg:scale-100 lg:mt-[0px] lg:mb-[0px]">
+        <Airbnb data={data} />
       </div>
-      <div className="change-things  lg:w-[50%] p-[20px] dark:bg-black bg-white  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex justify-center items-center">
-        
+      <div className="change-things w-full lg:w-[50%] p-[20px] dark:bg-black bg-white  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex justify-center items-center">
         <div className="w-[450px] shadow-input bg-white dark:bg-black p-4 rounded font-[Roboto]">
-        <div className="name mb-[10px]">
-                  <span className="mb-[5px]">Your Name</span>
-                  <Input type="text" value={data.name} onChange={(e)=>{setData({...data,name:e.target.value})}}/>
-              </div>
-              <div className="company mb-[10px]">
-                  <span className="mb-[5px]">Company Name</span>
-                  <Input type="text" value={data.company} onChange={(e)=>{setData({...data,company:e.target.value})}}/>
-              </div>
-              <div className="date mb-[10px] flex">
-                  <div className="starting-date w-[45%] mr-[10%]">
-                      <span className="mb-[5px]">Starting Date</span>
-                      <Input type="text" className="w-full" value={data.starting_date} onChange={(e) => { setData({ ...data, starting_date: e.target.value }) }} />
-                  </div>
-                  <div className="ending-date w-[45%]">
-                      <span className="mb-[5px]">Ending Date</span>
-                      <Input type="text" className="w-full" value={data.ending_date} onChange={(e) => { setData({ ...data, ending_date: e.target.value }) }} />
-                  </div>
-              </div>
-              <div className="invoice-receipt mb-[10px] flex">
-                  <div className="invoice w-[45%] mr-[10%]">
-                      <span className="mb-[5px]">Invoice Id</span>
-                      <Input type="text" className="w-full" value={data.invoice_id} onChange={(e) => { setData({ ...data, invoice_id: e.target.value }) }} />
-                  </div>
-                  <div className="receipt w-[45%]">
-                      <span className="mb-[5px]">Receipt Id</span>
-                      <Input type="text" className="w-full" value={data.receipt_id} onChange={(e) => { setData({ ...data, receipt_id: e.target.value }) }} />
-                  </div>
-              </div>
-              <div className="card-image mb-[10px]">
-                  <span className="mb-[5px]">Card Image Public URL</span>
-                  <Input type="text" value={data.image} onChange={(e)=>{setData({...data,image:e.target.value})}}/>
-              </div>
-              <div className="bank mb-[10px]">
-                  <span className="mb-[5px]">Last 4 digits of Bank Account</span>
-                  <Input type="text" value={data.bank} onChange={(e)=>{setData({...data,bank:e.target.value})}}/>
-              </div>
-        <div className="items mb-[10px]">
-          <div className="mb-[10px] flex justify-between">
-            <span className="font-bold">Items bought</span>
-            <button className="bg-[green]" onClick={handleAddItem}>Add Item</button>
+          <div className="booking-details pb-6 border-black border-b-2">
+            <p className="font-bold text-center text-2xl">Booking Details</p>
+            <div className="name mb-3">
+            <p>Booked By:</p>
+            <Input value={data.bookedBy} onChange={(e)=>{setData({...data,bookedBy:e.target.value})}}/>
           </div>
-                  {data.items.map((item, i) => (
-                    <div className="item mb-[10px]">
-                      <div className="flex justify-between mb-[10px]">
-                        <span>Item {i + 1}</span>
-                        <button onClick={()=>{handleRemoveItem(i)}}>Remove</button>
-                      </div>
-                              <div className="flex justify-between">
-                               <Input type="text" value={item.name} onChange={(e) => { handleChangeItem(i, "name", e.target.value) }} />
-                               <Input type="text" value={item.price} onChange={(e)=>{handleChangeItem(i,"price",e.target.value)}} />
-                              </div>
-                    </div>
-                  ))}
-              </div>
+          <div className="description mb-3">
+            <p>Description:</p>
+            <Input value={data.description} onChange={(e)=>{setData({...data,description:e.target.value})}}/>
+          </div>
+          <div className="date-of-booking mb-3">
+            <p>Date of Booking:</p>
+            <Input value={data.date} onChange={(e)=>{setData({...data,date:e.target.value})}}/>
+          </div>
+          <div className="checkIn-Out flex justify-between mb-3">
+            <div className="checkin">
+              <p>Check In</p>
+                <Input value={data.checkIn[0]} onChange={(e) => { setData({ ...data, checkIn: { ...data.checkIn, 0: e.target.value } }) }} />
+                <div className="h-2"/>
+              <Input value={data.checkIn[1]} onChange={(e)=>{setData({...data,checkIn:{...data.checkIn,1:e.target.value}})}}/>
+            </div>
+            <div className="checkout">
+              <p>Check Out</p>
+                <Input value={data.checkOut[0]} onChange={(e) => { setData({ ...data, checkOut: { ...data.checkOut, 0: e.target.value } }) }} />
+                <div className="h-2"/>
+              <Input value={data.checkOut[1]} onChange={(e)=>{setData({...data,checkOut:{...data.checkOut,1:e.target.value}})}}/>
+            </div>
+          </div>
+          <div className="time-receipt">
+            <div className="time mb-2">
+              <p>Time of booking</p>
+              <Input value={data.time} onChange={(e)=>{setData({...data,time:e.target.value})}}/>
+            </div>
+            <div className="receipt">
+              <p>Receipt Id:</p>
+              <Input value={data.receiptId} onChange={(e)=>{setData({...data,receiptId:e.target.value})}}/>
+            </div>
+          </div>
+          </div>
+          <div className="address pt-2 pb-6 border-black border-b-2">
+            <p className="font-bold text-center text-2xl">Address</p>
+            <p>Address Line 1:</p>
+            <Input value={data.address[0]} onChange={(e) => { setData({ ...data, address: Object.values({ ...data.address, 0: e.target.value }) }) }} />
+            <div className="h-1"/>
+            <p>Address Line 2:</p>
+            <Input value={data.address[1]} onChange={(e) => { setData({ ...data, address: Object.values({ ...data.address, 1: e.target.value }) }) }} />
+            <div className="h-1"/>
+            <p>Address Line 3:</p>
+            <Input value={data.address[2]} onChange={(e) => { setData({ ...data, address: Object.values({ ...data.address, 2: e.target.value }) }) }} />
+            <div className="h-1"/>
+            <p>Address Line 4:</p>
+            <Input value={data.address[3]} onChange={(e)=>{setData({...data,address:Object.values({...data.address,3:e.target.value}) })}}/>
+          </div>
+          <div className="hostedBy pt-2 pb-6 border-black border-b-2">
+            <p className="font-bold text-center text-2xl">Host Info</p>
+            <div className="flex justify-between">
+            <div className="host">
+              <p>Host:</p>
+              <Input value={data.hostedBy[0]} onChange={(e) => {
+                console.log({ ...data, hostedBy: { ...data.hostedBy, 0: e.target.value } })
+                setData({ ...data, hostedBy: { ...data.hostedBy, 0: e.target.value } })
+              }} />
+            </div>
+            <div className="phone">
+              <p>Host{"'"}s Phone Number:</p>
+              <Input value={data.hostedBy[1]} onChange={(e)=>{setData({...data,hostedBy:{...data.hostedBy,1:e.target.value}})}}/>
+            </div>
+          </div>
+          </div>
+          <div className="costing-details pt-2 pb-6 border-black border-b-2">
+            <p className="font-bold text-center text-2xl">Cost Details</p>
+            <div className="basiccost flex justify-between mb-3">
+            <div className="costpernight">
+              <p>Cost per night:</p>
+              <Input value={data.basicCost.costPerNight} onChange={(e)=>{setData({...data,basicCost:{...data.basicCost,costPerNight:e.target.value}})}}/>
+            </div>
+            <div className="nights">
+              <p>No. of Nights</p>
+              <Input value={data.basicCost.nights} onChange={(e)=>{setData({...data,basicCost:{...data.basicCost,nights:e.target.value}})}}/>
+            </div>
+            </div>
+            <div className="additionalcost flex justify-between mb-3">
+            <div className="cleaning">
+              <p>Cleaning Fees:</p>
+                <Input value={data.additionalCost[0].cost} onChange={(e) => { setData({ ...data, additionalCost: Object.values({ ...data.additionalCost, 0: { type: "Cleaning Fees", cost: e.target.value } })})}}/>
+            </div>
+            <div className="service">
+              <p>Service Fees:</p>
+                <Input value={data.additionalCost[1].cost} onChange={(e) => { setData({ ...data, additionalCost: Object.values({ ...data.additionalCost, 1: { type: "Service Fees", cost: e.target.value } })})}}/>
+            </div>
+          </div>
+          </div>
+          <div className="travelers pt-2 pb-6 border-black border-b-2">
+            <p className="text-center font-bold text-2xl">Travelers</p>
+            <div className="text-center">
+            <button className="bg-[green] mb-2" onClick={()=>{setData({...data,travelers:Object.values({...data.travelers,[data.travelers.length+1]:"Cikgu Mohd Nor Mohamed"})})}}>Add Traveler</button>
+            </div>
+            <div className="persons">
+              {
+                data.travelers.map((item,index) => (
+                  <div className="flex justify-between items-center">
+                    <Input className="w-[220px] sm:w-[250px]" value={item} onChange={(e) => {
+                      setData({ ...data, travelers: Object.values({...data.travelers,[index]:e.target.value}) })
+                    }} />
+                    <button className="h-[35px] px-[8px]" onClick={() => {
+                      if (index != 0)
+                      {
+                        let arr = [...data.travelers];
+                        arr.splice(index, 1);
+                        setData({ ...data, travelers: arr });
+                        }
+                      }}>Remove</button>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+          <div className="payment pt-2 pb-6">
+            <p className="font-bold text-center text-2xl">Payment Details:</p>
+          <div className="flex justify-between">
+            <div className="card">
+              <p>Card Company:</p>
+              <Input value={data.payment.card} onChange={(e)=>{setData({...data,payment:{...data.payment,card:e.target.value}})}}/>
+            </div>
+            <div className="last">
+              <p>Last Four Digits:</p>
+              <Input value={data.payment.lastFourDigits} onChange={(e)=>{setData({...data,payment:{...data.payment,lastFourDigits:e.target.value}})}}/>
+            </div>
+          </div>
+          </div>
         </div>
       </div>
       <button className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]" onClick={handleGeneratePdf}>Generate PDF</button>
