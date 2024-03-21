@@ -74,7 +74,7 @@ export default function PaymentPdfEditor() {
         }
         `}
       </style>
-      <div className="preview lg:w-[50%]">
+      <div className="preview scale-90 lg:w-[50%] lg:scale-100">
         <Payment data={data} />
       </div>
       <div className="change-things  lg:w-[50%] p-[20px] dark:bg-black bg-white  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex justify-center items-center">
