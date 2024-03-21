@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
 
@@ -35,10 +36,7 @@ import React, { useState, useEffect } from "react";
           type="application/pdf"
           style={{ width: "100%", height: "100%", border: "none" }}
         >
-          <p>
-            Your browser does not support PDFs.{" "}
-            <a href={pdfData}>Download the PDF</a>.
-          </p>
+          <MobileView pdfData={pdfData} />
         </object>
       ) : (
         <Loading/>
@@ -73,6 +71,21 @@ const Loading = () => {
 }
 `}
 </style>
+    </div>
+  )
+}
+
+const MobileView = ({pdfData}) => {
+  return (
+    <div className="mobile h-screen flex flex-col justify-center items-center text-center">
+      <p className="text-lg">Sorry you cannot preview this file in mobile view</p>
+      <p className="text-lg">Shift to PC view</p>
+      <p className="text-lg">Or</p>
+      <Link href={pdfData}>
+        <button className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
+         Download the File
+        </button>
+      </Link>
     </div>
   )
 }
