@@ -8,13 +8,13 @@ import { Input } from "../../components/ui/input";
 
 export default function Home() {
   const initialData = {
-    name: "PIERRE DORGE",
-    phoneNumber1: "(+41) 78 235 16 00",
-    phoneNumber2: "(+33) 06 07 63 99 87",
-    addressLine1: "Kaferhölzstrasse 54",
+    name: "ROBERT DORGE",
+    phoneNumber1: "(+41) 90 123 65 00",
+    phoneNumber2: "(+33) 89 34 12 77 89",
+    addressLine1: "somewheregreat 54",
     addressLine2: "Zürich, Switzerland",
-    email1: "pdorge@student.ethz.com",
-    email2: "pierre.dorge@lleedpartners.com",
+    email1: "robertdorge@student.hello.com",
+    email2: "robertDorge@hellopartners.com",
     education: [{
         university:"EIDGENOSSISCHE TECHNISCHE HOCHSCHULE ZURICH, ETHZ",
         universityLocation: "Zurich, ZH ,Switzerland",

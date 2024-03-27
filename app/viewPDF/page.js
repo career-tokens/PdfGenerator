@@ -53,6 +53,7 @@ const Loading = () => {
     <div className="h-screen flex flex-col gap-y-[2vh] justify-center items-center bg-[#001428]">
       <div class="spinner"></div>
       <p className="text-[#009ff9] text-lg">Loading your PDF...</p>
+      <p className="text-[#009ff9] text-lg">Make sure to reload in case of error.</p>
 <style>
 {`.spinner {
    width: 56px;
