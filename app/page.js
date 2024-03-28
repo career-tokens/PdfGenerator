@@ -22,6 +22,9 @@ export default function Home() {
 
   return (
     <>
+            <div className="absolute ml-auto mr-auto left-0 right-0 text-black top-[20px] z-[50] text-center">
+        <p>If you are seeing this then please make sure to turn off any dark mode extension.</p>
+      </div>
     <div className="fixed z-[100] bottom-[0vh] flex flex-row items-center justify-start mb-10 w-full pl-[5vw]">
       <AnimatedTooltip items={people} />
     </div>
