@@ -28,7 +28,7 @@ export const Payment = ({data}) => {
         <p className="mb-[10px]">Hello <span className="font-semibold">{data.name},</span></p>
         <p className="mb-[10px]">You have successfully paid for the order <span className="font-bold">#{data.receipt_id}</span></p>
         <p className="mb-[10px]">Receipt from {data.company}</p>
-        <p className="text-2xl font-extrabold mb-[10px]">₹{1.21*data.items.reduce((a,item) => (a + item.price),0)}</p>
+        <p className="text-2xl font-extrabold mb-[10px]">₹{1.21*data.items.reduce((a,item) => (a + Number(item.price)),0)}</p>
         <p className="pb-[8px] border-black border-b-2 mb-[10px]">Paid {data.starting_date}</p>
         <p className="mb-[10px] flex justify-between">
             <span>Receipt Number</span>
@@ -60,22 +60,22 @@ export const Payment = ({data}) => {
                 data.items.map((item) => (
                     <p className="pb-[8px] flex justify-between">
                         <span className="font-semibold">{item.name}</span>
-                        <span>₹{item.price}</span>
+                        <span>₹{Number(item.price)}</span>
                     </p>
                 ))
             }
         </div>
         <p className="mb-[10px] flex justify-between">
             Subtotal
-            <span>₹{data.items.reduce((a,item) => (a + item.price),0)}</span>
+            <span>₹{data.items.reduce((a,item) => (a + Number(item.price)),0)}</span>
         </p>
         <p className="mb-[10px] flex justify-between">
             VAT(21%)
-            <span>₹{0.21*data.items.reduce((a,item) => (a + item.price),0)}</span>
+            <span>₹{0.21*data.items.reduce((a,item) => (a + Number(item.price)),0)}</span>
         </p>
         <p className="pb-[8px] mb-[10px] flex justify-between">
             Total Amount
-            <span>₹{1.21*data.items.reduce((a,item) => (a + item.price),0)}</span>
+            <span>₹{1.21*data.items.reduce((a,item) => (a + Number(item.price)),0)}</span>
         </p>
     </div>
   </div>
