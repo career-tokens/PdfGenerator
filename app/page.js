@@ -55,6 +55,11 @@ export default function Home() {
               <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
                 CV      
               </button>
+              </Link>
+              <Link href="/newCV">
+              <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
+                Latest CV     
+              </button>
             </Link>
             <Link href="/payment">
               <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
