@@ -5,7 +5,7 @@ import { Payment } from "../../components/Payment";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
-import PaymentData from "../../dataModels/PaymentData";
+import {PaymentData} from "../../dataModels/PaymentData";
 
 export default function PaymentPdfEditor() {
     const initialData:PaymentData= {
