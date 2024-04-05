@@ -6,6 +6,7 @@ import { GoogleGeminiEffect } from "../components/ui/google-gemini-effect";
 import Link from "next/link";
 import { WavyBackground } from "../components/ui/wavy-background";
 import { AnimatedTooltip } from "../components/ui/animated-tooltip";
+import MoveToCTAButton from "../components/ui/MoveToCTAButton";
 
 export default function Home() {
   const ref = React.useRef(null);
@@ -22,6 +23,7 @@ export default function Home() {
 
   return (
     <>
+      <MoveToCTAButton/>
             <div className="absolute ml-auto mr-auto left-0 right-0 text-black top-[20px] z-[50] text-center">
         <p>If you are seeing this then please make sure to turn off any dark mode extension.</p>
       </div>
