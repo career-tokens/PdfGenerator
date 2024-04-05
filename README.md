@@ -3,7 +3,7 @@
 
 <h1 align="center" id="title">PDFternity</h1>
 
-<p id="description">A full stack app where you will get free PDF templates make as many changes as you want and generate the PDF to download it!</p>
+<p id="description">A full stack (NextJS with Typescript) app where you will get free PDF templates make as many changes as you want and generate the PDF to download it!</p>
 <br/>
 <h2>🎬 Video Demo</h2>
 
@@ -36,9 +36,9 @@ Technologies used in the project:
 
 Here're some of the project's best features:
 
-*   Built with latest technologies like NextJS TailwindCSS.
+*   Built with latest technologies like NextJS , TailwindCSS , Typescript.
 *   Cool Landing Page made using Aceternity UI.
-*   Currently features three awesome PDF templates:Detailed CV Airbnb Receipt and Invoice
+*   Currently features three awesome PDF templates:Detailed CV, Airbnb, Receipt and Invoice
 *   Make as many changes as you want !
 *   Responsive app view the proper PDF layout even on mobile
 *   Finally generate the PDF and download it!
