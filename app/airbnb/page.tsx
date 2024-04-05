@@ -116,16 +116,16 @@ export default function AirbnbPDFGenerator() {
           <div className="address pt-2 pb-6 border-black border-b-2">
             <p className="font-bold text-center text-2xl">Address</p>
             <p>Address Line 1:</p>
-            <Input value={data.address[0]} onChange={(e) => { setData({ ...data, address: Object.values({ ...data.address, 0: e.target.value }) }) }} />
+            <Input value={data.address[0]} onChange={(e) => { setData({ ...data, address: [e.target.value,data.address[1],data.address[2],data.address[3]]}) }} />
             <div className="h-1"/>
             <p>Address Line 2:</p>
-            <Input value={data.address[1]} onChange={(e) => { setData({ ...data, address: Object.values({ ...data.address, 1: e.target.value }) }) }} />
+            <Input value={data.address[1]} onChange={(e) => { setData({ ...data, address: [data.address[0],e.target.value,data.address[2],data.address[3]] }) }} />
             <div className="h-1"/>
             <p>Address Line 3:</p>
-            <Input value={data.address[2]} onChange={(e) => { setData({ ...data, address: Object.values({ ...data.address, 2: e.target.value }) }) }} />
+            <Input value={data.address[2]} onChange={(e) => { setData({ ...data, address: [data.address[0],data.address[1],e.target.value,data.address[3]] }) }} />
             <div className="h-1"/>
             <p>Address Line 4:</p>
-            <Input value={data.address[3]} onChange={(e)=>{setData({...data,address:Object.values({...data.address,3:e.target.value}) })}}/>
+            <Input value={data.address[3]} onChange={(e)=>{setData({...data,address: [data.address[0],data.address[1],e.target.value,data.address[3]] })}}/>
           </div>
           <div className="hostedBy pt-2 pb-6 border-black border-b-2">
             <p className="font-bold text-center text-2xl">Host Info</p>
@@ -148,35 +148,37 @@ export default function AirbnbPDFGenerator() {
             <div className="basiccost flex justify-between mb-3">
             <div className="costpernight">
               <p>Cost per night:</p>
-              <Input value={data.basicCost.costPerNight} onChange={(e)=>{setData({...data,basicCost:{...data.basicCost,costPerNight:e.target.value}})}}/>
+              <Input value={data.basicCost.costPerNight} onChange={(e)=>{setData({...data,basicCost:{...data.basicCost,costPerNight:Number(e.target.value)}})}}/>
             </div>
             <div className="nights">
               <p>No. of Nights</p>
-              <Input value={data.basicCost.nights} onChange={(e)=>{setData({...data,basicCost:{...data.basicCost,nights:e.target.value}})}}/>
+              <Input value={data.basicCost.nights} onChange={(e)=>{setData({...data,basicCost:{...data.basicCost,nights:Number(e.target.value)}})}}/>
             </div>
             </div>
             <div className="additionalcost flex justify-between mb-3">
             <div className="cleaning">
               <p>Cleaning Fees:</p>
-                <Input value={data.additionalCost[0].cost} onChange={(e) => { setData({ ...data, additionalCost: Object.values({ ...data.additionalCost, 0: { type: "Cleaning Fees", cost: e.target.value } })})}}/>
+                <Input value={data.additionalCost[0].cost} onChange={(e) => { setData({ ...data, additionalCost: [{ type: "Cleaning Fees", cost: Number(e.target.value) },data.additionalCost[1] ]})}}/>
             </div>
             <div className="service">
               <p>Service Fees:</p>
-                <Input value={data.additionalCost[1].cost} onChange={(e) => { setData({ ...data, additionalCost: Object.values({ ...data.additionalCost, 1: { type: "Service Fees", cost: e.target.value } })})}}/>
+                <Input value={data.additionalCost[1].cost} onChange={(e) => { setData({ ...data, additionalCost: [data.additionalCost[0],{ type: "Service Fees", cost: Number(e.target.value) }]})}}/>
             </div>
           </div>
           </div>
           <div className="travelers pt-2 pb-6 border-black border-b-2">
             <p className="text-center font-bold text-2xl">Travelers</p>
             <div className="text-center">
-            <button className="bg-[green] mb-2" onClick={()=>{setData({...data,travelers:Object.values({...data.travelers,[data.travelers.length+1]:"Cikgu Mohd Nor Mohamed"})})}}>Add Traveler</button>
+            <button className="bg-[green] mb-2" onClick={()=>{setData({...data,travelers:[...data.travelers,"Cikgu Mohd Nor Mohamed"]})}}>Add Traveler</button>
             </div>
             <div className="persons">
               {
                 data.travelers.map((item,index) => (
                   <div className="flex justify-between items-center">
                     <Input className="w-[220px] sm:w-[250px]" value={item} onChange={(e) => {
-                      setData({ ...data, travelers: Object.values({...data.travelers,[index]:e.target.value}) })
+                      let newTravelers = [...data.travelers];
+                      newTravelers[index] = e.target.value;
+                      setData({ ...data, travelers: newTravelers })
                     }} />
                     <button className="h-[35px] px-[8px]" onClick={() => {
                       if (index != 0)

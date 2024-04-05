@@ -5,8 +5,9 @@ import React, { useRef } from "react";
 import { GoogleGeminiEffect } from "../components/ui/google-gemini-effect";
 import Link from "next/link";
 import { WavyBackground } from "../components/ui/wavy-background";
-import { AnimatedTooltip, Person } from "../components/ui/animated-tooltip";
+import { AnimatedTooltip } from "../components/ui/animated-tooltip";
 import MoveToCTAButton from "../components/ui/MoveToCTAButton";
+import { Person } from "../dataModels/Person";
 
 interface HomeProps {}
 
@@ -41,7 +42,7 @@ const Home: React.FC<HomeProps> = () => {
       >
         <GoogleGeminiEffect
           title="Build with PDFternity"
-          description="Scroll below to explore available templates!"
+          description="Make your own PDFs using our amazing free templates!"
           pathLengths={[
             pathLengthFirst,
             pathLengthSecond,
