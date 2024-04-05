@@ -1,7 +1,12 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 
-export const Payment = ({data}) => {
+import { PaymentData } from "../dataModels/PaymentData";
+
+interface PaymentDataProps {
+    data: PaymentData;
+}
+export const Payment:React.FC<PaymentDataProps> = ({data}) => {
     // const data = {
     //     company: "VIRINK",
     //     name: "Kira Kosmacheva",

@@ -5,9 +5,10 @@ import { NewCV } from "../../components/NewCV";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
+import { NewCVData } from "../../dataModels/NewCVData";
 
 export default function NewCVPdfGenerator() {
-  const initialData = {
+  const initialData:NewCVData = {
     personalInfo: {
       firstName: "KHALIL",
       lastName: "RICHARDSON",
@@ -97,7 +98,7 @@ export default function NewCVPdfGenerator() {
       // Add other education entries if needed
     ],
   };
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState<NewCVData>(initialData);
 
   const router = useRouter();
 

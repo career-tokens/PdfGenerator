@@ -5,13 +5,19 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "PDFternity",
-  description: "App to view PDF templates , make changes and generate the PDF!",
+  description: "App to view PDF templates, make changes and generate the PDF!",
 };
 
-export default function RootLayout({ children }) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
     </html>
   );
-}
+};
+
+export default RootLayout;

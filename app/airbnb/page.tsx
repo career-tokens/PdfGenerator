@@ -5,9 +5,10 @@ import { Airbnb } from "../../components/Airbnb";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
+import { AirbnbData } from "../../dataModels/AirbnbData";
 
 export default function AirbnbPDFGenerator() {
-  const initialData={
+  const initialData:AirbnbData={
     description: "3 nights in Putrajaya , Malaysia",
     bookedBy: "Cikgu Mohd Nor Mohamed",
     date: "Sunday, Oct 22, 2017",
@@ -35,7 +36,7 @@ export default function AirbnbPDFGenerator() {
     time: "10.47AM +08",
     receiptId:"HM3TCST2J3"
 }
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState<AirbnbData>(initialData);
 
   const router = useRouter();
 

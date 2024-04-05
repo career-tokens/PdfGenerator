@@ -1,24 +1,24 @@
-'use client'
-import Link from "next/link";
+"use client"
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
+interface OneDocProps {}
 
-
- const OneDoc = () => {
-  const [pdfData, setPdfData] = useState(null);
+const OneDoc: React.FC<OneDocProps> = () => {
+  const [pdfData, setPdfData] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPdf = async () => {
-        try {        
-          const data = JSON.parse(localStorage.getItem("data"));
-          const template = localStorage.getItem("template");
-          const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/v1/getPDF`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ data , template })
-          });
+      try {
+        const data = JSON.parse(localStorage.getItem("data") || "");
+        const template = localStorage.getItem("template") || "";
+        const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/v1/getPDF`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ data, template })
+        });
         const blob = await response.blob();
         setPdfData(URL.createObjectURL(blob));
       } catch (error) {
@@ -28,6 +28,7 @@ import React, { useState, useEffect } from "react";
 
     fetchPdf();
   }, []);
+
   return (
     <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
       {pdfData ? (
@@ -39,23 +40,22 @@ import React, { useState, useEffect } from "react";
           <MobileView pdfData={pdfData} />
         </object>
       ) : (
-        <Loading/>
+        <Loading />
       )}
     </div>
   );
 };
 
-export default OneDoc;
+interface LoadingProps {}
 
-
-const Loading = () => {
+const Loading: React.FC<LoadingProps> = () => {
   return (
     <div className="h-screen flex flex-col gap-y-[2vh] justify-center items-center bg-[#001428]">
-      <div class="spinner"></div>
+      <div className="spinner"></div>
       <p className="text-[#009ff9] text-lg">Loading your PDF...</p>
       <p className="text-[#009ff9] text-lg">Make sure to reload in case of error.</p>
-<style>
-{`.spinner {
+      <style>
+        {`.spinner {
    width: 56px;
    height: 56px;
    border-radius: 50%;
@@ -71,12 +71,16 @@ const Loading = () => {
    }
 }
 `}
-</style>
+      </style>
     </div>
-  )
+  );
+};
+
+interface MobileViewProps {
+  pdfData: string;
 }
 
-const MobileView = ({pdfData}) => {
+const MobileView: React.FC<MobileViewProps> = ({ pdfData }) => {
   return (
     <div className="mobile h-screen flex flex-col justify-center items-center text-center">
       <p className="text-lg">Sorry you cannot preview this file in mobile view</p>
@@ -84,9 +88,11 @@ const MobileView = ({pdfData}) => {
       <p className="text-lg">Or</p>
       <Link href={pdfData}>
         <button className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
-         Download the File
+          Download the File
         </button>
       </Link>
     </div>
-  )
-}
+  );
+};
+
+export default OneDoc;

@@ -5,9 +5,10 @@ import { CV } from "../../components/CV";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
+import { CVData } from "../../dataModels/CVData";
 
 export default function Home() {
-  const initialData = {
+  const initialData:CVData = {
     name: "ROBERT DORGE",
     phoneNumber1: "(+41) 90 123 65 00",
     phoneNumber2: "(+33) 89 34 12 77 89",
@@ -116,7 +117,7 @@ export default function Home() {
         }]
   }
   
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState<CVData>(initialData);
 
   const router = useRouter();
 

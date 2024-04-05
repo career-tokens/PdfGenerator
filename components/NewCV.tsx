@@ -1,7 +1,15 @@
 import React from 'react';
+import { Education, Experience, Language, NewCVData, PersonalInfo, Skill } from "../dataModels/NewCVData";
 
+interface NewCVDataProps {
+  personalInfo: PersonalInfo;
+  skills: Skill[];
+  experiences: Experience[];
+  languages: Language[];
+  education: Education[];
+}
 
-export const NewCV = ({ personalInfo, skills, experiences, languages, education }) => {
+export const NewCV:React.FC<NewCVDataProps>= ({ personalInfo, skills, experiences, languages, education }) => {
   return (
       <div className="min-h-screen flex justify-center items-center font-[Poppins]">
         <div className="flex rounded">

@@ -2,7 +2,12 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 
-export const Airbnb = ({data}) => {
+import { AirbnbData } from "../dataModels/AirbnbData";
+
+interface AirbnbDataProps {
+    data: AirbnbData;
+}
+export const Airbnb:React.FC<AirbnbDataProps> = ({data}) => {
 
     function calculateCost() {
         let value = 0;

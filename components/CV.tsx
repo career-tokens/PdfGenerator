@@ -1,7 +1,12 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
+import { CVData } from "../dataModels/CVData";
 
- export const CV = ({data}) => {
+interface CVDataProps {
+    data: CVData;
+}
+
+ export const CV:React.FC<CVDataProps> = ({data}) => {
     // const data = {
     //     name: "PIERRE DORGE",
     //     phoneNumber1: "(+41) 78 235 16 00",
