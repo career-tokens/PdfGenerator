@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@onedoc/client": "^0.1.28",
     "@onedoc/react-print": "^0.1.126",
     "@radix-ui/react-label": "^2.0.2",
