@@ -3,6 +3,7 @@ import { TigerCVData } from '../../dataModels/TigerCVData';
 import { Input } from '../../components/ui/input';
 import DeleteButton from '../../components/ui/DeleteButton';
 import AddButton from '../../components/ui/AddButton';
+import { toast } from 'sonner';
 interface Props {
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -12,7 +13,10 @@ const OpenSource: React.FC<Props> = ({ data, setData }) => {
     const handleRemoveOpen = (index: number) => {
             if (data.openSourceContributions.length === 1) {
               // If there's only one openSourceContributions entry, prevent deletion
-              alert("At least one open source contribution entry must be present.");
+              toast.error("You need to have minimum one entry here", {
+                className: 'text-base  w-[400px] flex justify-center',
+                duration: 5000,
+              });
               return;
             }
             
@@ -30,7 +34,15 @@ const OpenSource: React.FC<Props> = ({ data, setData }) => {
           <div className="secondline flex justify-center">
               <AddButton
                   description="Add More Details"
-                  cb={() => { setData({ ...data, openSourceContributions: [data.openSourceContributions[0], ...data.openSourceContributions] }) }} />
+          cb={() => {
+            if (data.openSourceContributions.length == 3)
+            toast.warning("Exceeding three entries here is not advised.The content might not fit in one page and would require 2 pages.",
+            {
+              className: 'text-base  w-[400px] flex justify-center',
+              duration: 5000,
+            })
+            setData({ ...data, openSourceContributions: [data.openSourceContributions[0], ...data.openSourceContributions] })
+          }} />
           </div>
           {
               data.openSourceContributions.map((text, i)=>(

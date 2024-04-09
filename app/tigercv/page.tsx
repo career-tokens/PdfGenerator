@@ -12,6 +12,7 @@ import ProfessionalExperience from './professional';
 import OpenSource from './opensource';
 import Projects from './projects';
 import { useRouter } from 'next/navigation';
+import { Toaster } from 'sonner';
 
 const TigerCVPdfGenerator = () => {
     const initialData:TigerCVData = {
@@ -157,7 +158,8 @@ const TigerCVPdfGenerator = () => {
       onClick={handleGeneratePdf}
     >
       Generate PDF
-    </button>
+      </button>
+      <Toaster richColors position='top-center' closeButton expand/>
   </div>
   )
 }

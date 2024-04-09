@@ -3,6 +3,7 @@ import AddButton from '../../components/ui/AddButton';
 import { TigerCVData } from '../../dataModels/TigerCVData';
 import { Input } from '../../components/ui/input';
 import DeleteButton from '../../components/ui/DeleteButton';
+import { toast } from 'sonner';
 interface Props{
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -12,7 +13,10 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
     const handleRemoveExperience = (index: number) => {
         let arr = [...data.professionalExperience];
         if (arr.length == 1)
-            alert("You need to have minimum one entry here.")
+                        toast.error("You need to have minimum one entry here", {
+              className: 'text-base  w-[400px] flex justify-center',
+              duration: 5000,
+            });
         else
         {
             arr.splice(index, 1);
@@ -23,7 +27,10 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
     const handleRemoveTask = (expIndex:number,taskIndex: number) => {
         let arr = [...data.professionalExperience];
         if (arr[expIndex].tasks.length == 1)
-            alert("You need to have minimum one entry here.")
+                        toast.error("You need to have minimum one entry here", {
+              className: 'text-base  w-[400px] flex justify-center',
+              duration: 5000,
+            });
         else
         {
             arr[expIndex].tasks.splice(taskIndex, 1);
@@ -40,7 +47,15 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
           <div className="secondline flex justify-center">
               <AddButton
                   description="Add more Experience"
-                  cb={() => { setData({ ...data, professionalExperience: [{ ...data.professionalExperience[0] }, ...data.professionalExperience] }) }} />
+                  cb={() => {
+                    if (data.professionalExperience.length == 3)
+                    toast.warning("Exceeding two entries here is not advised.The content might not fit in one page and would require 2 pages.",
+                    {
+                      className: 'text-base  w-[400px] flex justify-center',
+                      duration: 5000,
+                    })
+                      setData({ ...data, professionalExperience: [{ ...data.professionalExperience[0] }, ...data.professionalExperience] })
+                  }} />
           </div>
           <div className="thirdpart flex flex-col gap-y-3">
               {
@@ -78,6 +93,12 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
                               <div className="firstline flex justify-between items-center mb-3">
                                   <p>Tasks:</p>
                                   <AddButton cb={() => {
+                                                if (data.professionalExperience[i].tasks.length == 3)
+                                                toast.warning("Exceeding three entries here is not advised.The content might not fit in one page and would require 2 pages.",
+                                                {
+                                                  className: 'text-base  w-[400px] flex justify-center',
+                                                  duration: 5000,
+                                                })
                                       let arr =[...data.professionalExperience] ;
                                       let tasks = [arr[i].tasks[0], ...arr[i].tasks];
                                       arr[i].tasks = tasks;

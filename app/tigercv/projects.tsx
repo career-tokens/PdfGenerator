@@ -3,6 +3,7 @@ import { TigerCVData } from '../../dataModels/TigerCVData';
 import DeleteButton from '../../components/ui/DeleteButton';
 import { Input } from '../../components/ui/input';
 import AddButton from '../../components/ui/AddButton';
+import { toast } from 'sonner';
 interface Props {
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -12,7 +13,10 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
     const handleRemoveProject = (index: number) => {
         if (data.projects.length === 1) {
             // If there's only one projects entry, prevent deletion
-            alert("At least one open source contribution entry must be present.");
+            toast.error("You need to have minimum one entry here", {
+                className: 'text-base  w-[400px] flex justify-center',
+                duration: 5000,
+              });
             return;
           }
         let arr = [...data.projects];
@@ -23,7 +27,10 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
     const handleRemoveFeature = (projectIndex:number,featureIndex:number) => {
         if (data.projects[projectIndex].features.length === 1) {
             // If there's only one projects entry, prevent deletion
-            alert("At least one project feature entry must be present.");
+            toast.error("You need to have minimum one entry here", {
+                className: 'text-base  w-[400px] flex justify-center',
+                duration: 5000,
+              });
             return;
           }
         let arr = [...data.projects];
@@ -33,6 +40,19 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
   return (
     <div className="personal-info flex flex-col gap-y-7 mb-3">
           <p className="text-2xl font-bold text-center">Projects</p>
+          <div className="flex justify-center">
+              <AddButton
+                  description="Add More Projects"
+                  cb={() => {
+                    if (data.projects.length == 4)
+                    toast.warning("Exceeding four entries here is not advised.The content might not fit in one page and would require 2 pages.",
+                    {
+                      className: 'text-base  w-[400px] flex justify-center',
+                      duration: 5000,
+                    })
+                      setData({ ...data, projects: [{ ...data.projects[0] }, ...data.projects] })
+                  }} />
+          </div>
           {
               data.projects.map((project, i) => (
                   <div className="flex flex-col gap-y-3" key={i}>
@@ -77,6 +97,12 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
               <AddButton
                   description="Add"
                                   cb={() => {
+                                    if (data.projects[i].features.length == 3)
+                                    toast.warning("Exceeding five entries here is not advised.The content might not fit in one page and would require 2 pages.",
+                                    {
+                                      className: 'text-base  w-[400px] flex justify-center',
+                                      duration: 5000,
+                                    })
                                       let arr = [...data.projects];
                                       arr[i].features = [arr[i].features[0], ...arr[i].features]
                                       setData({...data,projects:arr})
