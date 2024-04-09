@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { TigerCVData } from '../../dataModels/TigerCVData';
-import TigerCV from '../../components/TigerCV';
+import {TigerCV} from '../../components/TigerCV';
 import { Input } from '../../components/ui/input';
 import DeleteButton from '../../components/ui/DeleteButton';
 import AddButton from '../../components/ui/AddButton';
@@ -11,6 +11,7 @@ import Skills from './skills';
 import ProfessionalExperience from './professional';
 import OpenSource from './opensource';
 import Projects from './projects';
+import { useRouter } from 'next/navigation';
 
 const TigerCVPdfGenerator = () => {
     const initialData:TigerCVData = {
@@ -102,26 +103,19 @@ const TigerCVPdfGenerator = () => {
     }
 
   const [data, setData] = useState<TigerCVData>(initialData);
+
+  const router = useRouter();
   
   const handleCheckboxChange = (topic) => {
     setData({ ...data, [topic]: { ...data[topic], needed: !data[topic].needed } })
     console.log({...data,[topic]:{...data[topic],needed:!data[topic].needed}})
   }
 
-  const handleRemove = (category, index) => {
-
-    if (category === "skills") {
-      if (data.skills.length === 1) {
-        // If there's only one skills entry, prevent deletion
-        alert("At least one skills entry must be present.");
-        return;
-      }
-      
-      const updatedSkills = [...data.skills];
-      updatedSkills.splice(index, 1); // Remove the item at the given index
-      setData({ ...data, skills: updatedSkills });
-    }
-  }
+  const handleGeneratePdf = () => {
+    localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("template", "tigercv");
+    router.push("/viewPDF");
+}
   return (
     <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start">
     <style jsx global>
@@ -160,7 +154,7 @@ const TigerCVPdfGenerator = () => {
     </div>
     <button
       className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]"
-    //   onClick={handleGeneratePdf}
+      onClick={handleGeneratePdf}
     >
       Generate PDF
     </button>
