@@ -11,7 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@onedoc/client": "^0.1.28",
-    "@onedoc/react-print": "^0.1.126",
+    "@onedoc/react-print": "^0.1.128",
     "@radix-ui/react-label": "^2.0.2",
     "@tabler/icons-react": "^2.47.0",
     "autoprefixer": "^10.4.17",
