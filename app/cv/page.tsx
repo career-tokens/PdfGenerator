@@ -6,6 +6,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
 import { CVData } from "../../dataModels/CVData";
+import { toast } from "sonner";
+import Details from "./details";
+import Education from "./education";
+import Work from "./work";
+import Academic from "./academic";
+import Coursework from "./coursework";
+import AdditionalInfo from "./additionalInfo";
 
 export default function Home() {
   const initialData:CVData = {
@@ -121,11 +128,26 @@ export default function Home() {
 
   const router = useRouter();
 
+  const handleErrorToast = () => {
+    toast.error("You need to have minimum one entry here", {
+      className: 'text-base  w-[400px] flex justify-center',
+      duration: 5000,
+    });
+  }
+
+  const handleWarningToast = (entries:string) => {
+    toast.warning(`Exceeding ${entries} entries here is not advised.The content might not fit in one page and would require 2 pages.`,
+      {
+        className: 'text-base  w-[400px] flex justify-center',
+        duration: 5000,
+      })
+  }
+
   const handleRemove = (category, index) => {
     if (category === "education") {
       if (data.education.length === 1) {
         // If there's only one education entry, prevent deletion
-        alert("At least one education entry must be present.");
+        handleErrorToast();
         return;
       }
       
@@ -137,7 +159,7 @@ export default function Home() {
     if (category === "work") {
       if (data.work.length === 1) {
         // If there's only one work entry, prevent deletion
-        alert("At least one work entry must be present.");
+        handleErrorToast();
         return;
       }
       
@@ -149,7 +171,7 @@ export default function Home() {
     if (category === "academic") {
       if (data.academic.length === 1) {
         // If there's only one academic entry, prevent deletion
-        alert("At least one academic entry must be present.");
+        handleErrorToast();
         return;
       }
       
@@ -161,7 +183,7 @@ export default function Home() {
     if (category === "coursework") {
       if (data.coursework.length === 1) {
         // If there's only one coursework entry, prevent deletion
-        alert("At least one coursework entry must be present.");
+        handleErrorToast();
         return;
       }
       
@@ -173,7 +195,7 @@ export default function Home() {
     if (category === "additionalInfo") {
       if (data.additionalInfo.length === 1) {
         // If there's only one additionalInfo entry, prevent deletion
-        alert("At least one additionalInfo entry must be present.");
+        handleErrorToast();
         return;
       }
       
@@ -183,36 +205,11 @@ export default function Home() {
     }
     // Add more conditions for other categories if needed
   };
-  const handleEducationChange = (index, field, value) => {
-    const updatedEducation = [...data.education];
-    updatedEducation[index][field] = value;
-    setData({ ...data, education: updatedEducation });
-  };
-  const handleWorkChange = (index, field, value) => {
-    const updatedWork = [...data.work];
-    updatedWork[index][field] = value;
-    setData({ ...data, work: updatedWork });
-  };
-  const handleAcademicChange = (index, field, value) => {
-    const updatedAcademic = [...data.academic];
-    updatedAcademic[index][field] = value;
-    setData({ ...data, academic: updatedAcademic });
-  };
-
-  const handleCourseworkChange = (index, field, value) => {
-    const updatedCoursework = [...data.coursework];
-    updatedCoursework[index][field] = value;
-    setData({ ...data, coursework: updatedCoursework });
-  };
-
-  const handleAdditionalInfoChange = (index, field, value) => {
-    const updatedAdditionalInfo = [...data.additionalInfo];
-    updatedAdditionalInfo[index][field] = value;
-    setData({ ...data, additionalInfo: updatedAdditionalInfo });
-  };
 
   const handleAdd = (category) => {
-    if (category === "education") {      
+    if (category === "education") {  
+      if (data.education.length === 2)
+        handleWarningToast("two")
       const updatedEducation = [...data.education];
       const previousElement = updatedEducation[updatedEducation.length - 1];
       updatedEducation.push({ ...previousElement });//even by chance dont directly put previousElement, they
@@ -220,7 +217,9 @@ export default function Home() {
       setData({ ...data, education: updatedEducation });
     }
 
-    if (category === "work") {     
+    if (category === "work") {    
+      if (data.work.length === 5)
+      handleWarningToast("five")
       const updatedWork = [...data.work];
       const previousElement = updatedWork[updatedWork.length - 1];
       updatedWork.push({ ...previousElement });
@@ -228,6 +227,8 @@ export default function Home() {
     }
 
     if (category === "academic") {
+      if (data.academic.length === 2)
+      handleWarningToast("two")
       const updatedAcademic = [...data.academic];
       const previousElement = updatedAcademic[updatedAcademic.length - 1];
       updatedAcademic.push({ ...previousElement });
@@ -235,6 +236,8 @@ export default function Home() {
     }
 
     if (category === "coursework") {
+      if (data.coursework.length === 3)
+      handleWarningToast("three")
       const updatedCoursework = [...data.coursework];
       const previousElement = updatedCoursework[updatedCoursework.length - 1];
       updatedCoursework.push({ ...previousElement });
@@ -242,6 +245,8 @@ export default function Home() {
     }
 
     if (category === "additionalInfo") {
+      if (data.additionalInfo.length === 3)
+      handleWarningToast("three")
       const updatedAdditionalInfo = [...data.additionalInfo];
       const previousElement = updatedAdditionalInfo[updatedAdditionalInfo.length - 1];
       updatedAdditionalInfo.push({ ...previousElement });
@@ -257,7 +262,7 @@ export default function Home() {
 
 
   return (
-    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start">
+    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start dark:bg-white bg-black  dark:bg-grid-small-black/[0.2] bg-grid-white/[0.2]">
       <style jsx global>
               {`
         @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap');
@@ -277,147 +282,14 @@ export default function Home() {
       <div className="preview w-[700px] scale-50  mt-[-470px] mb-[-500px] lg:w-[50%] lg:scale-100 lg:mt-[0px] lg:mb-[0px]">
         <CV data={data} />
       </div>
-          <div className="change-things  w-full lg:w-[50%] p-[20px] dark:bg-black bg-white  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex justify-center items-center">
-          <div className="w-[450px] shadow-input bg-white dark:bg-black p-4 rounded font-[Roboto]">
-        <div className="details flex flex-col p-[10px] border-black border-b-2">
-          <h1 className="text-center font-bold text-2xl">Details</h1>
-          <div className="name ">
-          <Input  type="text" value={data.name} onChange={(e)=>{setData({...data,name:e.target.value})}}/>
-        </div>
-        <div className="phoneNumbers flex justify-between">
-          <Input  type="text" value={data.phoneNumber1} onChange={(e)=>{setData({...data,phoneNumber1:e.target.value})}}/>
-          <Input  type="text" value={data.phoneNumber2} onChange={(e)=>{setData({...data,phoneNumber2:e.target.value})}}/>
-        </div>
-        <div className="address flex justify-between">
-          <Input  type="text" value={data.addressLine1} onChange={(e)=>{setData({...data,addressLine1:e.target.value})}}/>
-          <Input  type="text" value={data.addressLine2} onChange={(e)=>{setData({...data,addressLine2:e.target.value})}}/>
-        </div>
-        <div className="emails flex justify-between">
-          <Input  type="text" value={data.email1} onChange={(e)=>{setData({...data,email1:e.target.value})}}/>
-          <Input  type="text" value={data.email2} onChange={(e)=>{setData({...data,email2:e.target.value})}}/>
-        </div>
-        </div>
-        <div className="education flex flex-col p-[10px] border-black border-b-2">
-          <h1 className="text-center font-bold text-2xl">Education</h1>
-          <div className="add text-center p-[5px]">
-          <button className="bg-[green]" onClick={()=>{handleAdd("education")}}>Add More</button>
-          </div>
-          {
-            data.education.map((item, i) => (
-              <div className={`edu ${i + 1} flex flex-col`}>
-                <div className="flex justify-between mb-[10px]">
-                <h2>Education {i + 1}</h2>
-                  <button onClick={() => { handleRemove("education", i) }}>Remove</button>
-                </div>
-                <div className="line1 flex justify-between">
-                  <Input  type="text" value={item.university}  onChange={(e) => handleEducationChange(i, "university", e.target.value)}/>
-                  <Input  type="text" value={item.universityLocation} onChange={(e) => handleEducationChange(i, "universityLocation", e.target.value)}  />
-                </div>
-                <div className="line2 flex justify-between">
-                  <Input  type="text" value={item.timeline}  onChange={(e) => handleEducationChange(i, "timeline", e.target.value)} />
-                  <Input  type="text" value={item.stream} onChange={(e) => handleEducationChange(i, "stream", e.target.value)}  />
-                </div>
-                <div className="line3">
-                  <Input className="w-full rounded mb-[10px]" type="text" value={item.major} onChange={(e) => handleEducationChange(i, "major", e.target.value)}  />
-                </div>
-              </div>
-            ))
-          }
-        </div>
-        <div className="work flex flex-col p-[10px] border-black border-b-2">
-          <h1 className="text-center font-bold text-2xl">Work Experience</h1>
-          <div className="add text-center p-[5px]">
-          <button className="bg-[green]" onClick={()=>{handleAdd("work")}}>Add More</button>
-          </div>
-          {
-            data.work.map((item, i) => (
-              <div className={`work ${i + 1} flex flex-col mb-[10px]`}>
-                <div className="flex justify-between mb-[10px]">
-                <h2>Work {i + 1}</h2>
-                  <button onClick={() => { handleRemove("work", i) }}>Remove</button>
-                </div>
-                <div className="line1 flex justify-between">
-                  <Input  type="text" value={item.company}  onChange={(e) => handleWorkChange(i, "company", e.target.value)}/>
-                  <Input  type="text" value={item.location}  onChange={(e) => handleWorkChange(i, "location", e.target.value)}/>
-                </div>
-                <div className="line2 flex justify-between">
-                  <Input  type="text" value={item.timeline}  onChange={(e) => handleWorkChange(i, "timeline", e.target.value)}/>
-                  <Input  type="text" value={item.position}  onChange={(e) => handleWorkChange(i, "position", e.target.value)}/>
-                </div>
-                <div className="line3">
-                  <Input  type="text" value={item.task}  onChange={(e) => handleWorkChange(i, "task", e.target.value)}/>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-        <div className="academic flex flex-col p-[10px] border-black border-b-2">
-          <h1 className="text-center font-bold text-2xl">Academic Experience</h1>
-          <div className="add text-center p-[5px]">
-          <button className="bg-[green]" onClick={()=>{handleAdd("academic")}}>Add More</button>
-          </div>
-          {
-            data.academic.map((item, i) => (
-              <div className={`academic ${i + 1} flex flex-col mb-[10px]`}>
-                <div className="flex justify-between mb-[10px]">
-                <h2>Academic {i + 1}</h2>
-                  <button onClick={() => { handleRemove("academic", i) }}>Remove</button>
-                </div>
-                <div className="line1 flex justify-between">
-                  <Input  type="text" value={item.company}  onChange={(e) => handleAcademicChange(i, "company", e.target.value)}/>
-                  <Input  type="text" value={item.location}  onChange={(e) => handleAcademicChange(i, "location", e.target.value)}/>
-                </div>
-                <div className="line2 flex justify-between">
-                  <Input  type="text" value={item.timeline}  onChange={(e) => handleAcademicChange(i, "timeline", e.target.value)}/>
-                  <Input  type="text" value={item.position}  onChange={(e) => handleAcademicChange(i, "position", e.target.value)}/>
-                </div>
-                <div className="line3">
-                  <Input  type="text" value={item.task}  onChange={(e) => handleAcademicChange(i, "task", e.target.value)}/>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-        <div className="coursework flex flex-col p-[10px] border-black border-b-2">
-          <h1 className="text-center font-bold text-2xl">Coursework Experience</h1>
-          <div className="add text-center p-[5px]">
-          <button className="bg-[green]" onClick={()=>{handleAdd("coursework")}}>Add More</button>
-          </div>
-          {
-            data.coursework.map((item, i) => (
-              <div className={`coursework ${i + 1} flex flex-col mb-[10px]`}>
-                <div className="flex justify-between mb-[10px]">
-                <h2>Coursework {i + 1}</h2>
-                  <button onClick={() => { handleRemove("coursework", i) }}>Remove</button>
-                </div>
-                <div className="line1">
-                  <Input  type="text" value={item.subject}  onChange={(e) => handleCourseworkChange(i, "subject", e.target.value)}/>
-                  <Input  type="text" value={item.topics}  onChange={(e) => handleCourseworkChange(i, "topics", e.target.value)}/>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-        <div className="additionalInfo flex flex-col p-[10px]">
-          <h1 className="text-center font-bold text-2xl">Additional Information</h1>
-          <div className="add text-center p-[5px]">
-          <button className="bg-[green]" onClick={()=>{handleAdd("additionalInfo")}}>Add More</button>
-          </div>
-          {
-            data.additionalInfo.map((item, i) => (
-              <div className={`additionalInfo ${i + 1} flex flex-col mb-[10px]`}>
-                <div className="flex justify-between mb-[10px]">
-                <h2>Additional Information {i + 1}</h2>
-                  <button onClick={() => { handleRemove("additionalInfo", i) }}>Remove</button>
-                </div>
-                <div className="line1">
-                  <Input  type="text" value={item.subject}  onChange={(e) => handleAdditionalInfoChange(i, "subject", e.target.value)}/>
-                  <Input  type="text" value={item.description}  onChange={(e) => handleAdditionalInfoChange(i, "description", e.target.value)}/>
-                </div>
-              </div>
-            ))
-          }
-        </div>
+          <div className="change-things  w-full lg:w-[50%] p-[20px]  relative flex justify-center items-center">
+          <div className="w-[550px] shadow-input bg-[#0f172a] p-4 rounded font-[Roboto] flex flex-col gap-y-5">
+<Details data={data} setData={setData}/>
+<Education data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
+<Work data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
+<Academic data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
+<Coursework data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>       
+<AdditionalInfo data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/> 
                   </div>
       </div>
       <button className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]" onClick={handleGeneratePdf}>Generate PDF</button>
