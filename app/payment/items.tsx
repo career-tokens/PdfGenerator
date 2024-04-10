@@ -6,8 +6,14 @@ import { Input } from '../../components/ui/input'
 import { toast } from 'sonner'
 import AddButton from '../../components/ui/AddButton'
 import DeleteButton from '../../components/ui/DeleteButton'
+import { PaymentData } from '../../dataModels/PaymentData'
 
-const Items = ({ data, setData }) => {
+interface Props{
+    data: PaymentData;
+    setData: React.Dispatch<React.SetStateAction<PaymentData>>;
+}
+
+const Items:React.FC<Props> = ({ data, setData }) => {
     
     const handleRemoveItem = (index) => {    
         if (data.items.length === 1) {

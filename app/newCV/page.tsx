@@ -7,6 +7,11 @@ import { useState } from "react";
 import { Input } from "../../components/ui/input";
 import { NewCVData } from "../../dataModels/NewCVData";
 import { Toaster, toast } from "sonner";
+import Personal from "./personal";
+import Skills from "./skills";
+import Languages from "./languages";
+import Education from "./education";
+import Experience from "./experience";
 
 export default function NewCVPdfGenerator() {
   const initialData:NewCVData = {
@@ -109,8 +114,10 @@ export default function NewCVPdfGenerator() {
     router.push("/viewPDF");
   };
 
-  const handleAdd = (category) => {
+  const handleAdd = (category:string) => {
     if (category === "skills") {
+      if (data.skills.length === 5)
+        handleWarningToast("five")
       const updatedSkills = [...data.skills];
       const previousElement = updatedSkills[updatedSkills.length - 1];
       updatedSkills.push({ ...previousElement }); //even by chance dont directly put previousElement, they
@@ -119,6 +126,8 @@ export default function NewCVPdfGenerator() {
     }
 
     if (category === "education") {
+      if (data.education.length === 2)
+      handleWarningToast("two")
       const updatedEducation = [...data.education];
       const previousElement = updatedEducation[updatedEducation.length - 1];
       updatedEducation.push({ ...previousElement }); //even by chance dont directly put previousElement, they
@@ -127,6 +136,8 @@ export default function NewCVPdfGenerator() {
     }
 
     if (category === "languages") {
+      if (data.languages.length === 5)
+      handleWarningToast("three")
       const updatedLanguages = [...data.languages];
       const previousElement = updatedLanguages[updatedLanguages.length - 1];
       updatedLanguages.push({ ...previousElement }); //even by chance dont directly put previousElement, they
@@ -135,6 +146,8 @@ export default function NewCVPdfGenerator() {
     }
 
     if (category === "experiences") {
+      if (data.experiences.length === 4)
+      handleWarningToast("four")
       const updatedExperiences = [...data.experiences];
       const previousElement = updatedExperiences[updatedExperiences.length - 1];
       updatedExperiences.push({ ...previousElement }); //even by chance dont directly put previousElement, they
@@ -143,18 +156,25 @@ export default function NewCVPdfGenerator() {
     }
   };
 
-  const handleToast = () => {
+  const handleErrorToast = () => {
     toast.error("You need to have minimum one entry here", {
       className: 'text-base  w-[400px] flex justify-center',
       duration: 5000,
     });
   }
 
+  const handleWarningToast = (entries:string) => {
+    toast.warning(`Exceeding ${entries} entries here is not advised.The content might not fit in one page and would require 2 pages.`,
+      {
+        className: 'text-base  w-[400px] flex justify-center',
+        duration: 5000,
+      })
+  }
   const handleRemove = (category, index) => {
     if (category === "skills") {
       if (data.skills.length === 1) {
         // If there's only one education entry, prevent deletion
-        handleToast();
+        handleErrorToast();
         return;
       }
 
@@ -166,7 +186,7 @@ export default function NewCVPdfGenerator() {
     if (category === "education") {
       if (data.education.length === 1) {
         // If there's only one education entry, prevent deletion
-        handleToast();
+        handleErrorToast();
         return;
       }
 
@@ -178,7 +198,7 @@ export default function NewCVPdfGenerator() {
     if (category === "languages") {
       if (data.languages.length === 1) {
         // If there's only one language entry, prevent deletion
-        handleToast();
+        handleErrorToast();
         return;
       }
 
@@ -190,7 +210,7 @@ export default function NewCVPdfGenerator() {
       if (category === "experiences") {
         if (data.experiences.length === 1) {
           // If there's only one experience entry, prevent deletion
-          handleToast();
+          handleErrorToast();
           return;
         }
   
@@ -199,28 +219,10 @@ export default function NewCVPdfGenerator() {
         setData({ ...data, experiences: updatedExperiences });
       }
     };
-
-    const handleAddTask = (i) => {
-        const updatedExperiences = [...data.experiences];
-        updatedExperiences[i].tasks.push(updatedExperiences[i].tasks[updatedExperiences[i].tasks.length - 1]); //here its a simple value(string)
-        //so no issue
-      setData({ ...data, experiences: updatedExperiences });
-    }
-
-    const handleRemoveTask = (i, j) => {
-        const updatedExperiences = [...data.experiences];
-        if (updatedExperiences[i].tasks.length === 1) {
-            // If there's only one education entry, prevent deletion
-            alert("At least one skills entry must be present.");
-            return;
-        }
-        updatedExperiences[i].tasks.splice(j, 1);
-        setData({ ...data, experiences: updatedExperiences });
-    }
     
 
   return (
-    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start">
+    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start dark:bg-white bg-black  dark:bg-grid-small-black/[0.2] bg-grid-white/[0.2]">
       <style jsx global>
         {`
           @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap");
@@ -245,426 +247,13 @@ export default function NewCVPdfGenerator() {
       <div className="preview w-[700px] scale-50 lg:w-[50%] mt-[-250px] mb-[-250px] lg:scale-100 lg:mt-[0px] lg:mb-[0px]">
         <NewCV {...data} />
       </div>
-      <div className="change-things w-full lg:w-[50%] p-[20px] dark:bg-black bg-white  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex justify-center items-center">
-        <div className="w-[450px] shadow-input bg-white dark:bg-black p-4 rounded font-[Roboto]">
-          <div className="personalinfo flex flex-col gap-y-4 mb-6">
-            <p className="text-center font-bold text-2xl font-[Mulish]">
-              Personal Info
-            </p>
-            <div className="full_name">
-              <p className="text-lg">Full Name</p>
-              <div className="flex justify-between">
-                <Input
-                  value={data.personalInfo.firstName}
-                  onChange={(e) => {
-                    setData({
-                      ...data,
-                      personalInfo: {
-                        ...data.personalInfo,
-                        firstName: e.target.value,
-                      },
-                    });
-                  }}
-                />
-                <Input
-                  value={data.personalInfo.lastName}
-                  onChange={(e) => {
-                    setData({
-                      ...data,
-                      personalInfo: {
-                        ...data.personalInfo,
-                        lastName: e.target.value,
-                      },
-                    });
-                  }}
-                />
-              </div>
-            </div>
-            <div className="title">
-              <p className="text-lg">Title</p>
-              <Input
-                value={data.personalInfo.title}
-                onChange={(e) => {
-                  setData({
-                    ...data,
-                    personalInfo: {
-                      ...data.personalInfo,
-                      title: e.target.value,
-                    },
-                  });
-                }}
-              />
-            </div>
-            <div className="about">
-              <p className="text-lg">About</p>
-              <Input
-                value={data.personalInfo.about}
-                onChange={(e) => {
-                  setData({
-                    ...data,
-                    personalInfo: {
-                      ...data.personalInfo,
-                      about: e.target.value,
-                    },
-                  });
-                }}
-              />
-            </div>
-            <div className="email">
-              <p className="text-lg">Email</p>
-              <Input
-                value={data.personalInfo.contact.email}
-                onChange={(e) => {
-                  setData({
-                    ...data,
-                    personalInfo: {
-                      ...data.personalInfo,
-                      contact: {
-                        ...data.personalInfo.contact,
-                        email: e.target.value,
-                      },
-                    },
-                  });
-                }}
-              />
-            </div>
-            <div className="phone">
-              <p className="text-lg">Phone</p>
-              <Input
-                value={data.personalInfo.contact.phone}
-                onChange={(e) => {
-                  setData({
-                    ...data,
-                    personalInfo: {
-                      ...data.personalInfo,
-                      contact: {
-                        ...data.personalInfo.contact,
-                        phone: e.target.value,
-                      },
-                    },
-                  });
-                }}
-              />
-            </div>
-            <div className="location">
-              <p className="text-lg">Location</p>
-              <Input
-                value={data.personalInfo.contact.location}
-                onChange={(e) => {
-                  setData({
-                    ...data,
-                    personalInfo: {
-                      ...data.personalInfo,
-                      contact: {
-                        ...data.personalInfo.contact,
-                        location: e.target.value,
-                      },
-                    },
-                  });
-                }}
-              />
-            </div>
-            <div className="image">
-              <p className="text-lg">Image Public URL</p>
-              <Input
-                value={data.personalInfo.image}
-                onChange={(e) => {
-                  setData({
-                    ...data,
-                    personalInfo: {
-                      ...data.personalInfo,
-                      image: e.target.value,
-                    },
-                  });
-                }}
-              />
-            </div>
-          </div>
-          <div className="skills flex flex-col gap-y-4 mb-6">
-            <p className="text-center font-bold text-2xl font-[Mulish]">
-              Skills
-            </p>
-            <div className="add text-center p-[5px]">
-              <button
-                className="bg-[green]"
-                onClick={() => {
-                  handleAdd("skills");
-                }}
-              >
-                Add More
-              </button>
-            </div>
-            {data.skills.map((skill, i) => (
-              <div className="flex justify-between">
-                <Input
-                  className="w-[250px]"
-                  value={skill.name}
-                  onChange={(e) => {
-                    let updatedSkills = [...data.skills];
-                    updatedSkills[i].name = e.target.value;
-                    setData({ ...data, skills: updatedSkills });
-                  }}
-                />
-                <button
-                  onClick={() => {
-                    handleRemove("skills", i);
-                  }}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-          </div>
-          <div className="languages flex flex-col gap-y-4 mb-6">
-            <p className="text-center font-bold text-2xl font-[Mulish] font-semibold">
-              Language Proficiency
-            </p>
-            <div className="add text-center p-[5px]">
-              <button
-                className="bg-[green]"
-                onClick={() => {
-                  handleAdd("languages");
-                }}
-              >
-                Add More
-              </button>
-            </div>
-            {data.languages.map((language, i) => (
-              <div className={`language ${i + 1} flex flex-col`}>
-                <div className="flex justify-between mb-[10px]">
-                  <h2>Language {i + 1}</h2>
-
-                  <button
-                    onClick={() => {
-                      handleRemove("languages", i);
-                    }}
-                  >
-                    Remove
-                  </button>
-                </div>
-
-                <div className="line1 flex justify-between">
-                  <Input
-                    type="text"
-                    value={language.name}
-                    onChange={(e) => {
-                      let updatedLanguages = [...data.languages];
-
-                      updatedLanguages[i].name = e.target.value;
-
-                      setData({ ...data, languages: updatedLanguages });
-                    }}
-                  />
-
-                  <Input
-                    type="text"
-                    value={language.level}
-                    onChange={(e) => {
-                      let updatedLanguages = [...data.languages];
-
-                      updatedLanguages[i].level = e.target.value;
-
-                      setData({ ...data, languages: updatedLanguages });
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="education flex flex-col gap-y-4 mb-6">
-            <p className="text-center font-bold text-2xl font-[Mulish]">
-              Education
-            </p>
-            <div className="add text-center p-[5px]">
-              <button
-                className="bg-[green]"
-                onClick={() => {
-                  handleAdd("education");
-                }}
-              >
-                Add More
-              </button>
-            </div>
-            {data.education.map((edu, i) => (
-              <div className={`edu ${i + 1} flex flex-col mb-4`}>
-                <div className="flex justify-between mb-[10px]">
-                  <h2 className="font-semibold">Education {i + 1}</h2>
-
-                  <button
-                    onClick={() => {
-                      handleRemove("education", i);
-                    }}
-                  >
-                    Remove
-                  </button>
-                </div>
-
-                <div className="line1 flex justify-between mb-2">
-                  <Input
-                    type="text"
-                    value={edu.university}
-                    onChange={(e) => {
-                      let updatedEducation = [...data.education];
-
-                      updatedEducation[i].university = e.target.value;
-
-                      setData({ ...data, education: updatedEducation });
-                    }}
-                  />
-
-                  <Input
-                    type="text"
-                    value={edu.universityLocation}
-                    onChange={(e) => {
-                      let updatedEducation = [...data.education];
-
-                      updatedEducation[i].universityLocation = e.target.value;
-
-                      setData({ ...data, education: updatedEducation });
-                    }}
-                  />
-                </div>
-
-                <div className="line2 flex justify-between">
-                  <Input
-                    type="text"
-                    value={edu.timeline}
-                    onChange={(e) => {
-                      let updatedEducation = [...data.education];
-
-                      updatedEducation[i].timeline = e.target.value;
-
-                      setData({ ...data, education: updatedEducation });
-                    }}
-                  />
-
-                  <Input
-                    type="text"
-                    value={edu.stream}
-                    onChange={(e) => {
-                      let updatedEducation = [...data.education];
-
-                      updatedEducation[i].stream = e.target.value;
-
-                      setData({ ...data, education: updatedEducation });
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="experience flex flex-col gap-y-4">
-            <p className="text-center font-bold text-2xl font-[Mulish]">
-              Experiences
-            </p>
-            <div className="add text-center p-[5px]">
-              <button
-                className="bg-[green]"
-                onClick={() => {
-                  handleAdd("experiences");
-                }}
-              >
-                Add More
-              </button>
-              {data.experiences.map((exp, i) => (
-                <div className={`exp ${i + 1} flex flex-col mb-4`}>
-                  <div className="flex justify-between mb-[10px]">
-                    <h2 className="font-semibold">Experience {i + 1}</h2>
-
-                    <button
-                      onClick={() => {
-                        handleRemove("experiences", i);
-                      }}
-                    >
-                      Remove
-                    </button>
-                  </div>
-
-                  <div className="line1 flex justify-between mb-2">
-                    <Input
-                      type="text"
-                      value={exp.company}
-                      onChange={(e) => {
-                        let updatedExperiences = [...data.experiences];
-
-                        updatedExperiences[i].company = e.target.value;
-
-                        setData({ ...data, experiences: updatedExperiences });
-                      }}
-                    />
-
-                    <Input
-                      type="text"
-                      value={exp.period}
-                      onChange={(e) => {
-                        let updatedExperiences = [...data.experiences];
-
-                        updatedExperiences[i].period = e.target.value;
-
-                        setData({ ...data, experiences: updatedExperiences });
-                      }}
-                    />
-                  </div>
-
-                  <div className="line2 flex justify-between mb-2">
-                    <Input
-                      type="text"
-                      value={exp.role}
-                      onChange={(e) => {
-                        let updatedExperiences = [...data.experiences];
-
-                        updatedExperiences[i].role = e.target.value;
-
-                        setData({ ...data, experiences: updatedExperiences });
-                      }}
-                    />
-
-                    <Input
-                      type="text"
-                      value={exp.location}
-                      onChange={(e) => {
-                        let updatedExperiences = [...data.experiences];
-
-                        updatedExperiences[i].location = e.target.value;
-
-                        setData({ ...data, experiences: updatedExperiences });
-                      }}
-                    />
-                      </div>
-                      
-                      <div className="tasks flex flex-col gap-y-2">
-                          <div className="flex justify-between">
-                              <span className="text-lg">Tasks</span>
-                              <span className="cursor-pointer" onClick={() => { handleAddTask(i) }}>➕</span>
-                          </div>
-                          {
-                              exp.tasks.map((task, j) => (
-                                  <div className={`task ${j + 1} flex justify-between mb-2`}>
-                                      <Input
-                                          value={task}
-                                          className="w-[250px]"
-                                          onChange={(e) => {
-                                            let updatedExperiences = [...data.experiences];
-
-                                            updatedExperiences[i].tasks[j] = e.target.value;
-                      
-                                            setData({ ...data, experiences: updatedExperiences });
-                                          }} />
-                                                        <button
-                    onClick={() => {
-                      handleRemoveTask( i,j);
-                    }}
-                  >
-                    Remove
-                  </button>
-                                  </div>
-                              ))
-                          }
-                      </div>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="change-things w-full lg:w-[50%] p-[20px]  relative flex justify-center items-center">
+        <div className="w-[550px] bg-[#0f172a] shadow-input  dark:bg-black p-4 rounded font-[Mulish] flex flex-col gap-y-5 min-h-screen">
+<Personal data={data} setData={setData}/>
+<Skills data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
+<Languages data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
+          <Education data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove} />
+          <Experience data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
         </div>
       </div>
       <button
@@ -673,7 +262,6 @@ export default function NewCVPdfGenerator() {
       >
         Generate PDF
       </button>
-      <Toaster richColors position="top-center" closeButton/>
     </div>
   );
 }
