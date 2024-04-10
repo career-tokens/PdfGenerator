@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-key */
 "use client";
 import { useScroll, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { GoogleGeminiEffect } from "../components/ui/google-gemini-effect";
 import Link from "next/link";
 import { WavyBackground } from "../components/ui/wavy-background";
 import { AnimatedTooltip } from "../components/ui/animated-tooltip";
 import MoveToCTAButton from "../components/ui/MoveToCTAButton";
 import { Person } from "../dataModels/Person";
+import { toast } from "sonner";
 
 interface HomeProps {}
 
@@ -24,11 +25,21 @@ const Home: React.FC<HomeProps> = () => {
   const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
 
+  useEffect(() => {
+    setTimeout(()=>{document.getElementById("click").click();})
+    
+  },[])
   return (
     <>
       <MoveToCTAButton />
       <div className="absolute ml-auto mr-auto left-0 right-0 text-black top-[20px] z-[50] text-center">
-        <p>
+        <p id="click" onClick={() => {
+          toast.warning("Please make sure to disable any dark mode extension for better experience.The app is already in dark mode",
+          {
+            className: 'text-base absolute top-0  w-[400px] flex justify-center z-[20000]',
+            duration: 5000,
+          })
+        }}>
           If you are seeing this then please make sure to turn off any dark
           mode extension.
         </p>
@@ -59,7 +70,13 @@ const Home: React.FC<HomeProps> = () => {
               Currently available templates:
             </div>
             <div className="available-templates flex flex-wrap w-[300px] sm:w-[500px] justify-center gap-x-[2vw] gap-y-[2vh] text-center">
-            <Link href="/tigercv">
+              <Link href="/tigercv" onClick={() => { 
+                toast.warning("Currently this CV takes a lot of server time and hence during generation, it might get timed out.",
+                {
+                  className: 'text-base  w-[400px] flex justify-center',
+                  duration: 5000,
+                })
+              }}>
                 <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
                   Tiger Abrodi&apos;s CV
                 </button>

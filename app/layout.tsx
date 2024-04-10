@@ -17,7 +17,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <Toaster richColors position='top-center' closeButton expand/>
+      <Toaster richColors position='top-center' closeButton expand visibleToasts={1}/>
     </html>
   );
 };
