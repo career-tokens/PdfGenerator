@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
 import {PaymentData} from "../../dataModels/PaymentData";
+import { Toaster, toast } from "sonner";
 
 export default function PaymentPdfEditor() {
     const initialData:PaymentData= {
@@ -31,7 +32,15 @@ export default function PaymentPdfEditor() {
 
   const router = useRouter();
 
-  const handleRemoveItem = (index) => {      
+  const handleRemoveItem = (index) => {    
+    if (data.items.length === 1) {
+      // If there's only one item entry, prevent deletion
+      toast.error("You need to have minimum one entry here", {
+        className: 'text-base  w-[400px] flex justify-center',
+        duration: 5000,
+      });
+      return;
+    }
       const updatedItems = [...data.items];
       updatedItems.splice(index, 1); // Remove the item at the given index
       setData({ ...data, items: updatedItems });
@@ -138,6 +147,7 @@ export default function PaymentPdfEditor() {
         </div>
       </div>
       <button className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]" onClick={handleGeneratePdf}>Generate PDF</button>
+      <Toaster richColors position="top-center" closeButton/>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
 import { NewCVData } from "../../dataModels/NewCVData";
+import { Toaster, toast } from "sonner";
 
 export default function NewCVPdfGenerator() {
   const initialData:NewCVData = {
@@ -142,11 +143,18 @@ export default function NewCVPdfGenerator() {
     }
   };
 
+  const handleToast = () => {
+    toast.error("You need to have minimum one entry here", {
+      className: 'text-base  w-[400px] flex justify-center',
+      duration: 5000,
+    });
+  }
+
   const handleRemove = (category, index) => {
     if (category === "skills") {
       if (data.skills.length === 1) {
         // If there's only one education entry, prevent deletion
-        alert("At least one skills entry must be present.");
+        handleToast();
         return;
       }
 
@@ -158,7 +166,7 @@ export default function NewCVPdfGenerator() {
     if (category === "education") {
       if (data.education.length === 1) {
         // If there's only one education entry, prevent deletion
-        alert("At least one education entry must be present.");
+        handleToast();
         return;
       }
 
@@ -170,7 +178,7 @@ export default function NewCVPdfGenerator() {
     if (category === "languages") {
       if (data.languages.length === 1) {
         // If there's only one language entry, prevent deletion
-        alert("At least one language entry must be present.");
+        handleToast();
         return;
       }
 
@@ -182,7 +190,7 @@ export default function NewCVPdfGenerator() {
       if (category === "experiences") {
         if (data.experiences.length === 1) {
           // If there's only one experience entry, prevent deletion
-          alert("At least one experience entry must be present.");
+          handleToast();
           return;
         }
   
@@ -665,6 +673,7 @@ export default function NewCVPdfGenerator() {
       >
         Generate PDF
       </button>
+      <Toaster richColors position="top-center" closeButton/>
     </div>
   );
 }

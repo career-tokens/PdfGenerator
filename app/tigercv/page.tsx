@@ -118,7 +118,7 @@ const TigerCVPdfGenerator = () => {
     router.push("/viewPDF");
 }
   return (
-    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start">
+    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start dark:bg-white bg-black  dark:bg-grid-small-black/[0.2] bg-grid-white/[0.2]">
     <style jsx global>
       {`
         @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap");
@@ -143,8 +143,8 @@ const TigerCVPdfGenerator = () => {
     <div className="preview w-[700px] scale-50 lg:w-[50%] mt-[-250px] mb-[-250px] lg:scale-100 lg:mt-[0px] lg:mb-[0px]">
       <TigerCV data={data}/>
     </div>
-    <div className="change-things w-full lg:w-[50%] p-[20px] dark:bg-black bg-white  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex justify-center items-center">
-        <div className="w-[450px] shadow-input bg-white dark:bg-black p-4 rounded font-[Roboto]">
+    <div className="change-things font-[Merriweather] w-full lg:w-[50%] p-[20px]  relative flex justify-center items-center">
+        <div className="w-[550px]  bg-[#0f172a] shadow-input  dark:bg-black p-4 rounded font-[Roboto] min-h-screen gap-y-4 flex flex-col">
            <PersonalInfo data={data} setData={setData}/>
           <Profile data={data} setData={setData} />
           <Skills data={data} setData={setData}/>

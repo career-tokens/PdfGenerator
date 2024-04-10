@@ -4,6 +4,9 @@ import DeleteButton from '../../components/ui/DeleteButton';
 import { Input } from '../../components/ui/input';
 import AddButton from '../../components/ui/AddButton';
 import { toast } from 'sonner';
+import AccordionHead from '../../components/ui/AccordionHead';
+import { Disclosure } from '@headlessui/react';
+import AccordionBody from '../../components/ui/AccordionBody';
 interface SkillsProps {
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -24,35 +27,43 @@ const Skills: React.FC<SkillsProps> = ({ data, setData }) => {
           setData({ ...data, skills: updatedSkills });
     }
   return (
-      <div className="skills flex flex-col gap-y-3 mb-3">
-           <p className="text-2xl font-bold text-center">Skills</p>
-    <div className="firstline  flex justify-center">
-        <AddButton description="Add More Skills" cb={() => {
-                    if (data.skills.length == 3)
+    <Disclosure>
+      {({ open }) => (
+        <>
+          <AccordionHead open={open}><p className="text-xl font-semibold text-center pb-0">Skills</p></AccordionHead>
+          <AccordionBody>
+            <div className="skills flex flex-col gap-y-3 mb-3">
+              <div className="firstline  flex justify-center">
+                <AddButton description="Add More Skills" cb={() => {
+                  if (data.skills.length == 3)
                     toast.warning("Exceeding three entries here is not advised.The content might not fit in one page and would require 2 pages.",
-                    {
-                      className: 'text-base  w-[400px] flex justify-center',
-                      duration: 5000,
-                    })
-          setData({ ...data, skills: [data.skills[0], ...data.skills] })
-        }} />
-        </div>
-        {
-          data.skills.map((text, i) => (
-            <div className="flex justify-between items-center" key={i}>
-              <Input
-                className="w-[250px] sm:w-[350px]"
-                value={text}
-                onChange={(e) => {
-                let arr = [...data.skills];
-                arr[i] = e.target.value;
-                setData({...data,skills:arr})
-              }}/>
-              <DeleteButton cb={()=>{handleRemoveSkillLine(i)}}/>
+                      {
+                        className: 'text-base  w-[400px] flex justify-center',
+                        duration: 5000,
+                      })
+                  setData({ ...data, skills: [data.skills[0], ...data.skills] })
+                }} />
+              </div>
+              {
+                data.skills.map((text, i) => (
+                  <div className="flex justify-between items-center" key={i}>
+                    <Input
+                      className="w-[250px] sm:w-[350px]"
+                      value={text}
+                      onChange={(e) => {
+                        let arr = [...data.skills];
+                        arr[i] = e.target.value;
+                        setData({ ...data, skills: arr })
+                      }} />
+                    <DeleteButton cb={() => { handleRemoveSkillLine(i) }} />
+                  </div>
+                ))
+              }
             </div>
-          ))
-        }
-    </div>
+          </AccordionBody>
+        </>
+      )}
+      </Disclosure>
   )
 }
 

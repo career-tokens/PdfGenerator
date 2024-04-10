@@ -16,7 +16,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
         }`
       }
     </CSS>
-      <div className="main bg-white font-[Mulish] py-8 px-8 flex text-lg">
+      <div className="main bg-white  py-8 px-8 flex text-lg">
       <div className="w-[50%] p-2 flex flex-col">
         <div className="starter flex flex-col justify-center items-center">
           <p className="text-3xl font-bold">{data.name}</p>

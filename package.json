@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "@heroicons/react": "^2.1.3",
     "@onedoc/client": "^0.1.28",
     "@onedoc/react-print": "^0.1.128",
     "@radix-ui/react-label": "^2.0.2",

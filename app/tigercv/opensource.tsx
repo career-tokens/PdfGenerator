@@ -4,6 +4,9 @@ import { Input } from '../../components/ui/input';
 import DeleteButton from '../../components/ui/DeleteButton';
 import AddButton from '../../components/ui/AddButton';
 import { toast } from 'sonner';
+import { Disclosure } from '@headlessui/react';
+import AccordionHead from '../../components/ui/AccordionHead';
+import AccordionBody from '../../components/ui/AccordionBody';
 interface Props {
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -25,41 +28,49 @@ const OpenSource: React.FC<Props> = ({ data, setData }) => {
             setData({ ...data, openSourceContributions: updatedOpenSourceContributions });
     }
   return (
-    <div className="personal-info flex flex-col gap-y-3 mb-3">
-          <p className="text-2xl font-bold text-center">Open Source</p>
-          <div className="firstline flex justify-between">
-        <p>Do you need this section?</p>
-        <label><input type="checkbox" checked={data.openSourceNeeded} onChange={(e) => { setData({ ...data, openSourceNeeded:!data.openSourceNeeded }) }}/></label>
-          </div>
-          <div className="secondline flex justify-center">
-              <AddButton
+    <Disclosure>
+      {({ open }) => (
+        <>
+          <AccordionHead open={open}><p className="text-xl font-semibold text-center pb-0">Open Source</p></AccordionHead>
+          <AccordionBody>
+            <div className="personal-info flex flex-col gap-y-3 mb-3 text-slate-400">
+              <div className="firstline flex justify-between text-lg">
+                <p>Do you need this section?</p>
+                <label><input type="checkbox" checked={data.openSourceNeeded} onChange={(e) => { setData({ ...data, openSourceNeeded: !data.openSourceNeeded }) }} /></label>
+              </div>
+              <div className="secondline flex justify-center">
+                <AddButton
                   description="Add More Details"
-          cb={() => {
-            if (data.openSourceContributions.length == 3)
-            toast.warning("Exceeding three entries here is not advised.The content might not fit in one page and would require 2 pages.",
-            {
-              className: 'text-base  w-[400px] flex justify-center',
-              duration: 5000,
-            })
-            setData({ ...data, openSourceContributions: [data.openSourceContributions[0], ...data.openSourceContributions] })
-          }} />
-          </div>
-          {
-              data.openSourceContributions.map((text, i)=>(
-          <div className="flex justify-between" key={i}>
-                      <Input
-                          className="w-[250px] sm:w-[350px]"
-                          value={text}
-                          onChange={(e) => {
-                          let arr = [...data.openSourceContributions];
-                          arr[i] = e.target.value;
-                          setData({...data,openSourceContributions:arr})
+                  cb={() => {
+                    if (data.openSourceContributions.length == 3)
+                      toast.warning("Exceeding three entries here is not advised.The content might not fit in one page and would require 2 pages.",
+                        {
+                          className: 'text-base  w-[400px] flex justify-center',
+                          duration: 5000,
+                        })
+                    setData({ ...data, openSourceContributions: [data.openSourceContributions[0], ...data.openSourceContributions] })
+                  }} />
+              </div>
+              {
+                data.openSourceContributions.map((text, i) => (
+                  <div className="flex justify-between" key={i}>
+                    <Input
+                      className="w-[250px] sm:w-[350px]"
+                      value={text}
+                      onChange={(e) => {
+                        let arr = [...data.openSourceContributions];
+                        arr[i] = e.target.value;
+                        setData({ ...data, openSourceContributions: arr })
                       }} />
-                      <DeleteButton cb={()=>{handleRemoveOpen(i)}}/>
-          </div>
-              ))
-          }
-          </div>
+                    <DeleteButton cb={() => { handleRemoveOpen(i) }} />
+                  </div>
+                ))
+              }
+            </div>
+          </AccordionBody>
+        </>
+      )}
+      </Disclosure>
   )
 }
 
