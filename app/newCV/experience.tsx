@@ -64,8 +64,8 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
                                       <>
                                           <AccordionHead subpart={true} open={open}>    <p className="text-xl pb-0 font-semibold">Experience {i + 1}</p></AccordionHead>
                                           <AccordionBody>
-                                          <div className={`exp ${i + 1} flex flex-col mb-4 text-lg`} key={i}>
-                  <div className="flex justify-between mb-[10px] items-center">
+                                          <div className={`exp ${i + 1} flex flex-col gap-y-3 text-lg text-slate-400`} key={i}>
+                  <div className="flex justify-between items-center">
                     <h2 className="font-semibold">Remove this experience?</h2>
 
                     <DeleteButton
@@ -75,7 +75,7 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
                     />
                   </div>
 
-                  <div className="line1 flex justify-between mb-2">
+                  <div className="line1 flex justify-between">
                     <Input
                       type="text"
                       value={exp.company}
@@ -101,7 +101,7 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
                     />
                   </div>
 
-                  <div className="line2 flex justify-between mb-2">
+                  <div className="line2 flex justify-between">
                     <Input
                       type="text"
                       value={exp.role}
@@ -129,7 +129,7 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
                       
                       <div className="tasks flex flex-col gap-y-2">
                           <div className="flex justify-between items-center text-base">
-                              <span className="text-lg mb-3">Tasks</span>
+                              <span className="text-lg mb-3 font-semibold">Tasks</span>
                               <AddButton cb={() => { handleAddTask(i) }}/>
                           </div>
                           {

@@ -22,7 +22,7 @@ const Skills = ({data,setData,handleAdd,handleRemove}) => {
             <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Skills:</p></AccordionHead>
                   <AccordionBody>
                   <div className="skills flex flex-col gap-y-4">
-            <div className="add flex justify-center">
+            <div className="add flex justify-center text-base">
                               <AddButton
                                   description='Add More Skills'
                 cb={() => {

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 import { CVData } from "../dataModels/CVData";
+import { CSS } from '@onedoc/react-print';
 
 interface CVDataProps {
     data: CVData;
@@ -115,7 +116,17 @@ interface CVDataProps {
     //             description:"French (Native), English (Native), Spanish (B1)"
     //         }]
     // }
-    return (
+     return (
+         <>
+             <CSS>
+      {
+        String.raw`@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap');
+        @page{
+          size:10in 19in;
+          margin:0;
+        }`
+      }
+    </CSS>
     <div className="cv bg-white  font-[Merriweather] font-[500] min-h-screen px-6 py-4 text-left">
           <div className="font-bold mb-2 text-3xl text-center">{data.name}</div>
           <div className="details flex flex-col mb-4">
@@ -204,6 +215,7 @@ interface CVDataProps {
                         ))
                     }
           </div>
-    </div>
+             </div>
+             </>
   )
 }

@@ -8,7 +8,7 @@ const AddButton:React.FC<Props> = ({cb,description}) => {
       <button
       onClick={cb}
       style={{
-        width: description==="Add more Experience" ? 210 :description==="Add More Details"? 175:description==="Add More Skills"?160:description==="Add More Projects"?185: 81
+        width: description==="Add more Experience" ? 210 :description==="Add More Details"? 175:description==="Add More Skills"?165:description==="Add More Projects"?185: 81
       }}
   className="text-white rounded-lg relative  h-8 cursor-pointer flex items-center border border-green-500 bg-green-500 group hover:bg-green-500 active:bg-green-500 active:border-green-500 pl-2"
 >

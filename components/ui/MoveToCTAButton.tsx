@@ -17,7 +17,7 @@ const MoveToCTAButton = () => {
           <button onClick={handleClick} className={` ${(on)?"opacity-1":"opacity-0"}
           font-bold bg-white rounded-full md:px-4 md:py-2 px-2 py-1
            md:mt-24 mt-8 z-[100000] md:text-base text-black text-xs  w-fit mx-auto transition-all`}>
-          Components
+          Click here to view the components
         </button>
       </div>
   )

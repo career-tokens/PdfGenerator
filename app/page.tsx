@@ -59,6 +59,11 @@ const Home: React.FC<HomeProps> = () => {
               Currently available templates:
             </div>
             <div className="available-templates flex flex-wrap w-[300px] sm:w-[500px] justify-center gap-x-[2vw] gap-y-[2vh] text-center">
+            <Link href="/tigercv">
+                <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
+                  Tiger Abrodi&apos;s CV
+                </button>
+              </Link>
               <Link href="/cv">
                 <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
                   CV
@@ -66,7 +71,7 @@ const Home: React.FC<HomeProps> = () => {
               </Link>
               <Link href="/newCV">
                 <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
-                  Latest CV
+                  Journalist&apos;s CV
                 </button>
               </Link>
               <Link href="/payment">

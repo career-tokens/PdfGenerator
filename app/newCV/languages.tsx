@@ -22,7 +22,7 @@ const Languages:React.FC<Props> = ({data,setData,handleAdd,handleRemove}) => {
             <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Languages:</p></AccordionHead>
                   <AccordionBody>
                   <div className="languages flex flex-col gap-y-4">
-            <div className="add text-center p-[5px]">
+            <div className="add flex justify-center">
               <AddButton
                 cb={() => {
                   handleAdd("languages");
