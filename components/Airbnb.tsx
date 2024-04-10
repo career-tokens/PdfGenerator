@@ -3,6 +3,7 @@
 import React from 'react'
 
 import { AirbnbData } from "../dataModels/AirbnbData";
+import { CSS } from '@onedoc/react-print';
 
 interface AirbnbDataProps {
     data: AirbnbData;
@@ -16,7 +17,16 @@ export const Airbnb:React.FC<AirbnbDataProps> = ({data}) => {
         return value;
     }
     
-  return (
+    return (
+      <>    <CSS>
+      {
+        String.raw`@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap');
+        @page{
+          size:8in 13in;
+          margin:0;
+        }`
+      }
+    </CSS>
       <div className="main bg-white font-[Mulish] py-8 px-8">
           <div className="layer1 flex justify-between pb-8 border-[#c4c4c4] border-b-2">
               <div className="box1">
@@ -132,6 +142,7 @@ export const Airbnb:React.FC<AirbnbDataProps> = ({data}) => {
                   </span>
               </div>
           </div>
-    </div>
+            </div>
+            </>
   )
 }

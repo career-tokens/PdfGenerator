@@ -159,7 +159,6 @@ const TigerCVPdfGenerator = () => {
     >
       Generate PDF
       </button>
-      <Toaster richColors position='top-center' closeButton expand/>
   </div>
   )
 }

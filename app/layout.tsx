@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      <Toaster richColors position='top-center' closeButton expand/>
     </html>
   );
 };

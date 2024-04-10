@@ -7,6 +7,8 @@ import { useState } from "react";
 import { Input } from "../../components/ui/input";
 import {PaymentData} from "../../dataModels/PaymentData";
 import { Toaster, toast } from "sonner";
+import Personal from "./personal";
+import Items from "./items";
 
 export default function PaymentPdfEditor() {
     const initialData:PaymentData= {
@@ -32,32 +34,6 @@ export default function PaymentPdfEditor() {
 
   const router = useRouter();
 
-  const handleRemoveItem = (index) => {    
-    if (data.items.length === 1) {
-      // If there's only one item entry, prevent deletion
-      toast.error("You need to have minimum one entry here", {
-        className: 'text-base  w-[400px] flex justify-center',
-        duration: 5000,
-      });
-      return;
-    }
-      const updatedItems = [...data.items];
-      updatedItems.splice(index, 1); // Remove the item at the given index
-      setData({ ...data, items: updatedItems });
-  };
-  const handleChangeItem = (index, field, value) => {
-    const updatedItems = [...data.items];
-    updatedItems[index][field] = value;
-    setData({ ...data, items: updatedItems });
-  };
-
-  const handleAddItem = () => {     
-      const updatedItems = [...data.items];
-      const previousElement = updatedItems[updatedItems.length - 1];
-      updatedItems.push({ ...previousElement });//even by chance dont directly put previousElement, they
-      //will share common reference
-      setData({ ...data, items: updatedItems });
-  }
 
   const handleGeneratePdf = () => {
     localStorage.setItem("data", JSON.stringify(data));
@@ -67,7 +43,7 @@ export default function PaymentPdfEditor() {
 
 
   return (
-    <div className="main w-screen min-h-screen lg:flex">
+    <div className="main w-screen min-h-screen lg:flex dark:bg-white bg-black  dark:bg-grid-small-black/[0.2] bg-grid-white/[0.2]">
       <style jsx global>
         {`
         @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap');
@@ -87,63 +63,10 @@ export default function PaymentPdfEditor() {
       <div className="preview scale-90 lg:w-[50%] lg:scale-100">
         <Payment data={data} />
       </div>
-      <div className="change-things  lg:w-[50%] p-[20px] dark:bg-black bg-white  dark:bg-grid-small-white/[0.2] bg-grid-small-black/[0.2] relative flex justify-center items-center">
-        
-        <div className="w-[450px] shadow-input bg-white dark:bg-black p-4 rounded font-[Roboto]">
-        <div className="name mb-[10px]">
-                  <span className="mb-[5px]">Your Name</span>
-                  <Input type="text" value={data.name} onChange={(e)=>{setData({...data,name:e.target.value})}}/>
-              </div>
-              <div className="company mb-[10px]">
-                  <span className="mb-[5px]">Company Name</span>
-                  <Input type="text" value={data.company} onChange={(e)=>{setData({...data,company:e.target.value})}}/>
-              </div>
-              <div className="date mb-[10px] flex">
-                  <div className="starting-date w-[45%] mr-[10%]">
-                      <span className="mb-[5px]">Starting Date</span>
-                      <Input type="text" className="w-full" value={data.starting_date} onChange={(e) => { setData({ ...data, starting_date: e.target.value }) }} />
-                  </div>
-                  <div className="ending-date w-[45%]">
-                      <span className="mb-[5px]">Ending Date</span>
-                      <Input type="text" className="w-full" value={data.ending_date} onChange={(e) => { setData({ ...data, ending_date: e.target.value }) }} />
-                  </div>
-              </div>
-              <div className="invoice-receipt mb-[10px] flex">
-                  <div className="invoice w-[45%] mr-[10%]">
-                      <span className="mb-[5px]">Invoice Id</span>
-                      <Input type="text" className="w-full" value={data.invoice_id} onChange={(e) => { setData({ ...data, invoice_id: e.target.value }) }} />
-                  </div>
-                  <div className="receipt w-[45%]">
-                      <span className="mb-[5px]">Receipt Id</span>
-                      <Input type="text" className="w-full" value={data.receipt_id} onChange={(e) => { setData({ ...data, receipt_id: e.target.value }) }} />
-                  </div>
-              </div>
-              <div className="card-image mb-[10px]">
-                  <span className="mb-[5px]">Card Image Public URL</span>
-                  <Input type="text" value={data.image} onChange={(e)=>{setData({...data,image:e.target.value})}}/>
-              </div>
-              <div className="bank mb-[10px]">
-                  <span className="mb-[5px]">Last 4 digits of Bank Account</span>
-                  <Input type="text" value={data.bank} onChange={(e)=>{setData({...data,bank:e.target.value})}}/>
-              </div>
-        <div className="items mb-[10px]">
-          <div className="mb-[10px] flex justify-between">
-            <span className="font-bold">Items bought</span>
-            <button className="bg-[green]" onClick={handleAddItem}>Add Item</button>
-          </div>
-                  {data.items.map((item, i) => (
-                    <div className="item mb-[10px]">
-                      <div className="flex justify-between mb-[10px]">
-                        <span>Item {i + 1}</span>
-                        <button onClick={()=>{handleRemoveItem(i)}}>Remove</button>
-                      </div>
-                              <div className="flex justify-between">
-                               <Input type="text" value={item.name} onChange={(e) => { handleChangeItem(i, "name", e.target.value) }} />
-                               <Input type="text" value={item.price} onChange={(e)=>{handleChangeItem(i,"price",e.target.value)}} />
-                              </div>
-                    </div>
-                  ))}
-              </div>
+      <div className="change-things  lg:w-[50%] p-[20px]    relative flex justify-center">
+        <div className="w-[450px] bg-[#0f172a] shadow-input  dark:bg-black p-4 rounded font-[Roboto] text-slate-400 flex flex-col gap-y-5">
+          <Personal data={data} setData={setData} />
+          <Items data={data} setData={setData}/>
         </div>
       </div>
       <button className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]" onClick={handleGeneratePdf}>Generate PDF</button>
