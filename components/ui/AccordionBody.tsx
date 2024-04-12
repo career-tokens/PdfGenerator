@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Disclosure } from '@headlessui/react';
+import { Disclosure, Transition } from '@headlessui/react';
 
 interface AccordionBodyProps {
   children: ReactNode;
@@ -7,9 +7,19 @@ interface AccordionBodyProps {
 
 const AccordionBody: React.FC<AccordionBodyProps> = ({ children }) => {
   return (
-    <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-gray-500 sm:text-base">
-      {children}
-    </Disclosure.Panel>
+<Transition
+  enter="transition duration-300 ease-in"
+  enterFrom="opacity-0 transform scale-95"
+  enterTo="opacity-100 transform scale-100"
+  leave="transition duration-200 ease-out"
+  leaveFrom="opacity-100 transform scale-100"
+  leaveTo="opacity-0 transform scale-95"
+>
+  <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-gray-500 sm:text-base">
+    {children}
+  </Disclosure.Panel>
+</Transition>
+
   );
 };
 
