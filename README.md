@@ -6,7 +6,7 @@
 <p id="description">A full stack (NextJS with Typescript) app where you will get free PDF templates make as many changes as you want and generate the PDF to download it!</p>
 <br/>
 <h2>🎬 Video Demo</h2>
-[[https://res.cloudinary.com/dxprcmmcz/video/upload/v1711619244/2024-03-28\_15-02-55\_p0m3fi.mkv](https://res.cloudinary.com/dxprcmmcz/video/upload/v1711619244/2024-03-28_15-02-55_p0m3fi.mkv)](https://res.cloudinary.com/dxprcmmcz/video/upload/v1712950045/2024-04-12_12-03-27_hfsulv.mkv)
+https://res.cloudinary.com/dxprcmmcz/video/upload/v1712950045/2024-04-12_12-03-27_hfsulv.mkv
 <br/><br/>
 <h2>📦Project Screenshots:</h2><br/>
 
