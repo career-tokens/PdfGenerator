@@ -94,9 +94,9 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
                                                         </div>
                                                         <div className="period text-slate-400 mb-5">
                                                             <p>Period</p>
-                                                            <Input value={exp.position} onChange={(e) => {
+                                                            <Input value={exp.period} onChange={(e) => {
                                                                 let arr = [...data.professionalExperience];
-                                                                arr[i].position = e.target.value
+                                                                arr[i].period = e.target.value
                                                                 setData({ ...data, professionalExperience: arr })
                                                             }} />
                                                         </div>
