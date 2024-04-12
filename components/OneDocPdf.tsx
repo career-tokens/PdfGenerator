@@ -10,9 +10,11 @@ import { AirbnbData } from '../dataModels/AirbnbData';
 import { PaymentData } from '../dataModels/PaymentData';
 import {TigerCV} from './TigerCV';
 import { TigerCVData } from '../dataModels/TigerCVData';
+import JD from './JD';
+import { JDData } from '../dataModels/JDData';
 
 interface DataProps {
-    data: CVData | NewCVData | AirbnbData | PaymentData |TigerCVData;
+    data: CVData | NewCVData | AirbnbData | PaymentData | TigerCVData | JDData;
     template: string;
 }
 
@@ -24,6 +26,7 @@ export const OneDocPdf: React.FC<DataProps> = ({ data, template }) => {
             {template === 'airbnb' && <Airbnb data={data as AirbnbData} />}
             {template === 'newCV' && <NewCV {...(data as NewCVData)} />}
             {template === 'tigercv' && <TigerCV data={data as TigerCVData} />}
+            {template === 'jd' && <JD data={data as JDData} />}
         </Tailwind>
     );
 };
