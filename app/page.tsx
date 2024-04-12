@@ -101,6 +101,11 @@ const Home: React.FC<HomeProps> = () => {
                   Airbnb Receipt
                 </button>
               </Link>
+              <Link href="/jd">
+                <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
+                  Job Posting
+                </button>
+              </Link>
             </div>
             <Link href="/pricing" className="mt-[25vh]">
               <button className="px-12 py-4 rounded-full bg-[#1ED760] z-20 font-bold text-white tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200">
