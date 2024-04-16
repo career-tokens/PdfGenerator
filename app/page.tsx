@@ -44,7 +44,7 @@ const Home: React.FC<HomeProps> = () => {
           mode extension.
         </p>
       </div>
-      <div className="fixed z-[100] bottom-[0vh] flex flex-row items-center justify-start mb-10 w-full pl-[5vw]">
+      <div className="fixed z-[100] bottom-[0vh] flex flex-row items-center justify-start mb-10 pl-[5vw] w-fit">
         <AnimatedTooltip items={people} />
       </div>
       <div
@@ -64,21 +64,20 @@ const Home: React.FC<HomeProps> = () => {
         />
       </div>
       <div className="templates text-center h-[100vh] flex flex-col justify-center items-center relative">
-        <WavyBackground className="max-w-4xl mx-auto pb-40">
-          <div className="flex flex-col items-center gap-y-[3vh] relative mt-[20vh]">
+        <WavyBackground className="max-w-4xl mx-auto">
+          <div className="flex flex-col items-center gap-y-[3vh] relative mt-[20vh] z-[200]">
             <div className="text-2xl md:text-3xl text-white font-bold inter-var ">
               Currently available templates:
             </div>
             <div className="available-templates flex flex-wrap w-[300px] sm:w-[500px] justify-center gap-x-[2vw] gap-y-[2vh] text-center">
-              <Link href="/tigercv" onClick={() => { 
-                toast.warning("Currently this CV takes a lot of server time and hence during generation, it might get timed out.",
-                {
-                  className: 'text-base  w-[400px] flex justify-center',
-                  duration: 5000,
-                })
-              }}>
+              <Link href="/tigercv">
                 <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
                   Tiger Abrodi&apos;s CV
+                </button>
+              </Link>
+              <Link href="/mlcv">
+                <button className="shadow-[0_4px_14px_0_rgb(0,0,0,10%)] hover:shadow-[0_6px_20px_rgba(93,93,93,23%)] px-8 py-2 bg-[#fff] text-black rounded-md font-semibold transition duration-200 ease-linear">
+                  Tina Huang&apos;s CV
                 </button>
               </Link>
               <Link href="/cv">
