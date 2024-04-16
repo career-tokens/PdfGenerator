@@ -12,9 +12,11 @@ import {TigerCV} from './TigerCV';
 import { TigerCVData } from '../dataModels/TigerCVData';
 import JD from './JD';
 import { JDData } from '../dataModels/JDData';
+import { MLCVData } from '../dataModels/MLCVData';
+import MLCV from './MLCV';
 
 interface DataProps {
-    data: CVData | NewCVData | AirbnbData | PaymentData | TigerCVData | JDData;
+    data: CVData | NewCVData | AirbnbData | PaymentData | TigerCVData | JDData | MLCVData;
     template: string;
 }
 
@@ -27,6 +29,7 @@ export const OneDocPdf: React.FC<DataProps> = ({ data, template }) => {
             {template === 'newCV' && <NewCV {...(data as NewCVData)} />}
             {template === 'tigercv' && <TigerCV data={data as TigerCVData} />}
             {template === 'jd' && <JD data={data as JDData} />}
+            {template === 'mlcv' && <MLCV data={data as MLCVData} />}
         </Tailwind>
     );
 };
