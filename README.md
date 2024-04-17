@@ -32,7 +32,8 @@ Technologies used in the project:
 
 *   NextJS
 *   TailwindCSS
-*   OneDoc API<br/><br/>
+*   OneDoc API
+*   Google Analytics<br/><br/>
   
 <h2>🧐 Features</h2>
 
@@ -44,7 +45,8 @@ Here're some of the project's best features:
 *   Make as many changes as you want !
 *   Responsive app view the proper PDF layout even on mobile
 *   Finally generate the PDF and download it!
-*   Built on top of Onedoc API a super cool tool to convert code to PDF.<br/><br/>
+*   Built on top of Onedoc API a super cool tool to convert code to PDF.
+*   Uses Google Analytics for website tracking.<br/><br/>
 <h2>📚 Working of the app</h2>
 *  A template page will have two parts: one is the actual template and the other is the form which will help in making changes to the template. We will have an intial state variable  which will store the data for the pdf. We will additionally make a functional component for the template and while calling it in the page pass the data as props so that the data used for the template remains dynamic . We will also make a form in the page using which we will make changes to the state and that will cause re-render and hence the props for the component too will change and hence the template will keep getting updated. <br/><br/>
 * Now once the user is finished , Generate button will be clicked which will do two things:i) store the data and the template currently being used in the local storage of the browser ii) redirect the user to viewPDF page.<br/><br/>
