@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Providers } from "./providers";
-import { cn } from "../util/cn";
+import { cn } from "../lib/utils/cn";
 import { fontSans } from "../lib/fonts";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +24,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
       <Providers>
       <body
         className={cn(
-          "relative flex min-h-screen w-full flex-col justify-center overflow-x-hidden scroll-smooth bg-background font-sans antialiased",
+          "relative flex min-h-screen w-full flex-col justify-center overflow-x-hidden scroll-smooth bg-[#FCFCFC] dark:bg-black font-sans antialiased",
           fontSans.variable,
         )}
       >
