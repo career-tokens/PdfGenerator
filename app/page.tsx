@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Header/>
       <ScrollUp />
       <Hero />
       <Features />

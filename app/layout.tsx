@@ -5,6 +5,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import { Providers } from "./providers";
 import { cn } from "../lib/utils/cn";
 import { fontSans } from "../lib/fonts";
+import Header from "../components/landing/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,8 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
           "relative flex min-h-screen w-full flex-col justify-center overflow-x-hidden scroll-smooth bg-[#FCFCFC] dark:bg-black font-sans antialiased",
           fontSans.variable,
         )}
-      >
+        >
+          <Header/>
           {children}
         </body>
         <Toaster richColors position='top-center' closeButton expand visibleToasts={1} />

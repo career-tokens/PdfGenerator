@@ -72,3 +72,19 @@ body {
     text-wrap: balance;
   }
 }
+* {
+  /* Firefox */
+  scrollbar-width: thin; /* Adjust the width of the scrollbar for Firefox */
+}
+
+*::-webkit-scrollbar-button,
+*::-moz-scrollbar-button {
+  width: 0px;
+}
+
+*::-webkit-scrollbar-button:decrement,
+*::-webkit-scrollbar-button:increment,
+*::-moz-scrollbar-button:decrement,
+*::-moz-scrollbar-button:increment {
+  width: 0px;
+}
