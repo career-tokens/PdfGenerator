@@ -1,5 +1,5 @@
 import React from 'react'
-import { MLCVData } from '../dataModels/MLCVData'
+import { MLCVData } from '../../dataModels/MLCVData'
 import { CSS } from '@onedoc/react-print'
 
 interface Props{

@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 
-import { AirbnbData } from "../dataModels/AirbnbData";
+import { AirbnbData } from "../../dataModels/AirbnbData";
 import { CSS } from '@onedoc/react-print';
 
 interface AirbnbDataProps {

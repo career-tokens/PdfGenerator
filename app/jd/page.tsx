@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
-import JD from '../../components/JD';
+import JD from '../../components/templates/JD';
 import { JDData } from '../../dataModels/JDData';
 import Basic from './basic';
 import Technical from './technical';

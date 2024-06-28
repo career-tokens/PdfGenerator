@@ -1,20 +1,20 @@
 import { Tailwind } from '@onedoc/react-print';
 import React from 'react';
-import { CV } from './CV';
-import { Payment } from './Payment';
-import { Airbnb } from './Airbnb';
-import { NewCV } from './NewCV';
+import { CV } from './templates/CV';
+import { Payment } from './templates/Payment';
+import { Airbnb } from './templates/Airbnb';
+import { NewCV } from './templates/NewCV';
 import { CVData } from '../dataModels/CVData';
 import { NewCVData } from '../dataModels/NewCVData';
 import { AirbnbData } from '../dataModels/AirbnbData';
 import { PaymentData } from '../dataModels/PaymentData';
-import {TigerCV} from './TigerCV';
+import {TigerCV} from './templates/TigerCV';
 import { TigerCVData } from '../dataModels/TigerCVData';
-import JD from './JD';
+import JD from './templates/JD';
 import { JDData } from '../dataModels/JDData';
 import { MLCVData } from '../dataModels/MLCVData';
-import MLCV from './MLCV';
-import RealEstate from './RealEstate';
+import MLCV from './templates/MLCV';
+import RealEstate from './templates/RealEstate';
 
 interface DataProps {
     data: CVData | NewCVData | AirbnbData | PaymentData | TigerCVData | JDData | MLCVData;

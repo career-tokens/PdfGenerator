@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
-import RealEstate from '../../components/RealEstate';
+import RealEstate from '../../components/templates/RealEstate';
 
 
 const  RealEstateGenerator= () => {

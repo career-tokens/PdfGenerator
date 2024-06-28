@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
-import MLCV from '../../components/MLCV';
+import MLCV from '../../components/templates/MLCV';
 import Personal from './personal';
 import Education from './education';
 import ProfessionalExperience from './professional';

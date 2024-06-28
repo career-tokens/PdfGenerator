@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 
-import { PaymentData } from "../dataModels/PaymentData";
+import { PaymentData } from "../../dataModels/PaymentData";
 
 interface PaymentDataProps {
     data: PaymentData;

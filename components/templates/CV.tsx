@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
-import { CVData } from "../dataModels/CVData";
+import { CVData } from "../../dataModels/CVData";
 import { CSS } from '@onedoc/react-print';
 
 interface CVDataProps {

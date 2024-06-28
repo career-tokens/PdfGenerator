@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 "use client"
 
-import { Airbnb } from "../../components/Airbnb";
+import { Airbnb } from "../../components/templates/Airbnb";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";

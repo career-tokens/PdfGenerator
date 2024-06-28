@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 "use client";
 
-import { NewCV } from "../../components/NewCV";
+import { NewCV } from "../../components/templates/NewCV";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Input } from "../../components/ui/input";

@@ -1,5 +1,5 @@
 import React from 'react'
-import { TigerCVData } from '../dataModels/TigerCVData';
+import { TigerCVData } from '../../dataModels/TigerCVData';
 import { CSS } from '@onedoc/react-print';
 
 interface TigerCVDataProps {

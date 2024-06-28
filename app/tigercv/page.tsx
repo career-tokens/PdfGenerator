@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { TigerCVData } from '../../dataModels/TigerCVData';
-import {TigerCV} from '../../components/TigerCV';
+import {TigerCV} from '../../components/templates/TigerCV';
 import { Input } from '../../components/ui/input';
 import DeleteButton from '../../components/ui/DeleteButton';
 import AddButton from '../../components/ui/AddButton';
