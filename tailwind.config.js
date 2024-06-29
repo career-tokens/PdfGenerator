@@ -59,6 +59,7 @@ module.exports = {
         },
       },
       animation: {
+        rotate: "rotate 10s linear infinite",
         gradient: "gradient 8s linear infinite",
         'logo-cloud': 'logo-cloud 30s linear infinite'
       },
@@ -71,7 +72,22 @@ module.exports = {
         "logo-cloud": {
                  from: { transform: 'translateX(0)' },
                  to: { transform: 'translateX(calc(-100% - 4rem))' },
-               },
+        },
+        "shine-pulse": {
+          "0%": {
+            "background-position": "0% 0%",
+          },
+          "50%": {
+            "background-position": "100% 100%",
+          },
+          to: {
+            "background-position": "0% 0%",
+          },
+        },
+        rotate: {
+          "0%": { transform: "rotate(0deg) scale(10)" },
+          "100%": { transform: "rotate(-360deg) scale(10)" },
+        },
       },
       boxShadow: {
         signUp: "0px 5px 10px rgba(4, 10, 34, 0.2)",

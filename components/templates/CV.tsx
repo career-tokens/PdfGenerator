@@ -127,9 +127,9 @@ interface CVDataProps {
         }`
       }
     </CSS>
-    <div className="cv bg-white  font-[Merriweather] font-[500] min-h-screen px-6 py-4 text-left">
+    <div className="cv bg-white  font-[Merriweather] font-[500] min-h-screen px-6 py-4 text-left dark:bg-black dark:text-white">
           <div className="font-bold mb-2 text-3xl text-center">{data.name}</div>
-          <div className="details flex flex-col mb-4">
+          <div className="details flex flex-col mb-4 dark:text-slate-400 ">
           <div className="flex justify-between mb-2">
               <span>{data.phoneNumber1} / {data.phoneNumber2}  </span>
                <span>{data.addressLine1}</span>
@@ -152,8 +152,8 @@ interface CVDataProps {
                           <i>{item.stream}</i>
                           <span>{item.timeline}</span>
                       </div>
-                      <div className="flex justify-between mb-2">
-                          <span><span className="font-bold">• Major:</span>{item.major}</span>
+                      <div className="flex justify-between mb-2 dark:text-slate-400 ">
+                          <span><span className="font-bold dark:text-white mr-2">• Major:</span>{item.major}</span>
                       </div>
                             </div>
                         ))
@@ -172,8 +172,8 @@ interface CVDataProps {
                                 <i>{item.position}</i>
                                 <span>{item.timeline}</span>
                             </div>
-                            <div className="flex justify-between mb-1">
-                                <span><span className="font-bold">• Task:</span>{item.task}</span>
+                            <div className="flex justify-between mb-1 dark:text-slate-400 ">
+                                <span><span className="font-bold dark:text-white mr-2">• Task:</span>{item.task}</span>
                             </div>
                             </div>
                         ))
@@ -192,8 +192,8 @@ interface CVDataProps {
                                 <i>{item.position}</i>
                                 <span>{item.timeline}</span>
                             </div>
-                            <div className="flex justify-between mb-1">
-                                <span><span className="font-bold">• Task:</span>{item.task}</span>
+                            <div className="flex justify-between mb-1 dark:text-slate-400 ">
+                                <span><span className="font-bold dark:text-white mr-2">• Task:</span>{item.task}</span>
                             </div>
                             </div>
                         ))
@@ -203,7 +203,7 @@ interface CVDataProps {
                     <span className="text-xl text-center p-1 border-b-2 border-black mb-2">COURSEWORK/SKILLS</span>
                     {
                         data.coursework.map((item, i) => (
-                            <span className="mb-1"><span className="font-bold">• {item.subject}:</span>{item.topics}</span>
+                            <span className="mb-1 dark:text-slate-400"><span className="font-bold dark:text-white mr-2">• {item.subject}:</span>{item.topics}</span>
                         ))
                     }
           </div>
@@ -211,7 +211,7 @@ interface CVDataProps {
                     <span className="text-xl text-center p-1 border-b-2 border-black mb-2">ADDITIONAL INFO</span>
                     {
                         data.additionalInfo.map((item, i) => (
-                         <span className="mb-2"><span className="font-bold">• {item.subject}:</span>{item.description}</span>   
+                         <span className="mb-2 dark:text-slate-400"><span className="font-bold dark:text-white mr-2">• {item.subject}:</span>{item.description}</span>   
                         ))
                     }
           </div>

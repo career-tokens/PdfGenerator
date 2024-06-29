@@ -38,6 +38,9 @@ const Header = () => {
 
   const usePathName = usePathname();
 
+  if (usePathName != "/" && window.innerWidth < 640)
+    return <></>;
+
   return (
     <>
       <header

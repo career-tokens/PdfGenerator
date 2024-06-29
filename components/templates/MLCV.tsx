@@ -18,10 +18,10 @@ const MLCV:React.FC<Props> = ({data}) => {
           }`
         }
       </CSS>
-      <div className="flex flex-col main bg-white p-5 font-[Poppins]">
+      <div className="flex flex-col main bg-white p-5 font-[Poppins] dark:bg-black dark:text-white">
           <div className="personal mb-6 text-center">
               <p className="text-4xl font-bold">{data.name}</p>
-              <div className="flex justify-center">
+              <div className="flex justify-center dark:text-slate-400">
                   <span className="px-2 border-black border-r-2">{data.email}</span>
                   {data.phoneNeeded&&<span className="px-2 border-black border-r-2">{data.phone}</span>}
                   {data.addressNeeded&&<span className="px-2">{data.address}</span>}
@@ -34,17 +34,17 @@ const MLCV:React.FC<Props> = ({data}) => {
               {
                   data.education.map((edu, i) => (
                       <div className={`edu ${i + 1} mb-4`} key={i}>
-                          <div className="flex justify-between">
+                          <div className="flex justify-between tracking-wide">
                               <span className="font-semibold">{edu.university}</span>
                               <span className="">{edu.universityLocation}</span>
                           </div>
-                          <div className="flex justify-between">
+                          <div className="flex justify-between tracking-wide">
                               <span className=""><i>{edu.course}</i></span>
                               <span className="">{edu.period}</span>
                           </div>
                           {
                               edu.details.map((detail, j) => (
-                                  <p key={j}>•{detail}</p>
+                                  <p key={j} className='dark:text-slate-400 my-2'>•{detail}</p>
                               ))
                           }
                       </div>
@@ -58,7 +58,7 @@ const MLCV:React.FC<Props> = ({data}) => {
               {
                   data.professionalExperience.map((pro, i) => (
                       <div className={`pro ${i + 1} mb-4`} key={i}>
-                          <div className="flex justify-between">
+                          <div className="flex justify-between tracking-wide">
                               <span className="font-semibold">{pro.company}</span>
                               <span className="">{pro.companyLocation}</span>
                           </div>
@@ -68,7 +68,7 @@ const MLCV:React.FC<Props> = ({data}) => {
                           </div>
                           {
                               pro.tasks.map((detail, j) => (
-                                  <p key={j}>•{detail}</p>
+                                  <p key={j} className='dark:text-slate-400 my-2'>•{detail}</p>
                               ))
                           }
                       </div>
@@ -82,8 +82,8 @@ const MLCV:React.FC<Props> = ({data}) => {
               {
                   data.skills.map((skill,i) => (
                       <p className="flex flex-col mb-2" key={i}>
-                          <span className="font-bold w-fit">•{skill.topic}</span>
-                          <span>{skill.description}</span>
+                          <span className="font-bold w-fit tracking-wide">•{skill.topic}</span>
+                          <span className="dark:text-slate-400">{skill.description}</span>
                       </p>
                   ))
               }
@@ -105,7 +105,7 @@ const MLCV:React.FC<Props> = ({data}) => {
                           </div>
                           {
                               project.tasks.map((detail, j) => (
-                                  <p key={j}>•{detail}</p>
+                                  <p key={j} className="dark:text-slate-400 my-2">•{detail}</p>
                               ))
                           }
                       </div>

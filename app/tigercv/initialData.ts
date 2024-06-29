@@ -3,7 +3,7 @@ import { TigerCVData } from "../../dataModels/TigerCVData";
 export const tigerInitialData:TigerCVData = {
     name: "Tiger Abrodi",
     position: "Full Stack Developer",
-    imageUrl: "https://media.licdn.com/dms/image/D4E03AQFuTk5mpCvsFQ/profile-displayphoto-shrink_800_800/0/1696133927472?e=1718236800&v=beta&t=gCeIO9ZFKb7fHI7yrc8TAqaYgC_qpvCl-OBB1fAaigE",
+    imageUrl: "https://media.licdn.com/dms/image/D4E03AQFuTk5mpCvsFQ/profile-displayphoto-shrink_400_400/0/1696133927472?e=1724889600&v=beta&t=FEqWZsi4TOudZivUcV3F4hv8bpt3OzKa1ZNUv4Q1meU",
     portfolio: {
     needed: true,
     link:""
