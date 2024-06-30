@@ -8,7 +8,7 @@ body{
 @layer base {
 
   label {
-    @apply h-6 relative inline-block;
+    @apply h-6 relative inline-block scale-[0.8];
   }
 
   [type="checkbox"] {
@@ -33,7 +33,7 @@ body{
 
     @apply after:bg-white dark:after:bg-gray-50;
     @apply before:bg-gray-300 dark:before:bg-gray-600;
-    @apply before:checked:bg-lime-500 dark:before:checked:bg-lime-500;
+    @apply before:checked:bg-[#4a6cf7] dark:before:checked:bg-[#4a6cf7];
     @apply checked:after:duration-300 checked:after:translate-x-4;
 
     @apply disabled:after:bg-opacity-75 disabled:cursor-not-allowed;

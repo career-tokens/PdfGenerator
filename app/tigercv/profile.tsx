@@ -32,7 +32,7 @@ const Profile: React.FC<ProfileProps> = ({ data, setData }) => {
     <Disclosure>
       {({ open }) => (
         <>
-          <AccordionHead open={open}><p className="text-xl font-semibold text-center pb-0">Profile:</p></AccordionHead>
+          <AccordionHead open={open}><p className="pb-0">Profile</p></AccordionHead>
           <AccordionBody>
           <div className="profile flex flex-col gap-y-3 mb-3">
             
@@ -49,9 +49,9 @@ const Profile: React.FC<ProfileProps> = ({ data, setData }) => {
             </div>
             {
               data.profile.map((text, i) => (
-                <div className="flex justify-between items-center" key={i}>
+                <div className="flex justify-between gap-x-4 items-center" key={i}>
                   <Input
-                    className="w-[250px] sm:w-[350px]"
+                    className="flex-1"
                     value={text}
                     onChange={(e) => {
                       let arr = [...data.profile];

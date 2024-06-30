@@ -130,7 +130,7 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
                                                                         <div key={j} className="flex justify-between">
                                                                             <Input
                                                                                 value={text}
-                                                                                className="w-[250px] sm:w-[350px]"
+                                                                                className="flex-1"
                                                                                 onChange={(e) => {
                                                                                     let arr = [...data.professionalExperience];
                                                                                     arr[i].tasks[j] = e.target.value;

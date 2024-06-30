@@ -130,7 +130,7 @@ const Education: React.FC<Props> = ({ data, setData }) => {
                                                                         <div key={j} className="flex justify-between">
                                                                             <Input
                                                                                 value={text}
-                                                                                className="w-[250px] sm:w-[350px]"
+                                                                                className="flex-1"
                                                                                 onChange={(e) => {
                                                                                     let arr = [...data.education];
                                                                                     arr[i].details[j] = e.target.value;

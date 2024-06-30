@@ -10,13 +10,13 @@ const AddButton:React.FC<Props> = ({cb,description}) => {
       style={{
         width: description==="Add more Experience" ? 210 :description==="Add More Details"? 175:description==="Add More Skills"?165:description==="Add More Projects"?185: 81
       }}
-  className="text-white rounded-lg relative  h-8 cursor-pointer flex items-center border border-green-500 bg-green-500 group hover:bg-green-500 active:bg-green-500 active:border-green-500 pl-2"
+  className="text-white rounded-lg relative  h-8 cursor-pointer flex items-center border border-[#4a6cf7] bg-[#4a6cf7] group hover:bg-[#4a6cf7] active:bg-[#4a6cf7] active:border-[#4a6cf7] pl-2"
 >
   <span
     className="text-white font-semibold transform group-hover:translate-x-5 transition-all duration-300"
       >{description ? description : "Add"}</span>
   <span
-    className="absolute right-0 h-full w-10 rounded-lg bg-green-500 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300"
+    className="absolute right-0 h-full w-10 rounded-lg bg-[#4a6cf7] flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300"
   >
     <svg
       className="svg w-8 text-white"

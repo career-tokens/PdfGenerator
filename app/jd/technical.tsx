@@ -35,7 +35,7 @@ const Technical: React.FC<Props> = ({ data, setData }) => {
                               data.technicalAbilities.map((item, i) => (
                                   <div className="flex justify-between" key={i}>
                                       <Input
-                                          className="w-[250px] sm:w-[350px]"
+                                          className="flex-1"
                                           value={item}
                                           onChange={(e) => {
                                           let arr = [...data.technicalAbilities];

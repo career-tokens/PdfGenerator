@@ -15,7 +15,7 @@ const AccordionBody: React.FC<AccordionBodyProps> = ({ children }) => {
   leaveFrom="opacity-100 transform scale-100"
   leaveTo="opacity-0 transform scale-95"
 >
-  <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-gray-500 sm:text-base">
+  <Disclosure.Panel className="px-4 pb-2 -mt-5 pt-4 text-sm text-gray-500 rounded-b-lg sm:text-base dark:border-slate-800 border-2 border-t-0">
     {children}
   </Disclosure.Panel>
 </Transition>

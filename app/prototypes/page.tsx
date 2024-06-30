@@ -74,13 +74,6 @@ const Prototypes = () => {
       if (sidebaropen)
         setSidebarOpen(!sidebaropen);
     })
-
-    return () => {
-      document.getElementById("right-template-show").removeEventListener("click", () => {
-        if (sidebaropen)
-          setSidebarOpen(!sidebaropen);
-      })
-    }
   }, [sidebaropen]);
 
   //getting the current route

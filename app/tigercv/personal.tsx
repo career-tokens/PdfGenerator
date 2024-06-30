@@ -13,9 +13,9 @@ const PersonalInfo:React.FC<PersonalInfoProps> = ({data,setData}) => {
     <Disclosure>
       {({ open }) => (
         <>
-          <AccordionHead open={open}><p className="text-xl font-semibold text-center pb-0">Personal Info</p></AccordionHead>
+          <AccordionHead open={open}><p className="pb-0">Personal Details</p></AccordionHead>
           <AccordionBody>
-            <div className="personal-info flex flex-col gap-y-5 mb-3 text-slate-400">
+            <div className="personal-info flex flex-col gap-y-5 mb-3 text-slate-500 text-[15px] dark:text-slate-400">
           
               <div className="name">
                 <p>Name:</p>

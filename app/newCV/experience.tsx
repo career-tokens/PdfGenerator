@@ -137,7 +137,7 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
                                   <div className={`task ${j + 1} flex justify-between items-center mb-2`} key={j}>
                                       <Input
                                           value={task}
-                                          className="w-[250px] sm:w-[350px]"
+                                          className="flex-1"
                                           onChange={(e) => {
                                             let updatedExperiences = [...data.experiences];
 

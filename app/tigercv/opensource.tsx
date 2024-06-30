@@ -31,7 +31,7 @@ const OpenSource: React.FC<Props> = ({ data, setData }) => {
     <Disclosure>
       {({ open }) => (
         <>
-          <AccordionHead open={open}><p className="text-xl font-semibold text-center pb-0">Open Source</p></AccordionHead>
+          <AccordionHead open={open}><p className="pb-0">Open Source</p></AccordionHead>
           <AccordionBody>
             <div className="personal-info flex flex-col gap-y-3 mb-3 text-slate-400">
               <div className="firstline flex justify-between text-lg">
@@ -53,9 +53,9 @@ const OpenSource: React.FC<Props> = ({ data, setData }) => {
               </div>
               {
                 data.openSourceContributions.map((text, i) => (
-                  <div className="flex justify-between" key={i}>
+                  <div className="flex justify-between gap-x-4" key={i}>
                     <Input
-                      className="w-[250px] sm:w-[350px]"
+                      className="flex-1"
                       value={text}
                       onChange={(e) => {
                         let arr = [...data.openSourceContributions];

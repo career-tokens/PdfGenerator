@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,9 +39,7 @@ const Header = () => {
 
   const usePathName = usePathname();
 
-  if (usePathName != "/" && window.innerWidth < 640)
-    return <></>;
-
+  if(usePathName=="/"||(usePathName=="/prototypes"&&window.innerWidth>=640))
   return (
     <>
       <header
@@ -179,6 +178,8 @@ const Header = () => {
       </header>
     </>
   );
+  else
+    return <></>
 };
 
 export default Header;

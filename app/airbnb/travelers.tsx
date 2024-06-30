@@ -37,7 +37,7 @@ const Travelers:React.FC<Props> = ({data,setData}) => {
               {
                 data.travelers.map((item,index) => (
                   <div className="flex justify-between items-center" key={index}>
-                    <Input className="w-[250px] sm:w-[350px]" value={item} onChange={(e) => {
+                    <Input className="flex-1" value={item} onChange={(e) => {
                       let newTravelers = [...data.travelers];
                       newTravelers[index] = e.target.value;
                       setData({ ...data, travelers: newTravelers })

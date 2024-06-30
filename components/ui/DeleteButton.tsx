@@ -7,7 +7,7 @@ const DeleteButton:React.FC<Props> = ({cb}) => {
       <>
           <button
               onClick={cb}
-  className="inline-flex items-center px-2 h-[35px] bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-full hover:-translate-y-1 hover:scale-110"
+  className="inline-flex items-center px-2 h-[35px] bg-[#4a6cf7] transition ease-in-out delay-75 hover:bg-[#4a6cf7]/80 text-white text-sm font-medium rounded-full hover:-translate-y-1 hover:scale-110"
 >
   <svg
     stroke="currentColor"

@@ -23,7 +23,7 @@ interface DataProps {
 
 export const OneDocPdf: React.FC<DataProps> = ({ data, template }) => {
     return (
-        <Tailwind>
+        <Tailwind config={{darkMode: "class"}}>
             {template === 'payment' && <Payment data={data as PaymentData} />}
             {template === 'cv' && <CV data={data as CVData} />}
             {template === 'airbnb' && <Airbnb data={data as AirbnbData} />}

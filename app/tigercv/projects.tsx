@@ -44,7 +44,7 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
         <Disclosure>
             {({ open }) => (
                 <>
-                    <AccordionHead open={open}><p className="text-xl font-semibold text-center pb-0">Projects</p></AccordionHead>
+                    <AccordionHead open={open}><p className="pb-0">Projects</p></AccordionHead>
                     <AccordionBody>
                         <div className="personal-info flex flex-col gap-y-7 mb-3">
                             <div className="flex justify-center">
@@ -122,9 +122,9 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                             </div>
                                                             {
                                                                 project.features.map((feature, j) => (
-                                                                    <div className="feature flex justify-between items-center" key={j}>
+                                                                    <div className="feature flex justify-between items-center gap-x-4" key={j}>
                                                                         <Input
-                                                                            className="w-[250px] sm:w-[350px]"
+                                                                            className="flex-1"
                                                                             value={feature}
                                                                             onChange={(e) => {
                                                                                 let arr = [...data.projects];
