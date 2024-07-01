@@ -19,9 +19,10 @@ import RealEstate from './templates/RealEstate';
 interface DataProps {
     data: CVData | NewCVData | AirbnbData | PaymentData | TigerCVData | JDData | MLCVData;
     template: string;
+    theme: string;
 }
 
-export const OneDocPdf: React.FC<DataProps> = ({ data, template }) => {
+export const OneDocPdf: React.FC<DataProps> = ({ data, template , theme }) => {
     return (
         <Tailwind config={{darkMode: "class"}}>
             {template === 'payment' && <Payment data={data as PaymentData} />}

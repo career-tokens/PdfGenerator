@@ -21,7 +21,7 @@ const MLCV:React.FC<Props> = ({data}) => {
       <div className="flex flex-col main bg-white p-5 font-[Poppins] dark:bg-black dark:text-white">
           <div className="personal mb-6 text-center">
               <p className="text-4xl font-bold">{data.name}</p>
-              <div className="flex justify-center dark:text-slate-400">
+              <div className="flex justify-center dark:text-slate-400 text-[15px]">
                   <span className="px-2 border-black border-r-2">{data.email}</span>
                   {data.phoneNeeded&&<span className="px-2 border-black border-r-2">{data.phone}</span>}
                   {data.addressNeeded&&<span className="px-2">{data.address}</span>}
@@ -36,11 +36,11 @@ const MLCV:React.FC<Props> = ({data}) => {
                       <div className={`edu ${i + 1} mb-4`} key={i}>
                           <div className="flex justify-between tracking-wide">
                               <span className="font-semibold">{edu.university}</span>
-                              <span className="">{edu.universityLocation}</span>
+                              <span className="text-right min-w-[200px]">{edu.universityLocation}</span>
                           </div>
-                          <div className="flex justify-between tracking-wide">
-                              <span className=""><i>{edu.course}</i></span>
-                              <span className="">{edu.period}</span>
+                          <div className="flex justify-between gap-x-5 tracking-wide">
+                              <span className="w-fit"><i>{edu.course}</i></span>
+                              <span className="text-right min-w-[200px]">{edu.period}</span>
                           </div>
                           {
                               edu.details.map((detail, j) => (
@@ -64,7 +64,7 @@ const MLCV:React.FC<Props> = ({data}) => {
                           </div>
                           <div className="flex justify-between mb-2">
                               <span className=""><i>{pro.role}</i></span>
-                              <span className="">{pro.period}</span>
+                              <span className="min-w-[200px] text-right">{pro.period}</span>
                           </div>
                           {
                               pro.tasks.map((detail, j) => (
@@ -101,7 +101,7 @@ const MLCV:React.FC<Props> = ({data}) => {
                           </div>
                           <div className="flex justify-between mb-2">
                               <span className="">{project.program}</span>
-                              <span className="text-right">{project.period}</span>
+                              <span className="text-right min-w-[240px]">{project.period}</span>
                           </div>
                           {
                               project.tasks.map((detail, j) => (

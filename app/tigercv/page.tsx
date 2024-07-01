@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { TigerCVData } from '../../dataModels/TigerCVData';
 import {TigerCV} from '../../components/templates/TigerCV';
 import PersonalInfo from './personal';
@@ -12,6 +12,11 @@ import { useRouter } from 'next/navigation';
 import { tigerInitialData } from './initialData';
 import ThemeToggler from '../../components/landing/Header/ThemeToggler';
 import GenerateButton from '../../components/landing/syntaxui/GenerateButton';
+import Particles from '../../components/landing/magicui/particles';
+import { useTheme } from 'next-themes';
+import { CircleChevronLeft } from 'lucide-react';
+import Link from 'next/link';
+
 
 const TigerCVPdfGenerator = () => {
     // const initialData:TigerCVData = {
@@ -102,9 +107,34 @@ const TigerCVPdfGenerator = () => {
     //     }]
     // }
 
+  const previewRef = useRef(null);
   const [data, setData] = useState<TigerCVData>(tigerInitialData);
 
   const router = useRouter();
+
+  const changeScaledViewHeight = () => {
+    if (previewRef.current) {
+      const rect = previewRef.current.getBoundingClientRect();
+      console.log(rect)
+      console.log(window.innerWidth)
+      if(window.innerWidth<1024)
+      document.getElementById("preview").style.height = rect.height/2+"px";
+    }
+  };
+
+  // Use useEffect to get the height after the component mounts
+  useEffect(() => {
+    changeScaledViewHeight();
+  }, []);
+
+    
+  //for particles background theme
+  const { theme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
+ 
+  useEffect(() => {
+    setColor(theme === "dark" ? "#000000" : "#ffffff");
+  }, [theme]);
   
   const handleCheckboxChange = (topic) => {
     setData({ ...data, [topic]: { ...data[topic], needed: !data[topic].needed } })
@@ -114,18 +144,19 @@ const TigerCVPdfGenerator = () => {
   const handleGeneratePdf = () => {
     localStorage.setItem("data", JSON.stringify(data));
     localStorage.setItem("template", "tigercv");
+    localStorage.setItem("theme", theme);
     router.push("/viewPDF");
 }
   return (
-    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start dark:bg-white bg-black  dark:bg-grid-small-black/[0.2] bg-grid-white/[0.2]">
-            <div className="theme-toggler-for-phone absolute top-4 left-4 z-[1000]">
+    <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start dark:bg-white bg-black  dark:bg-grid-small-black/[0.2] bg-grid-white/[0.2]">    
+      <div className="theme-toggler-for-phone items-center gap-x-3 flex absolute top-2 left-2 z-[1000] rounded-full bg-gray-300 p-1 dark:bg-gray-500">
+        <Link href="/prototypes"><CircleChevronLeft/></Link>
         <ThemeToggler/>
       </div>
     <style jsx global>
       {`
         @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap");
         button {
-          background-color: red;
           color: white;
           border-radius: 4px;
           padding: 5px;
@@ -141,10 +172,20 @@ const TigerCVPdfGenerator = () => {
           padding-bottom: 4px;
         }
       `}
-    </style>
-    <div className="preview h-screen overflow-y-scroll scrollbar-none w-[700px] scale-50 lg:w-[50%] mt-[-250px] mb-[-250px] lg:scale-100 lg:mt-[0px] lg:mb-[0px]">
+      </style>
+      <div className="preview-wrapper h-screen w-screen lg:w-[50%] pt-20 lg:pt-0  overflow-y-scroll scrollbar-none flex flex-col items-center">
+      <Particles
+        className="absolute inset-0 lg:hidden"
+        quantity={1000}
+          ease={80}
+          size={theme==="dark"?1:2}
+        color={color}
+        refresh
+      />
+    <div ref={previewRef} id="preview" className="preview w-[700px] scale-50 md:w-full  md:scale-100 md:mt-[0px] md:mb-[0px]" style={{ transformOrigin: 'top' }}>
       <TigerCV data={data}/>
-    </div>
+        </div>
+        </div>
     <div className="change-things font-[Merriweather] w-full bg-white border-slate-300 dark:border-slate-700 border-l-2 dark:bg-black lg:w-[50%] px-[20px]  relative flex justify-center items-start h-screen overflow-y-auto scrollbar-none">
         <div className="w-[550px] shadow-input p-4 rounded font-[Roboto] min-h-screen gap-y-4 flex flex-col pt-20">
            <PersonalInfo data={data} setData={setData}/>

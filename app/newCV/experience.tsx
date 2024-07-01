@@ -47,7 +47,7 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Experiences:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Experiences:</p></AccordionHead>
                   <AccordionBody>
                   <div className="experience flex flex-col gap-y-5">
                               <div className="flex justify-center">
@@ -134,7 +134,7 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
                           </div>
                           {
                               exp.tasks.map((task, j) => (
-                                  <div className={`task ${j + 1} flex justify-between items-center mb-2`} key={j}>
+                                  <div className={`task ${j + 1} flex justify-between gap-x-4 items-center mb-2`} key={j}>
                                       <Input
                                           value={task}
                                           className="flex-1"

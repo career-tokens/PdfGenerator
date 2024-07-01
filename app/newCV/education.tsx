@@ -19,7 +19,7 @@ const Education:React.FC<Props> = ({data,setData,handleAdd,handleRemove}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Education:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Education:</p></AccordionHead>
                   <AccordionBody>
                   <div className="education flex flex-col gap-y-4">
             <div className="add flex justify-center">
@@ -31,7 +31,7 @@ const Education:React.FC<Props> = ({data,setData,handleAdd,handleRemove}) => {
             </div>
             {data.education.map((edu, i) => (
               <div className={`edu ${i + 1} flex flex-col gap-y-3`} key={i}>
-                <div className="flex justify-between  text-lg text-slate-400">
+                <div className="flex justify-between items-center text-lg text-slate-400">
                   <h2 className="font-semibold">Education {i + 1}</h2>
 
                   <DeleteButton

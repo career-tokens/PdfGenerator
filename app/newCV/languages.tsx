@@ -19,7 +19,7 @@ const Languages:React.FC<Props> = ({data,setData,handleAdd,handleRemove}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Languages:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Languages:</p></AccordionHead>
                   <AccordionBody>
                   <div className="languages flex flex-col gap-y-4">
             <div className="add flex justify-center">
@@ -31,7 +31,7 @@ const Languages:React.FC<Props> = ({data,setData,handleAdd,handleRemove}) => {
             </div>
             {data.languages.map((language, i) => (
               <div className={`language ${i + 1} flex flex-col`} key={i}>
-                <div className="flex justify-between mb-[10px]">
+                <div className="flex justify-between items-center mb-[10px]">
                   <h2>Language {i + 1}</h2>
 
                   <DeleteButton

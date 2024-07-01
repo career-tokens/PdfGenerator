@@ -3,7 +3,7 @@
 
 import { CV } from "../../components/templates/CV";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Input } from "../../components/ui/input";
 import { CVData } from "../../dataModels/CVData";
 import { toast } from "sonner";
@@ -13,120 +13,153 @@ import Work from "./work";
 import Academic from "./academic";
 import Coursework from "./coursework";
 import AdditionalInfo from "./additionalInfo";
+import ThemeToggler from "../../components/landing/Header/ThemeToggler";
+import Particles from "../../components/landing/magicui/particles";
+import { cvInitialData } from "./initialData";
+import GenerateButton from "../../components/landing/syntaxui/GenerateButton";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { CircleChevronLeft } from "lucide-react";
 
 export default function Home() {
-  const initialData:CVData = {
-    name: "ROBERT DORGE",
-    phoneNumber1: "(+41) 90 123 65 00",
-    phoneNumber2: "(+33) 89 34 12 77 89",
-    addressLine1: "somewheregreat 54",
-    addressLine2: "Zürich, Switzerland",
-    email1: "robertdorge@student.hello.com",
-    email2: "robertDorge@hellopartners.com",
-    education: [{
-        university:"EIDGENOSSISCHE TECHNISCHE HOCHSCHULE ZURICH, ETHZ",
-        universityLocation: "Zurich, ZH ,Switzerland",
-        timeline: "2021-",
-        stream: "Master of Science in Computer Science ",
-        major:"Machine Intelligence, minor in Information Security"
-    },
-    {
-        university:"ÉCOLE POLYTECHNIQUE FÉDÉRALE DE LAUSANNE, EPFL",
-        universityLocation: "Lausanne, VD, Switzerland",
-        timeline: "2017-2020",
-        stream: "Bachelor of Science in Commmunication Systems",
-        major:"Computer Architecture and Databases"
-        }
-    ],
-    work: [{
-        company: "LLEED AND PARTNERS, Digital Consulting",
-        location: "Geneva, GE, Switzerland",
-        position:"Co-Founder / Technology",
-        timeline: "06/2020-",
-        task:`Co-founded a digital consulting firm, working with large multinational companies contributing to their digital transforma-
-        tion, with references such as Louis Dreyfus Company and Rio Tinto. Our projects involved optimizing metals sales and processing
-        unstructured data for OTC trading. www.lleedpartners.com`
-    },
-    {
-        company: "Louis Dreyfus Company",
-        location: "Singapore",
-        position:"Junior Data Scientist Engineer",
-        timeline: "06/2019-03/2020",
-        task:`Developed internal web applications involving data aggregation, natural language processing and more. My work in the
-        field of FFA trading led to starting my company in which LDC and Rio Tinto are clients`
-        },
-        {
-            company: "ECCO2 Solutions AG, Energy Optimization Startup",
-            location: "Givisiez, FR, Switzerland",
-            position:"Junior Software Engineer",
-            timeline: "08/2019-09/2020",
-            task:`Contributed to designing the architecture of a complex software solution involving IoT in C# using the
-            .Net Framework.`
-        },
-        {
-            company: "Junior Entreprise EPFL",
-            location: "Lausanne, VD, Switzerland",
-            position:"IT Consultant ",
-            timeline: "06/2019-09/2020",
-            task:`Worked on 2 projects, designed the NO SQL database architecture and developed web applications using React JS and
-            Node JS.`
-        },
-        {
-            company: "Energisme, Energy Optimization Startup",
-            location: "Bourlogne-Billancourt 92, France",
-            position:"Summer Software Developer Intern",
-            timeline: "08/2018-09/2018",
-            task:`Developed a web tool to generate Finite State Machines for graphics animations`
-        }],
-    academic: [{
-        company: "Align Technologies, Dental Med-tech Company",
-        location: "Zurich, ZH, Switzerland",
-        position: "Computer Vision Research Intern - Masters Semester Project at ETHZ",
-        timeline: "03/2022 - 07/2022",
-        task:`Using computer vision techniques and machine learning to analyze 3D scans of teeth in order to identify dental illnesses`
-    },
-    {
-        company: "Miraex, Quantum Technology Startup",
-        location: "Lausanne, VD, Switzerland",
-        position: "AI research Intern - Bachelor Thesis Project at EPFL",
-        timeline: "02/2020 - 07/20200",
-        task:`Performed pattern detection on acoustic signals using signal processing methods such as Wavelet Transform
-        analysis and machine learning models such as SVMs, auto encoders and convolutional encoders.`
-        }],
-    coursework: [{
-        subject: "Mathematics",
-        topics:`Calculus, Linear Algebra, Information Theory, Signal Processing, Discrete Mathematics, Set Theory, Algebra, Algo-
-        rithms, Statistics, Probability Theory, Stochastic Processes, Computational Statistics, Computational Intelligence Lab`
-    },
-        {
-            subject: "Computer Science",
-            topics:`Advanced Machine Learning, Probabilistic Artificial Intelligence, Parallelism and Concurrency, OO Program-
-            ming, Functional Programming, Database Systems, Computer Architecture, Network Security, Theory of Computation, Visual
-            Computing, Digital Signatures`
-        },
-        {
-            subject: "Programming",
-            topics:`C, R, Python (Django and data science libraries), Java, SQL, Scala (and Spark), C# (.NET), Javascript (React Js,
-                Node Js), SQL, Assembly, LaTex`
-        }],
-    additionalInfo: [{
-        subject: "Personal Interests",
-        description:"Blockchain, Politics, Music, Study of Latin and Ancient Greek."
-    },
-    {
-        subject: "Activites",
-        description:`Classical Guitar and Solfeggio in regional conservatory with DEM and CEM state certificates (9 years of practice and
-            ability to teach), Tennis, Soccer, Hiking, Chess`
-        },
-        {
-            subject: "Languages (speaking and writing)",
-            description:"French (Native), English (Native), Spanish (B1)"
-        }]
-  }
+  // const initialData:CVData = {
+  //   name: "ROBERT DORGE",
+  //   phoneNumber1: "(+41) 90 123 65 00",
+  //   phoneNumber2: "(+33) 89 34 12 77 89",
+  //   addressLine1: "somewheregreat 54",
+  //   addressLine2: "Zürich, Switzerland",
+  //   email1: "robertdorge@student.hello.com",
+  //   email2: "robertDorge@hellopartners.com",
+  //   education: [{
+  //       university:"EIDGENOSSISCHE TECHNISCHE HOCHSCHULE ZURICH, ETHZ",
+  //       universityLocation: "Zurich, ZH ,Switzerland",
+  //       timeline: "2021-",
+  //       stream: "Master of Science in Computer Science ",
+  //       major:"Machine Intelligence, minor in Information Security"
+  //   },
+  //   {
+  //       university:"ÉCOLE POLYTECHNIQUE FÉDÉRALE DE LAUSANNE, EPFL",
+  //       universityLocation: "Lausanne, VD, Switzerland",
+  //       timeline: "2017-2020",
+  //       stream: "Bachelor of Science in Commmunication Systems",
+  //       major:"Computer Architecture and Databases"
+  //       }
+  //   ],
+  //   work: [{
+  //       company: "LLEED AND PARTNERS, Digital Consulting",
+  //       location: "Geneva, GE, Switzerland",
+  //       position:"Co-Founder / Technology",
+  //       timeline: "06/2020-",
+  //       task:`Co-founded a digital consulting firm, working with large multinational companies contributing to their digital transforma-
+  //       tion, with references such as Louis Dreyfus Company and Rio Tinto. Our projects involved optimizing metals sales and processing
+  //       unstructured data for OTC trading. www.lleedpartners.com`
+  //   },
+  //   {
+  //       company: "Louis Dreyfus Company",
+  //       location: "Singapore",
+  //       position:"Junior Data Scientist Engineer",
+  //       timeline: "06/2019-03/2020",
+  //       task:`Developed internal web applications involving data aggregation, natural language processing and more. My work in the
+  //       field of FFA trading led to starting my company in which LDC and Rio Tinto are clients`
+  //       },
+  //       {
+  //           company: "ECCO2 Solutions AG, Energy Optimization Startup",
+  //           location: "Givisiez, FR, Switzerland",
+  //           position:"Junior Software Engineer",
+  //           timeline: "08/2019-09/2020",
+  //           task:`Contributed to designing the architecture of a complex software solution involving IoT in C# using the
+  //           .Net Framework.`
+  //       },
+  //       {
+  //           company: "Junior Entreprise EPFL",
+  //           location: "Lausanne, VD, Switzerland",
+  //           position:"IT Consultant ",
+  //           timeline: "06/2019-09/2020",
+  //           task:`Worked on 2 projects, designed the NO SQL database architecture and developed web applications using React JS and
+  //           Node JS.`
+  //       },
+  //       {
+  //           company: "Energisme, Energy Optimization Startup",
+  //           location: "Bourlogne-Billancourt 92, France",
+  //           position:"Summer Software Developer Intern",
+  //           timeline: "08/2018-09/2018",
+  //           task:`Developed a web tool to generate Finite State Machines for graphics animations`
+  //       }],
+  //   academic: [{
+  //       company: "Align Technologies, Dental Med-tech Company",
+  //       location: "Zurich, ZH, Switzerland",
+  //       position: "Computer Vision Research Intern - Masters Semester Project at ETHZ",
+  //       timeline: "03/2022 - 07/2022",
+  //       task:`Using computer vision techniques and machine learning to analyze 3D scans of teeth in order to identify dental illnesses`
+  //   },
+  //   {
+  //       company: "Miraex, Quantum Technology Startup",
+  //       location: "Lausanne, VD, Switzerland",
+  //       position: "AI research Intern - Bachelor Thesis Project at EPFL",
+  //       timeline: "02/2020 - 07/20200",
+  //       task:`Performed pattern detection on acoustic signals using signal processing methods such as Wavelet Transform
+  //       analysis and machine learning models such as SVMs, auto encoders and convolutional encoders.`
+  //       }],
+  //   coursework: [{
+  //       subject: "Mathematics",
+  //       topics:`Calculus, Linear Algebra, Information Theory, Signal Processing, Discrete Mathematics, Set Theory, Algebra, Algo-
+  //       rithms, Statistics, Probability Theory, Stochastic Processes, Computational Statistics, Computational Intelligence Lab`
+  //   },
+  //       {
+  //           subject: "Computer Science",
+  //           topics:`Advanced Machine Learning, Probabilistic Artificial Intelligence, Parallelism and Concurrency, OO Program-
+  //           ming, Functional Programming, Database Systems, Computer Architecture, Network Security, Theory of Computation, Visual
+  //           Computing, Digital Signatures`
+  //       },
+  //       {
+  //           subject: "Programming",
+  //           topics:`C, R, Python (Django and data science libraries), Java, SQL, Scala (and Spark), C# (.NET), Javascript (React Js,
+  //               Node Js), SQL, Assembly, LaTex`
+  //       }],
+  //   additionalInfo: [{
+  //       subject: "Personal Interests",
+  //       description:"Blockchain, Politics, Music, Study of Latin and Ancient Greek."
+  //   },
+  //   {
+  //       subject: "Activites",
+  //       description:`Classical Guitar and Solfeggio in regional conservatory with DEM and CEM state certificates (9 years of practice and
+  //           ability to teach), Tennis, Soccer, Hiking, Chess`
+  //       },
+  //       {
+  //           subject: "Languages (speaking and writing)",
+  //           description:"French (Native), English (Native), Spanish (B1)"
+  //       }]
+  // }
   
-  const [data, setData] = useState<CVData>(initialData);
+  const [data, setData] = useState<CVData>(cvInitialData);
 
   const router = useRouter();
+
+  const previewRef = useRef(null);
+
+  const changeScaledViewHeight = () => {
+    if (previewRef.current) {
+      const rect = previewRef.current.getBoundingClientRect();
+      console.log(rect)
+      console.log(window.innerWidth)
+      if(window.innerWidth<1024)
+      document.getElementById("preview").style.height = rect.height/2+"px";
+    }
+  };
+
+  // Use useEffect to get the height after the component mounts
+  useEffect(() => {
+    changeScaledViewHeight();
+  }, []);
+
+    
+  //for particles background theme
+  const { theme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
+ 
+  useEffect(() => {
+    setColor(theme === "dark" ? "#000000" : "#ffffff");
+  }, [theme]);
 
   const handleErrorToast = () => {
     toast.error("You need to have minimum one entry here", {
@@ -263,11 +296,14 @@ export default function Home() {
 
   return (
     <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start dark:bg-white bg-black  dark:bg-grid-small-black/[0.2] bg-grid-white/[0.2]">
+                  <div className="theme-toggler-for-phone items-center gap-x-3 flex absolute top-2 left-2 z-[1000] rounded-full bg-gray-300 p-1 dark:bg-gray-500">
+        <Link href="/prototypes"><CircleChevronLeft/></Link>
+        <ThemeToggler/>
+      </div>
       <style jsx global>
               {`
         @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap');
         button{
-          background-color:red;
           color:white;
           border-radius:4px;
           padding:5px;
@@ -279,11 +315,21 @@ export default function Home() {
         }
         `}
       </style>
-      <div className="preview w-[700px] scale-50  mt-[-470px] mb-[-500px] lg:w-[50%] lg:scale-100 lg:mt-[0px] lg:mb-[0px]">
-        <CV data={data} />
-      </div>
-          <div className="change-things  w-full lg:w-[50%] p-[20px]  relative flex justify-center items-center">
-          <div className="w-[550px] shadow-input bg-[#0f172a] p-4 rounded font-[Roboto] flex flex-col gap-y-5">
+      <div className="preview-wrapper h-screen w-screen lg:w-[50%] pt-20 lg:pt-0  overflow-y-scroll scrollbar-none flex flex-col items-center">
+      <Particles
+        className="absolute inset-0 lg:hidden"
+        quantity={1000}
+          ease={80}
+          size={theme==="dark"?1:2}
+        color={color}
+        refresh
+      />
+    <div ref={previewRef} id="preview" className="preview w-[700px] scale-50 md:w-full  md:scale-100 md:mt-[0px] md:mb-[0px]" style={{ transformOrigin: 'top' }}>
+      <CV data={data}/>
+        </div>
+        </div>
+        <div className="change-things font-[Merriweather] w-full bg-white border-slate-300 dark:border-slate-700 border-l-2 dark:bg-black lg:w-[50%] px-[20px]  relative flex justify-center items-start h-screen overflow-y-auto scrollbar-none">
+        <div className="w-[550px] shadow-input p-4 rounded font-[Roboto] min-h-screen gap-y-4 flex flex-col pt-20">
 <Details data={data} setData={setData}/>
 <Education data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
 <Work data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
@@ -292,7 +338,9 @@ export default function Home() {
 <AdditionalInfo data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/> 
                   </div>
       </div>
-      <button className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]" onClick={handleGeneratePdf}>Generate PDF</button>
+      <GenerateButton
+      onClick={handleGeneratePdf}
+    />
     </div>
   );
 }

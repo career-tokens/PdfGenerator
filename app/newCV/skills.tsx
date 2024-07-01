@@ -19,7 +19,7 @@ const Skills = ({data,setData,handleAdd,handleRemove}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Skills:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Skills:</p></AccordionHead>
                   <AccordionBody>
                   <div className="skills flex flex-col gap-y-4">
             <div className="add flex justify-center text-base">
@@ -31,9 +31,9 @@ const Skills = ({data,setData,handleAdd,handleRemove}) => {
               />
             </div>
             {data.skills.map((skill, i) => (
-              <div className="flex justify-between" key={i}>
+              <div className="flex justify-between gap-x-4" key={i}>
                 <Input
-                  className="w-[250px]"
+                  className=""
                   value={skill.name}
                   onChange={(e) => {
                     let updatedSkills = [...data.skills];

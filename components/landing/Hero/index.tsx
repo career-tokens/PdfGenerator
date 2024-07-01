@@ -30,7 +30,7 @@ const Hero = () => {
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
-                    href="https://nextjstemplates.com/templates/saas-starter-startup"
+                    href="/prototypes"
                     className="gap-2 py-3 pr-3 pl-4 whitespace-pre flex items-center group relative rounded-full text-sm font-semibold tracking-tighter ring-offset-inherit transition-all duration-150 ease-in-out hover:ring-2 hover:ring-black hover:ring-offset-1 hover:ring-offset-current dark:hover:ring-neutral-50 bg-primary text-white  hover:bg-primary/80"
                   >
                     Browse Templates

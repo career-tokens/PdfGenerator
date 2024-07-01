@@ -3,7 +3,7 @@
 
 import { NewCV } from "../../components/templates/NewCV";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Input } from "../../components/ui/input";
 import { NewCVData } from "../../dataModels/NewCVData";
 import { Toaster, toast } from "sonner";
@@ -12,6 +12,12 @@ import Skills from "./skills";
 import Languages from "./languages";
 import Education from "./education";
 import Experience from "./experience";
+import { useTheme } from "next-themes";
+import ThemeToggler from "../../components/landing/Header/ThemeToggler";
+import Particles from "../../components/landing/magicui/particles";
+import GenerateButton from "../../components/landing/syntaxui/GenerateButton";
+import Link from "next/link";
+import { CircleChevronLeft } from "lucide-react";
 
 export default function NewCVPdfGenerator() {
   const initialData:NewCVData = {
@@ -107,6 +113,32 @@ export default function NewCVPdfGenerator() {
   const [data, setData] = useState<NewCVData>(initialData);
 
   const router = useRouter();
+
+  const previewRef = useRef(null);
+
+  const changeScaledViewHeight = () => {
+    if (previewRef.current) {
+      const rect = previewRef.current.getBoundingClientRect();
+      console.log(rect)
+      console.log(window.innerWidth)
+      if(window.innerWidth<1024)
+      document.getElementById("preview").style.height = rect.height/2+"px";
+    }
+  };
+
+  // Use useEffect to get the height after the component mounts
+  useEffect(() => {
+    changeScaledViewHeight();
+  }, []);
+
+    
+  //for particles background theme
+  const { theme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
+ 
+  useEffect(() => {
+    setColor(theme === "dark" ? "#000000" : "#ffffff");
+  }, [theme]);
 
   const handleGeneratePdf = () => {
     localStorage.setItem("data", JSON.stringify(data));
@@ -223,11 +255,14 @@ export default function NewCVPdfGenerator() {
 
   return (
     <div className="main flex flex-col justify-center items-center w-screen min-h-screen lg:flex-row lg:items-start dark:bg-white bg-black  dark:bg-grid-small-black/[0.2] bg-grid-white/[0.2]">
+           <div className="theme-toggler-for-phone items-center gap-x-3 flex absolute top-2 left-2 z-[1000] rounded-full bg-gray-300 p-1 dark:bg-gray-500">
+        <Link href="/prototypes"><CircleChevronLeft/></Link>
+        <ThemeToggler/>
+      </div>
       <style jsx global>
         {`
           @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata:opsz@7..72&family=Lora&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat&family=Mulish&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap");
           button {
-            background-color: red;
             color: white;
             border-radius: 4px;
             padding: 5px;
@@ -244,11 +279,21 @@ export default function NewCVPdfGenerator() {
           }
         `}
       </style>
-      <div className="preview w-[700px] scale-50 lg:w-[50%] mt-[-250px] mb-[-250px] lg:scale-100 lg:mt-[0px] lg:mb-[0px]">
-        <NewCV {...data} />
-      </div>
-      <div className="change-things w-full lg:w-[50%] p-[20px]  relative flex justify-center items-center">
-        <div className="w-[550px] bg-[#0f172a] shadow-input  dark:bg-black p-4 rounded font-[Mulish] flex flex-col gap-y-5 min-h-screen">
+      <div className="preview-wrapper h-screen w-screen lg:w-[50%] pt-20 lg:pt-0  overflow-y-scroll scrollbar-none flex flex-col items-center">
+      <Particles
+        className="absolute inset-0 lg:hidden"
+        quantity={1000}
+          ease={80}
+          size={theme==="dark"?1:2}
+        color={color}
+        refresh
+      />
+    <div ref={previewRef} id="preview" className="preview w-[700px] scale-50 md:w-full  md:scale-100 md:mt-[0px] md:mb-[0px]" style={{ transformOrigin: 'top' }}>
+          <NewCV {...data} />
+        </div>
+        </div>
+        <div className="change-things font-[Merriweather] w-full bg-white border-slate-300 dark:border-slate-700 border-l-2 dark:bg-black lg:w-[50%] px-[20px]  relative flex justify-center items-start h-screen overflow-y-auto scrollbar-none">
+        <div className="w-[550px] shadow-input p-4 rounded font-[Roboto] min-h-screen gap-y-4 flex flex-col pt-20">
 <Personal data={data} setData={setData}/>
 <Skills data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
 <Languages data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
@@ -256,12 +301,9 @@ export default function NewCVPdfGenerator() {
           <Experience data={data} setData={setData} handleAdd={handleAdd} handleRemove={handleRemove}/>
         </div>
       </div>
-      <button
-        className="fixed right-[5px] top-[5px] p-[5px] rounded bg-[green]"
-        onClick={handleGeneratePdf}
-      >
-        Generate PDF
-      </button>
+      <GenerateButton
+      onClick={handleGeneratePdf}
+    />
     </div>
   );
 }

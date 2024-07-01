@@ -14,7 +14,7 @@ const Details:React.FC<Props> = ({data,setData}) => {
     <Disclosure>
           {({ open }) => (
               <>
-                  <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Details:</p></AccordionHead>
+                  <AccordionHead open={open}>    <p className="pb-0">Details</p></AccordionHead>
           <AccordionBody>
           <div className="details flex flex-col  border-black border-b-2 gap-y-3">
           <div className="name ">

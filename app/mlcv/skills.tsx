@@ -31,7 +31,7 @@ const Skills: React.FC<Props> = ({ data, setData }) => {
         <Disclosure>
             {({ open }) => (
                 <>
-                    <AccordionHead open={open}><p className="text-xl font-semibold text-center pb-0">Skills</p></AccordionHead>
+                    <AccordionHead open={open}><p className="pb-0">Skills</p></AccordionHead>
                     <AccordionBody>
                         <div className="skills flex flex-col gap-y-3 mb-3 text-slate-400">
                             <div className="firstline flex justify-between text-lg">

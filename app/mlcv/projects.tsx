@@ -44,7 +44,7 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
         <Disclosure>
             {({ open }) => (
                 <>
-                    <AccordionHead open={open}><p className="text-xl font-semibold text-center pb-0">Projects and Honors</p></AccordionHead>
+                    <AccordionHead open={open}><p className="pb-0">Projects and Honors</p></AccordionHead>
                     <AccordionBody>
                         <div className="projectsAndLeadership flex flex-col gap-y-3 mb-3 text-slate-400">
                             <div className="firstline flex justify-between text-lg">
@@ -127,7 +127,7 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                             <div className="tasks lines flex flex-col gap-y-3">
                                                                 {
                                                                     project.tasks.map((text, j) => (
-                                                                        <div key={j} className="flex justify-between">
+                                                                        <div key={j} className="flex justify-between gap-x-4">
                                                                             <Input
                                                                                 value={text}
                                                                                 className="flex-1"

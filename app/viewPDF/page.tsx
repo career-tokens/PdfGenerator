@@ -12,12 +12,13 @@ const OneDoc: React.FC<OneDocProps> = () => {
       try {
         const data = JSON.parse(localStorage.getItem("data") || "");
         const template = localStorage.getItem("template") || "";
+        const theme = localStorage.getItem("theme") || "";
         const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/v1/getPDF`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ data, template })
+          body: JSON.stringify({ data, template , theme })
         });
         const blob = await response.blob();
         setPdfData(URL.createObjectURL(blob));

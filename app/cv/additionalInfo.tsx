@@ -25,7 +25,7 @@ const AdditionalInfo:React.FC<Props> = ({ data, setData, handleAdd, handleRemove
     <Disclosure>
           {({ open }) => (
               <>
-                  <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Additional Info:</p></AccordionHead>
+                  <AccordionHead open={open}>    <p className="pb-0">Additional Info</p></AccordionHead>
           <AccordionBody>
           <div className="additionalInfo flex flex-col gap-y-4">
           <div className="add flex justify-center">

@@ -25,7 +25,7 @@ const Work:React.FC<Props> = ({ data, setData, handleAdd, handleRemove }) => {
     <Disclosure>
           {({ open }) => (
               <>
-                  <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Work:</p></AccordionHead>
+                  <AccordionHead open={open}>    <p className="pb-0">Work</p></AccordionHead>
           <AccordionBody>
           <div className="work flex flex-col  border-black border-b-2 text-lg text-slate-400 gap-y-4">
           <div className="add flex justify-center">

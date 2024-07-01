@@ -37,7 +37,7 @@ const Prototypes = () => {
   //the problem could have been easily solved if we knew the height before hand, which is the case for width so the scaled down length is easily understood
   //btw all of this for smaller than "lg" screen
     // Function to get the height  of the scaled-view container and use half of it for the scaled container to remove trailing bottom space
-    const logScaledViewHeight = () => {
+    const changeScaledViewHeight = () => {
       if (scaledViewRef.current) {
         const rect = scaledViewRef.current.getBoundingClientRect();
         console.log(rect)
@@ -49,7 +49,7 @@ const Prototypes = () => {
   
     // Use useEffect to get the height after the component mounts
     useEffect(() => {
-      logScaledViewHeight();
+      changeScaledViewHeight();
     }, []);
   
   //for particles background theme
