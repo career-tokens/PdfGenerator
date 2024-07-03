@@ -1,8 +1,8 @@
-import { Testimonial } from "@/types/testimonial";
+
 import SectionTitle from "../Common/SectionTitle";
 import SingleTestimonial from "./SingleTestimonial";
 
-const testimonialData: Testimonial[] = [
+const testimonialData = [
   {
     id: 1,
     name: "Musharof Chy",
