@@ -40,9 +40,7 @@ const Prototypes = () => {
     const changeScaledViewHeight = () => {
       if (scaledViewRef.current) {
         const rect = scaledViewRef.current.getBoundingClientRect();
-        console.log(rect)
-        console.log(window.innerWidth)
-        if(window.innerWidth<1024&&document)
+        if(window&&window.innerWidth<1024&&document)
         document.getElementById("scaled-view").style.height = rect.height/2+"px";
       }
     };
