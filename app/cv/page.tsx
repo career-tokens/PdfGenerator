@@ -142,7 +142,7 @@ export default function Home() {
       const rect = previewRef.current.getBoundingClientRect();
       console.log(rect)
       console.log(window.innerWidth)
-      if(window.innerWidth<1024)
+      if(window.innerWidth<1024&&document)
       document.getElementById("preview").style.height = rect.height/2+"px";
     }
   };

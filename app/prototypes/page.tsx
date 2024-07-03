@@ -42,7 +42,7 @@ const Prototypes = () => {
         const rect = scaledViewRef.current.getBoundingClientRect();
         console.log(rect)
         console.log(window.innerWidth)
-        if(window.innerWidth<1024)
+        if(window.innerWidth<1024&&document)
         document.getElementById("scaled-view").style.height = rect.height/2+"px";
       }
     };
@@ -69,6 +69,7 @@ const Prototypes = () => {
 
   //if the sidebar is open and the user clicks outside it, it should close
   useEffect(() => {
+    if(document)
     document.getElementById("right-template-show").addEventListener("click", () => {
       console.log("hello")
       if (sidebaropen)
