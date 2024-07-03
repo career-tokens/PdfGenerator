@@ -73,7 +73,7 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                     <AccordionHead subpart={true}  open={open}><p className="text-lg font-semibold text-center pb-0">Project {i + 1}</p></AccordionHead>
                                                     <AccordionBody>
                                                         <div className="flex justify-between  text-slate-400 mb-2">
-                                                            <p className="text-lg font-semiboldd">Remove this entry?</p>
+                                                            <p className="text-lg">Remove this entry?</p>
                                                             <DeleteButton cb={() => { handleRemoveProjects(i) }} />
                                                         </div>
                                                         <div className="role text-slate-400 mb-5">
@@ -129,11 +129,12 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                                     project.tasks.map((text, j) => (
                                                                         <div key={j} className="flex justify-between gap-x-4">
                                                                             <Input
+                                                                                editor={true}
                                                                                 value={text}
                                                                                 className="flex-1"
                                                                                 onChange={(e) => {
                                                                                     let arr = [...data.projectsAndLeadership];
-                                                                                    arr[i].tasks[j] = e.target.value;
+                                                                                    arr[i].tasks[j] = e;
                                                                                     setData({ ...data, projectsAndLeadership: arr })
                                                                                 }} />
                                                                             <DeleteButton cb={() => { handleRemoveTask(i, j) }} />

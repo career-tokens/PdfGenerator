@@ -3,12 +3,18 @@
 import * as React from "react";
 import { cn } from "../../lib/utils/cn";
 import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
+import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
-
+export interface InputProps {
+  value: string;
+  className?: string;
+  type?: string;
+  onChange:(e: any) => void
+  editor?: boolean; // Optional boolean property `editor`
+}
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+  ({ className, type, editor=false, ...props }, ref) => {
     const radius = 100; // change this to increase the rdaius of the hover effect
     const [visible, setVisible] = React.useState(false);
 
@@ -37,7 +43,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         onMouseLeave={() => setVisible(false)}
         className="p-[2px] rounded-lg transition duration-300 group/input flex-1"
       >
-        <input
+        {!editor&&<input
           type={type}
           className={cn(
             `flex flex-1 h-10 w-full border-none bg-[#eff2f9] dark:bg-transparent text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm  file:border-0 file:bg-transparent 
@@ -51,7 +57,20 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           )}
           ref={ref}
           {...props}
-        />
+        />}
+        <style>
+          {
+            `
+              .dark .ql-picker-label {
+  color: #444444;
+  font-weight:600;
+}
+  .light .quill{
+  color:black;}
+            `
+          }
+        </style>
+        {editor && <ReactQuill theme="snow" {...props}/>}
       </motion.div>
     );
   }

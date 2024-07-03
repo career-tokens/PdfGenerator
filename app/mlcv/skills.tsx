@@ -60,7 +60,7 @@ const Skills: React.FC<Props> = ({ data, setData }) => {
                                                     <AccordionHead subpart={true}  open={open}><p className="text-lg font-semibold text-center pb-0">Skills {i + 1}</p></AccordionHead>
                                                     <AccordionBody>
                                                         <div className="flex justify-between  text-slate-400 mb-2">
-                                                            <p className="text-lg font-semiboldd">Remove this entry?</p>
+                                                            <p className="text-lg">Remove this entry?</p>
                                                             <DeleteButton cb={() => { handleRemoveSkills(i) }} />
                                                         </div>
                                                         <div className="topic text-slate-400 mb-5">
@@ -73,9 +73,9 @@ const Skills: React.FC<Props> = ({ data, setData }) => {
                                                         </div>
                                                         <div className="description text-slate-400 mb-5">
                                                             <p>Technologies:</p>
-                                                            <Input value={skill.description} onChange={(e) => {
+                                                            <Input editor={true} value={skill.description} onChange={(e) => {
                                                                 let arr = [...data.skills];
-                                                                arr[i].description = e.target.value
+                                                                arr[i].description = e;
                                                                 setData({ ...data, skills: arr })
                                                             }} />
                                                         </div>

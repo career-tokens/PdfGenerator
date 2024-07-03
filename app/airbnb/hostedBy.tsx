@@ -15,7 +15,7 @@ const HostedBy:React.FC<Props> = ({data,setData}) => {
     <Disclosure>
           {({ open }) => (
               <>
-                  <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Host Info</p></AccordionHead>
+                  <AccordionHead open={open}>    <p className="text-xl pb-0">Host Info</p></AccordionHead>
                   <AccordionBody>
                   <div className="hostedBy pt-2 pb-6 border-black border-b-2 text-slate-400">
             <div className="flex justify-between">

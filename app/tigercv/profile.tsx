@@ -49,13 +49,14 @@ const Profile: React.FC<ProfileProps> = ({ data, setData }) => {
             </div>
             {
               data.profile.map((text, i) => (
-                <div className="flex justify-between gap-x-4 items-center" key={i}>
+                <div className="flex justify-between gap-x-4 items-start" key={i}>
                   <Input
                     className="flex-1"
+                    editor={true}
                     value={text}
                     onChange={(e) => {
                       let arr = [...data.profile];
-                      arr[i] = e.target.value;
+                      arr[i] = e;//here we did not do e.target.value since we are using the editor's html string and it calls the function with the value directly instead of needing to go further deep
                       setData({ ...data, profile: arr })
                     }} />
                   <DeleteButton cb={() => { handleRemove(i) }} />

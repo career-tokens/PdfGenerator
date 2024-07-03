@@ -15,7 +15,7 @@ const CostingDetails:React.FC<Props> = ({data,setData}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Cost Details</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="text-xl pb-0">Cost Details</p></AccordionHead>
                   <AccordionBody>
                   <div className="costing-details pt-2 pb-6 border-black border-b-2 text-slate-400">
             <div className="basiccost flex justify-between mb-3">

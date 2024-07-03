@@ -80,7 +80,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
           </div>
           {
             data.profile.map((item,i) => (
-              <p className="mb-2 dark:text-gray-400" key={i}>{item}</p>
+              <p className="mb-2 dark:text-gray-400" key={i} dangerouslySetInnerHTML={{__html: item}}></p>
             ))
           }
         </div>
@@ -91,7 +91,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
           </div>
           {
             data.skills.map((item,i) => (
-              <p className="mb-2 dark:text-gray-400" key={i}>•{item}</p>
+              <p className="mb-2 dark:text-gray-400" key={i} dangerouslySetInnerHTML={{__html: item}}></p>
             ))
           }
         </div>
@@ -108,7 +108,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
                 <p>{item.period}</p>
                 {
                   item.tasks.map((task, j) => (
-                    <p key={j} className="text-base my-2">•{task}</p>
+                    <p key={j} className="text-base my-2" dangerouslySetInnerHTML={{__html: task}}></p>
                   ))
                 }
               </div>
@@ -124,7 +124,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
           </div>
           {
             data.openSourceContributions.map((item,i) => (
-              <p className="mb-2 dark:text-gray-400" key={i}>{item}</p>
+              <p className="mb-2 dark:text-gray-400" key={i} dangerouslySetInnerHTML={{__html: item}}></p>
             ))
           }
         </div>
@@ -145,7 +145,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
                 <p className="dark:text-gray-400"><i>{project.description}</i></p>
                 {
                   project.features.map((feature, j) => (
-                    <p className="dark:text-gray-400 text-base my-2" key={j}>•{feature}</p>
+                    <p className="dark:text-gray-400 text-base my-2" key={j} dangerouslySetInnerHTML={{__html: feature}}></p>
                   ))
                 }
               </div>

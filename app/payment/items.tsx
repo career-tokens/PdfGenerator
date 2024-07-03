@@ -52,7 +52,7 @@ const Items:React.FC<Props> = ({ data, setData }) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Items Bought:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="text-xl pb-0">Items Bought:</p></AccordionHead>
                   <AccordionBody>
                   <div className="items text-lg text-slate-400">
           <div className="mb-[10px] flex justify-center">

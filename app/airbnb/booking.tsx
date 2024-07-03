@@ -15,7 +15,7 @@ const Booking:React.FC<Props> = ({data,setData}) => {
         <Disclosure>
             {({ open }) => (
                 <>
-                    <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Booking Details</p></AccordionHead>
+                    <AccordionHead open={open}>    <p className="text-xl pb-0">Booking Details</p></AccordionHead>
                     <AccordionBody>
                         <div className="booking-details pb-6 border-black border-b-2 text-slate-400">
                             <div className="name mb-3">

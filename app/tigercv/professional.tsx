@@ -73,12 +73,12 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
                                                     <AccordionHead subpart={true}  open={open}><p className="text-lg font-semibold text-center pb-0">Experience {i + 1}</p></AccordionHead>
                                                     <AccordionBody>
                                                         <div className="flex justify-between  text-slate-400 mb-2">
-                                                            <p className="text-lg font-semiboldd">Remove this experience?</p>
+                                                            <p className="text-lg">Remove this experience?</p>
                                                             <DeleteButton cb={() => { handleRemoveExperience(i) }} />
                                                         </div>
                                                         <div className="position text-slate-400 mb-5">
                                                             <p>Role:</p>
-                                                            <Input value={exp.position} onChange={(e) => {
+                                                            <Input className="" value={exp.position} onChange={(e) => {
                                                                 let arr = [...data.professionalExperience];
                                                                 arr[i].position = e.target.value
                                                                 setData({ ...data, professionalExperience: arr })
@@ -86,7 +86,7 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
                                                         </div>
                                                         <div className="company text-slate-400 mb-5">
                                                             <p>Company:</p>
-                                                            <Input value={exp.company} onChange={(e) => {
+                                                            <Input className="" value={exp.company} onChange={(e) => {
                                                                 let arr = [...data.professionalExperience];
                                                                 arr[i].company = e.target.value
                                                                 setData({ ...data, professionalExperience: arr })
@@ -94,7 +94,7 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
                                                         </div>
                                                         <div className="period text-slate-400 mb-5">
                                                             <p>Period</p>
-                                                            <Input value={exp.period} onChange={(e) => {
+                                                            <Input className="" value={exp.period} onChange={(e) => {
                                                                 let arr = [...data.professionalExperience];
                                                                 arr[i].period = e.target.value
                                                                 setData({ ...data, professionalExperience: arr })
@@ -121,11 +121,12 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
                                                                     exp.tasks.map((text, j) => (
                                                                         <div key={j} className="flex justify-between gap-x-4">
                                                                             <Input
+                                                                                editor={true}
                                                                                 value={text}
                                                                                 className="flex-1"
                                                                                 onChange={(e) => {
                                                                                     let arr = [...data.professionalExperience];
-                                                                                    arr[i].tasks[j] = e.target.value;
+                                                                                    arr[i].tasks[j] = e;
                                                                                     setData({ ...data, professionalExperience: arr })
                                                                                 }} />
                                                                             <DeleteButton cb={() => { handleRemoveTask(i, j) }} />

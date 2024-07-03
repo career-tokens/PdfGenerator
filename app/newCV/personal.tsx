@@ -15,7 +15,7 @@ const Personal:React.FC<Props> = ({data,setData}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="pb-0">Personal Info:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Personal Info</p></AccordionHead>
                   <AccordionBody>
                   <div className="personalinfo flex flex-col gap-y-4 text-lg text-slate-400">
             <div className="full_name">
@@ -64,14 +64,15 @@ const Personal:React.FC<Props> = ({data,setData}) => {
             </div>
             <div className="about">
               <p>About</p>
-              <Input
+                <Input
+                  editor={true}
                 value={data.personalInfo.about}
                 onChange={(e) => {
                   setData({
                     ...data,
                     personalInfo: {
                       ...data.personalInfo,
-                      about: e.target.value,
+                      about: e,
                     },
                   });
                 }}

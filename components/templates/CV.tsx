@@ -153,7 +153,7 @@ interface CVDataProps {
                           <span>{item.timeline}</span>
                       </div>
                       <div className="flex justify-between mb-2 dark:text-slate-400 ">
-                          <span><span className="font-bold dark:text-white mr-2">• Major:</span>{item.major}</span>
+                          <span className="flex"><span className="font-bold dark:text-white mr-2">• Major:</span><span dangerouslySetInnerHTML={{__html: item.major}}></span></span>
                       </div>
                             </div>
                         ))
@@ -173,7 +173,7 @@ interface CVDataProps {
                                 <span>{item.timeline}</span>
                             </div>
                             <div className="flex justify-between mb-1 dark:text-slate-400 ">
-                                <span><span className="font-bold dark:text-white mr-2">• Task:</span>{item.task}</span>
+                                <span className="flex"><span dangerouslySetInnerHTML={{__html: item.task}}></span></span>
                             </div>
                             </div>
                         ))
@@ -193,7 +193,7 @@ interface CVDataProps {
                                 <span>{item.timeline}</span>
                             </div>
                             <div className="flex justify-between mb-1 dark:text-slate-400 ">
-                                <span><span className="font-bold dark:text-white mr-2">• Task:</span>{item.task}</span>
+                                <span className="flex"><span dangerouslySetInnerHTML={{__html: item.task}}></span></span>
                             </div>
                             </div>
                         ))
@@ -203,7 +203,10 @@ interface CVDataProps {
                     <span className="text-xl text-center p-1 border-b-2 border-black mb-2">COURSEWORK/SKILLS</span>
                     {
                         data.coursework.map((item, i) => (
-                            <span className="mb-1 dark:text-slate-400"><span className="font-bold dark:text-white mr-2">• {item.subject}:</span>{item.topics}</span>
+                            <span className="flex flex-col  mb-4 dark:text-slate-400">
+                                <span className="font-bold dark:text-white mr-2">{item.subject}:</span>
+                                <span dangerouslySetInnerHTML={{ __html: item.topics }}></span>
+                            </span>
                         ))
                     }
           </div>
@@ -211,7 +214,10 @@ interface CVDataProps {
                     <span className="text-xl text-center p-1 border-b-2 border-black mb-2">ADDITIONAL INFO</span>
                     {
                         data.additionalInfo.map((item, i) => (
-                         <span className="mb-2 dark:text-slate-400"><span className="font-bold dark:text-white mr-2">• {item.subject}:</span>{item.description}</span>   
+                            <span className="flex flex-col mb-3 dark:text-slate-400">
+                                <span className="font-bold dark:text-white mr-2">{item.subject}:</span>
+                                <span dangerouslySetInnerHTML={{ __html: item.description }}></span>
+                            </span>   
                         ))
                     }
           </div>

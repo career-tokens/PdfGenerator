@@ -69,13 +69,14 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                 <AccordionBody>
                                                     <div className="flex flex-col gap-y-3 text-slate-400">
                                                         <div className="flex justify-between">
-                                                            <p className="text-lg font-bold">Remove this project?</p>
+                                                            <p className="text-lg">Remove this project?</p>
                                                             <DeleteButton cb={() => { handleRemoveProject(i) }} />
                                                         </div>
                       
                                                         <div className="name">
                                                             <p>Project Name:</p>
                                                             <Input
+                                                                className=""
                                                                 value={project.title}
                                                                 onChange={(e) => {
                                                                     let arr = [...data.projects];
@@ -86,6 +87,7 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                         <div className="link">
                                                             <p>Project Link:</p>
                                                             <Input
+                                                                className=""
                                                                 value={project.link}
                                                                 onChange={(e) => {
                                                                     let arr = [...data.projects];
@@ -96,6 +98,7 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                         <div className="description mb-3">
                                                             <p>Project Description:</p>
                                                             <Input
+                                                                className=""
                                                                 value={project.description}
                                                                 onChange={(e) => {
                                                                     let arr = [...data.projects];
@@ -126,9 +129,10 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                                         <Input
                                                                             className="flex-1"
                                                                             value={feature}
+                                                                            editor={true}
                                                                             onChange={(e) => {
                                                                                 let arr = [...data.projects];
-                                                                                arr[i].features[j] = e.target.value;
+                                                                                arr[i].features[j] = e;
                                                                                 setData({ ...data, projects: arr })
                                                                             }} />
                                                                         <DeleteButton cb={() => { handleRemoveFeature(i, j) }} />

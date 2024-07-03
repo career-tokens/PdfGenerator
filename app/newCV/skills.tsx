@@ -19,7 +19,7 @@ const Skills = ({data,setData,handleAdd,handleRemove}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="pb-0">Skills:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Skills</p></AccordionHead>
                   <AccordionBody>
                   <div className="skills flex flex-col gap-y-4">
             <div className="add flex justify-center text-base">

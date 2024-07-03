@@ -28,7 +28,7 @@ const MLCV:React.FC<Props> = ({data}) => {
               </div>
           </div>
           {data.educationNeeded&&<div className="education mb-6">
-              <p className="p-0 mb-4 text-left text-xl border-b-2 border-black font-semibold">
+              <p className="p-0 mb-4 text-left text-xl font-semibold">
                   EDUCATION AND HONORS
               </p>
               {
@@ -68,7 +68,7 @@ const MLCV:React.FC<Props> = ({data}) => {
                           </div>
                           {
                               pro.tasks.map((detail, j) => (
-                                  <p key={j} className='dark:text-slate-400 my-2'>•{detail}</p>
+                                  <p key={j} className='dark:text-slate-400 my-2' dangerouslySetInnerHTML={{__html: detail}}></p>
                               ))
                           }
                       </div>
@@ -83,7 +83,7 @@ const MLCV:React.FC<Props> = ({data}) => {
                   data.skills.map((skill,i) => (
                       <p className="flex flex-col mb-2" key={i}>
                           <span className="font-bold w-fit tracking-wide">•{skill.topic}</span>
-                          <span className="dark:text-slate-400">{skill.description}</span>
+                          <span className="dark:text-slate-400" dangerouslySetInnerHTML={{__html: skill.description}}></span>
                       </p>
                   ))
               }
@@ -105,7 +105,7 @@ const MLCV:React.FC<Props> = ({data}) => {
                           </div>
                           {
                               project.tasks.map((detail, j) => (
-                                  <p key={j} className="dark:text-slate-400 my-2">•{detail}</p>
+                                  <p key={j} className="dark:text-slate-400 my-2" dangerouslySetInnerHTML={{__html: detail}}></p>
                               ))
                           }
                       </div>

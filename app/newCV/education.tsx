@@ -19,7 +19,7 @@ const Education:React.FC<Props> = ({data,setData,handleAdd,handleRemove}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="pb-0">Education:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Education</p></AccordionHead>
                   <AccordionBody>
                   <div className="education flex flex-col gap-y-4">
             <div className="add flex justify-center">

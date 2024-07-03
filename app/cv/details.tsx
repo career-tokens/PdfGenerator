@@ -16,7 +16,7 @@ const Details:React.FC<Props> = ({data,setData}) => {
               <>
                   <AccordionHead open={open}>    <p className="pb-0">Details</p></AccordionHead>
           <AccordionBody>
-          <div className="details flex flex-col  border-black border-b-2 gap-y-3">
+          <div className="details flex flex-col gap-y-3">
           <div className="name ">
           <Input  type="text" value={data.name} onChange={(e)=>{setData({...data,name:e.target.value})}}/>
         </div>

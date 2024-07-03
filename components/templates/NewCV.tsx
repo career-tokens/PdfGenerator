@@ -35,7 +35,7 @@ export const NewCV:React.FC<NewCVDataProps>= ({ personalInfo, skills, experience
             <span className="text-sm mb-6">{personalInfo.title}</span>
             <div className="h-[2px] bg-[#fbf0e7] mb-6" />
             <p className="text-sm font-semibold mb-3">ABOUT ME</p>
-            <p className="text-sm mb-7">{personalInfo.about}</p>
+            <p className="text-sm mb-7" dangerouslySetInnerHTML={{__html: personalInfo.about}}></p>
             <p className="text-sm mb-3 font-semibold">SKILLS</p>
             <div className="text-sm mb-7">
               {skills.map(skill => (
@@ -57,7 +57,7 @@ export const NewCV:React.FC<NewCVDataProps>= ({ personalInfo, skills, experience
                 <p className="text-sm mb-2 text-gray-400 font-bold">{exp.role}, {exp.location}</p>
                 <div>
                   {exp.tasks.map(task => (
-                    <p className="text-xs mb-1 text-black font-medium" key={task}>• {task}</p>
+                    <p className="text-xs mb-1 text-black font-medium" key={task} dangerouslySetInnerHTML={{__html: task}}></p>
                   ))}
                 </div>
               </div>

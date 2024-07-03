@@ -29,10 +29,10 @@ export   const journalistInitialData:NewCVData = {
       role: "Journalist, Norfolk",
       location: "Norfolk",
       tasks: [
-        "Pitch timely story ideas for investigative journalism",
-        "Write 15 stories monthly covering the latest in breaking news.",
-        "In-depth analysis of relevant political events.",
-        "Fact-checking for accuracy and data visualization purposes.",
+        "• Pitch timely story ideas for investigative journalism",
+        "• Write 15 stories monthly covering the latest in breaking news.",
+        "• In-depth analysis of relevant political events.",
+        "• Fact-checking for accuracy and data visualization purposes.",
       ],
     },
     {
@@ -41,10 +41,10 @@ export   const journalistInitialData:NewCVData = {
       role: "Staff Editor, Newport News",
       location: "Newport News",
       tasks: [
-        "Published a weekly blog covering the latest in tech innovations.",
-        "Maintained a 3.5% engagement rate.",
-        "Interviewed digital entrepreneurs on a weekly basis.",
-        "Assisted in-house writers in editing and fact-checking for accuracy.",
+        "• Published a weekly blog covering the latest in tech innovations.",
+        "• Maintained a 3.5% engagement rate.",
+        "• Interviewed digital entrepreneurs on a weekly basis.",
+        "• Assisted in-house writers in editing and fact-checking for accuracy.",
       ],
     },
     {
@@ -53,9 +53,9 @@ export   const journalistInitialData:NewCVData = {
       role: "Contributor",
       location: "Washington D.C.",
       tasks: [
-        "Created compelling pieces for online publications including coordinating images and layouts for best presentation standards.",
-        "Developed key story ideas by evaluating and following up on news leads and tips.",
-        "Aided contributions in editing and fact-checking for accuracy.",
+        "• Created compelling pieces for online publications including coordinating images and layouts for best presentation standards.",
+        "• Developed key story ideas by evaluating and following up on news leads and tips.",
+        "• Aided contributions in editing and fact-checking for accuracy.",
       ],
     },
     {
@@ -64,8 +64,8 @@ export   const journalistInitialData:NewCVData = {
       role: "Contributor, Remote",
       location: "Remote",
       tasks: [
-        "Conducted interviews and covered key moments from the G20 Summit 2021 in Italy.",
-        "Produced in-depth and engaging online content in accordance with house style.",
+        "• Conducted interviews and covered key moments from the G20 Summit 2021 in Italy.",
+        "• Produced in-depth and engaging online content in accordance with house style.",
       ],
     },
   ],

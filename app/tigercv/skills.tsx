@@ -48,11 +48,12 @@ const Skills: React.FC<SkillsProps> = ({ data, setData }) => {
                 data.skills.map((text, i) => (
                   <div className="flex justify-between items-center gap-x-4" key={i}>
                     <Input
+                      editor={true}
                       className="flex-1"
                       value={text}
                       onChange={(e) => {
                         let arr = [...data.skills];
-                        arr[i] = e.target.value;
+                        arr[i] = e;
                         setData({ ...data, skills: arr })
                       }} />
                     <DeleteButton cb={() => { handleRemoveSkillLine(i) }} />

@@ -27,7 +27,7 @@ const Academic:React.FC<Props> = ({ data, setData, handleAdd, handleRemove }) =>
               <>
                   <AccordionHead open={open}>    <p className="pb-0">Academic Experience</p></AccordionHead>
           <AccordionBody>
-          <div className="academic flex flex-col  border-black border-b-2 gap-y-4">
+          <div className="academic flex flex-col gap-y-4">
           <div className="add flex justify-center">
           <AddButton cb={()=>{handleAdd("academic")}}/>
           </div>
@@ -36,7 +36,7 @@ const Academic:React.FC<Props> = ({ data, setData, handleAdd, handleRemove }) =>
                   <Disclosure key={i}>
                     {({ open }) => (
                       <>
-                        <AccordionHead open={open} subpart={true}><p className="text-xl pb-0 font-semibold">Academic {i + 1}</p></AccordionHead>
+                        <AccordionHead open={open} subpart={true}><p className="text-xl pb-0">Academic {i + 1}</p></AccordionHead>
                         <AccordionBody>
                           <div className={`academic ${i + 1} flex flex-col gap-y-3`} key={i}>
                             <div className="flex justify-between text-lg text-slate-400">

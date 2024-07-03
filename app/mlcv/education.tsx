@@ -73,7 +73,7 @@ const Education: React.FC<Props> = ({ data, setData }) => {
                                                     <AccordionHead subpart={true}  open={open}><p className="text-lg font-semibold text-center pb-0">Education {i + 1}</p></AccordionHead>
                                                     <AccordionBody>
                                                         <div className="flex justify-between  text-slate-400 mb-2">
-                                                            <p className="text-lg font-semiboldd">Remove this entry?</p>
+                                                            <p className="text-lg">Remove this entry?</p>
                                                             <DeleteButton cb={() => { handleRemoveEducation(i) }} />
                                                         </div>
                                                         <div className="university text-slate-400 mb-5">

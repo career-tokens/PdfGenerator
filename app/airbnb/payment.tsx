@@ -15,7 +15,7 @@ const Payment:React.FC<Props> = ({data,setData}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Payment Details:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="text-xl pb-0">Payment Details:</p></AccordionHead>
                   <AccordionBody>
                   <div className="payment pt-2 pb-6 text-slate-400">
           <div className="flex justify-between">

@@ -56,10 +56,11 @@ const OpenSource: React.FC<Props> = ({ data, setData }) => {
                   <div className="flex justify-between gap-x-4" key={i}>
                     <Input
                       className="flex-1"
+                      editor={true}
                       value={text}
                       onChange={(e) => {
                         let arr = [...data.openSourceContributions];
-                        arr[i] = e.target.value;
+                        arr[i] = e;
                         setData({ ...data, openSourceContributions: arr })
                       }} />
                     <DeleteButton cb={() => { handleRemoveOpen(i) }} />

@@ -27,7 +27,7 @@ const Education:React.FC<Props> = ({ data, setData, handleAdd, handleRemove }) =
               <>
                   <AccordionHead open={open}>    <p className="pb-0">Education</p></AccordionHead>
           <AccordionBody>
-          <div className="education flex flex-col  border-black border-b-2 text-lg text-slate-400 gap-y-4">
+          <div className="education flex flex-col text-lg text-slate-400 gap-y-4">
           <div className="add flex justify-center">
           <AddButton cb={()=>{handleAdd("education")}}/>
           </div>
@@ -36,7 +36,7 @@ const Education:React.FC<Props> = ({ data, setData, handleAdd, handleRemove }) =
                   <Disclosure key={i}>
                     {({ open }) => (
                       <>
-                        <AccordionHead open={open} subpart={true}>    <p className="text-xl pb-0 font-semibold">Education {i + 1}:</p></AccordionHead>
+                        <AccordionHead open={open} subpart={true}><p className="text-xl pb-0">Education {i + 1}:</p></AccordionHead>
                         <AccordionBody>
                           <div className={`edu ${i + 1} flex flex-col gap-y-3`} key={i}>
                             <div className="flex justify-between text-lg text-slate-400">
@@ -52,7 +52,7 @@ const Education:React.FC<Props> = ({ data, setData, handleAdd, handleRemove }) =
                               <Input type="text" value={item.stream} onChange={(e) => handleEducationChange(i, "stream", e.target.value)} />
                             </div>
                             <div className="line3">
-                              <Input className="w-full rounded" type="text" value={item.major} onChange={(e) => handleEducationChange(i, "major", e.target.value)} />
+                              <Input editor={true} className="w-full rounded" type="text" value={item.major} onChange={(e) => handleEducationChange(i, "major", e)} />
                             </div>
                           </div>
                         </AccordionBody>

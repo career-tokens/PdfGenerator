@@ -19,7 +19,7 @@ const Languages:React.FC<Props> = ({data,setData,handleAdd,handleRemove}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="pb-0">Languages:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Languages</p></AccordionHead>
                   <AccordionBody>
                   <div className="languages flex flex-col gap-y-4">
             <div className="add flex justify-center">

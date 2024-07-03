@@ -47,7 +47,7 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="pb-0">Experiences:</p></AccordionHead>
+            <AccordionHead open={open}>    <p className="pb-0">Experiences</p></AccordionHead>
                   <AccordionBody>
                   <div className="experience flex flex-col gap-y-5">
                               <div className="flex justify-center">
@@ -62,11 +62,11 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
                       <Disclosure key={i}>
                                   {({ open }) => (
                                       <>
-                                          <AccordionHead subpart={true} open={open}>    <p className="text-xl pb-0 font-semibold">Experience {i + 1}</p></AccordionHead>
+                                          <AccordionHead subpart={true} open={open}>   <p className="text-xl pb-0">Experience {i + 1}</p></AccordionHead>
                                           <AccordionBody>
                                           <div className={`exp ${i + 1} flex flex-col gap-y-3 text-lg text-slate-400`} key={i}>
                   <div className="flex justify-between items-center">
-                    <h2 className="font-semibold">Remove this experience?</h2>
+                    <h2 className="">Remove this experience?</h2>
 
                     <DeleteButton
                       cb={() => {
@@ -135,13 +135,14 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
                           {
                               exp.tasks.map((task, j) => (
                                   <div className={`task ${j + 1} flex justify-between gap-x-4 items-center mb-2`} key={j}>
-                                      <Input
+                                  <Input
+                                          editor={true}
                                           value={task}
                                           className="flex-1"
                                           onChange={(e) => {
                                             let updatedExperiences = [...data.experiences];
 
-                                            updatedExperiences[i].tasks[j] = e.target.value;
+                                            updatedExperiences[i].tasks[j] = e;
                       
                                             setData({ ...data, experiences: updatedExperiences });
                                           }} />

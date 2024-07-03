@@ -18,7 +18,7 @@ const Travelers:React.FC<Props> = ({data,setData}) => {
     <Disclosure>
     {({ open }) => (
         <>
-            <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Travelers</p></AccordionHead>
+            <AccordionHead open={open}>   <p className="text-xl pb-0">Travelers</p></AccordionHead>
                   <AccordionBody>
                   <div className="travelers  pb-6 border-black border-b-2 text-slate-400">
             <div className="flex justify-center mb-5">

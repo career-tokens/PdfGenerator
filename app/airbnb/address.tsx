@@ -15,7 +15,7 @@ const Address:React.FC<Props> = ({data,setData}) => {
         <Disclosure>
             {({ open }) => (
                 <>
-                    <AccordionHead open={open}>    <p className="text-xl pb-0 font-semibold">Address</p></AccordionHead>
+                    <AccordionHead open={open}>    <p className="text-xl pb-0">Address</p></AccordionHead>
                     <AccordionBody>
                         <div className="address pt-2 pb-6 border-black border-b-2 text-slate-400">
                             <p>Address Line 1:</p>

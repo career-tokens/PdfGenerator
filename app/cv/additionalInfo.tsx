@@ -36,7 +36,7 @@ const AdditionalInfo:React.FC<Props> = ({ data, setData, handleAdd, handleRemove
                   <Disclosure key={i}>
                     {({ open }) => (
                       <>
-                        <AccordionHead open={open} subpart={true}>    <p className="text-xl pb-0 font-semibold">Additional Information {i + 1}</p></AccordionHead>
+                        <AccordionHead open={open} subpart={true}>    <p className="text-xl pb-0">Additional Information {i + 1}</p></AccordionHead>
                         <AccordionBody>
                           <div className={`additionalInfo ${i + 1} flex flex-col text-lg text-slate-400`} key={i}>
                             <div className="flex justify-between">
@@ -45,7 +45,7 @@ const AdditionalInfo:React.FC<Props> = ({ data, setData, handleAdd, handleRemove
                             </div>
                             <div className="line1 flex flex-col gap-y-3">
                               <Input type="text" value={item.subject} onChange={(e) => handleAdditionalInfoChange(i, "subject", e.target.value)} />
-                              <Input type="text" value={item.description} onChange={(e) => handleAdditionalInfoChange(i, "description", e.target.value)} />
+                              <Input editor={true} type="text" value={item.description} onChange={(e) => handleAdditionalInfoChange(i, "description", e)} />
                             </div>
                           </div>
                         </AccordionBody>
