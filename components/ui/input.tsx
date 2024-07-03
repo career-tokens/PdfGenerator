@@ -7,7 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 
 export interface InputProps {
-  value: string;
+  value: any;
   className?: string;
   type?: string;
   onChange:(e: any) => void
