@@ -106,7 +106,7 @@ const Prototypes = () => {
                   />
                 </button>
       <div className={`left-sidebar w-[0px] p-0 h-screen md:w-[300px] flex flex-col md:pt-20 md:px-5 bg-gray-200/40 dark:bg-gray-600/20 ${sidebaropen&&"absolute !w-[300px] z-[1000] top-0 left-0 transition-all bg-slate-200 dark:bg-gray-700 pt-20 px-5"}`}>
-        {(sidebaropen || window.innerWidth >= 768) &&
+        {(sidebaropen || window?.innerWidth >= 768) &&
           <>
           <div className="for-mobile flex flex-col gap-y-2 sm:hidden">
           <div className="flex items-center gap-x-1 -ml-1">
