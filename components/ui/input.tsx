@@ -4,7 +4,8 @@ import * as React from "react";
 import { cn } from "../../lib/utils/cn";
 import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
 import 'react-quill/dist/quill.snow.css';
-import ReactQuill from 'react-quill';
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });//dynamically import for preventing deployment error
 
 export interface InputProps {
   value: any;
