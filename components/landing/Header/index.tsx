@@ -39,8 +39,13 @@ const Header = () => {
   };
 
   const usePathName = usePathname();
+  const [innerWidth, setInnerWidth] = useState(1024);
 
-  if(usePathName=="/"||(usePathName=="/prototypes"&&window.innerWidth>=640))
+  useEffect(() => {
+    setInnerWidth(window.innerWidth);
+  }, []);
+
+  if(usePathName=="/"||(usePathName=="/prototypes"&&innerWidth>=640))
   return (
     <>
       <header
