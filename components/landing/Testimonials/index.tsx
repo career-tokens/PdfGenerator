@@ -8,7 +8,7 @@ const testimonialData = [
     name: "Musharof Chy",
     designation: "Founder @TailGrids",
     content:
-      "Our members are so impressed. Its so easy for them to update their resume while maintianing the industry standards.",
+      "Our members are so impressed. Its so easy for them to update their resume while maintaining the industry standards and their own personal touch.",
     image: "/images/testimonials/auth-01.png",
     star: 5,
   },
@@ -17,7 +17,7 @@ const testimonialData = [
     name: "Devid Weilium",
     designation: "Founder @UIdeck",
     content:
-      "It's intuitive. It's clean. No tricks and you can create your perfect resume before you finish your coffee. I mean its just so cool!",
+      "It's intuitive. It's clean. No tricks and you can create your perfect resume before you finish your coffee. I mean its just so cool to use!",
     image: "/images/testimonials/auth-02.png",
     star: 5,
   },

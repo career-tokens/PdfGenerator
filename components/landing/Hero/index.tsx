@@ -43,7 +43,7 @@ const Hero = () => {
               "group relative py-3 px-3 rounded-full w-full justify-center gap-2 transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
             )}
             target="_blank"
-            href=""
+            href="https://github.com/career-tokens/pdfGenerator"
           >
             <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40" />
             <div className="flex items-center">

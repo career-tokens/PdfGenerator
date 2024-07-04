@@ -10,8 +10,8 @@ import { Metadata } from "next";
 import TwoColumnFooter from "../components/landing/syntaxui/Footer";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
-  description: "This is Home for Startup Nextjs Template",
+  title: "PDFternity",
+  description: "PDFternity is the new way to build stellar resumes",
   // other metadata
 };
 

@@ -3,22 +3,22 @@ import Image from 'next/image'
 
 const navigation = {
   connect: [
-    {
-      name: 'Twitter',
-      href: 'https://twitter.com/justansub',
-    },
+    // {
+    //   name: 'Twitter',
+    //   href: 'https://twitter.com/justansub',
+    // },
     {
       name: 'Github',
-      href: 'https://www.youtube.com/@SpeedyBrand-SEO',
+      href: 'https://github.com/career-tokens/pdfGenerator',
     },
     {
       name: 'LinkedIn',
-      href: 'https://www.linkedin.com/company/speedy-brand-inc/',
+      href: 'https://www.linkedin.com/in/mainak-mukherjee1234/',
     },
   ],
   company: [
-    { name: 'Blogs', href: '/' },
-    { name: 'Pricing', href: '/' },
+    { name: 'Blogs', href: 'https://mainakkaniam.hashnode.dev/',target:"_blank" },
+    { name: 'Pricing', href: '#pricing', target:"" },
   ],
 }
 
@@ -72,6 +72,7 @@ const TwoColumnFooter = () => {
                   {navigation.company.map((item) => (
                     <div key={item.name}>
                       <a
+                        target={item.target}
                         href={item.href}
                         className="text-sm leading-6 text-gray-700 hover:text-gray-900 dark:text-gray-500 hover:dark:text-gray-200"
                       >

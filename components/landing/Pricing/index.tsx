@@ -65,7 +65,7 @@ const Pricing = () => {
             subtitle="All templates on this platform are completely free to use."
           >
             <OfferList text="All Exisitng Templates" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
+            <OfferList text="Use Unlimited times" status="active" />
             <OfferList text="Commercial Use" status="active" />
             <OfferList text="Email Support" status="active" />
             <OfferList text="Lifetime Access" status="active" />
@@ -78,7 +78,7 @@ const Pricing = () => {
             subtitle="Get custom resumes tailored to your needs so that you can stand out more!"
           >
             <OfferList text="Existing + Ones specially made for you" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
+            <OfferList text="Use Unlimited times" status="active" />
             <OfferList text="Commercial Use" status="active" />
             <OfferList text="Email Support" status="active" />
             <OfferList text="Lifetime Access" status="active" />
