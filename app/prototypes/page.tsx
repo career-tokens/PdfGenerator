@@ -19,7 +19,10 @@ import ThemeToggler from '../../components/landing/Header/ThemeToggler';
 
 
 const Prototypes = () => {
-
+  const [innerWidth, setInnerWidth] = useState(1024);
+  useEffect(() => {
+    setInnerWidth(window.innerWidth)
+  },[])
     // creating a ref to attach to the scaled-view container
   const scaledViewRef = useRef(null);
   const [scaledViewHeight, setScaledViewHeight] = useState(null);
@@ -40,7 +43,7 @@ const Prototypes = () => {
     const changeScaledViewHeight = () => {
       if (scaledViewRef.current) {
         const rect = scaledViewRef.current.getBoundingClientRect();
-        if(typeof window !== 'undefined'&&window.innerWidth<1024&&document)
+        if(window.innerWidth<1024)
         document.getElementById("scaled-view").style.height = rect.height/2+"px";
       }
     };
@@ -67,7 +70,6 @@ const Prototypes = () => {
 
   //if the sidebar is open and the user clicks outside it, it should close
   useEffect(() => {
-    if(document)
     document.getElementById("right-template-show").addEventListener("click", () => {
       console.log("hello")
       if (sidebaropen)
@@ -106,7 +108,7 @@ const Prototypes = () => {
                   />
                 </button>
       <div className={`left-sidebar w-[0px] p-0 h-screen md:w-[300px] flex flex-col md:pt-20 md:px-5 bg-gray-200/40 dark:bg-gray-600/20 ${sidebaropen&&"absolute !w-[300px] z-[1000] top-0 left-0 transition-all bg-slate-200 dark:bg-gray-700 pt-20 px-5"}`}>
-        {(sidebaropen || (typeof window !== 'undefined'&&window.innerWidth >= 768)) &&
+        {(sidebaropen || (innerWidth >= 768)) &&
           <>
           <div className="for-mobile flex flex-col gap-y-2 sm:hidden">
           <div className="flex items-center gap-x-1 -ml-1">
