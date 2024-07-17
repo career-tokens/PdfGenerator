@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { Disclosure } from '@headlessui/react';
 import AccordionHead from '../../components/ui/AccordionHead';
 import AccordionBody from '../../components/ui/AccordionBody';
+import _ from 'lodash';
 interface ProfileProps {
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -57,7 +58,10 @@ const Profile: React.FC<ProfileProps> = ({ data, setData }) => {
                     onChange={(e) => {
                       let arr = [...data.profile];
                       arr[i] = e;//here we did not do e.target.value since we are using the editor's html string and it calls the function with the value directly instead of needing to go further deep
-                      setData({ ...data, profile: arr })
+                      const newData = { ...data, profile: arr };
+                      if (!_.isEqual(data, newData)) {
+                        setData(newData);
+                      }
                     }} />
                   <DeleteButton cb={() => { handleRemove(i) }} />
                 </div>

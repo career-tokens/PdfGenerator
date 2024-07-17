@@ -7,6 +7,8 @@ import { toast } from 'sonner';
 import { Disclosure } from '@headlessui/react';
 import AccordionHead from '../../components/ui/AccordionHead';
 import AccordionBody from '../../components/ui/AccordionBody';
+import _ from 'lodash';
+
 interface Props {
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -61,7 +63,9 @@ const OpenSource: React.FC<Props> = ({ data, setData }) => {
                       onChange={(e) => {
                         let arr = [...data.openSourceContributions];
                         arr[i] = e;
-                        setData({ ...data, openSourceContributions: arr })
+                        const newData = { ...data, openSourceContributions: arr };
+                        if (!_.isEqual(data, newData)) 
+                          setData(newData);
                       }} />
                     <DeleteButton cb={() => { handleRemoveOpen(i) }} />
                   </div>

@@ -4,6 +4,7 @@ import { Disclosure } from '@headlessui/react';
 import AccordionBody from '../../components/ui/AccordionBody';
 import { Input } from '../../components/ui/input';
 import { NewCVData } from '../../dataModels/NewCVData';
+import _ from 'lodash';
 
 interface Props{
     data: NewCVData;
@@ -68,13 +69,15 @@ const Personal:React.FC<Props> = ({data,setData}) => {
                   editor={true}
                 value={data.personalInfo.about}
                 onChange={(e) => {
-                  setData({
+                  const newData={
                     ...data,
                     personalInfo: {
                       ...data.personalInfo,
                       about: e,
                     },
-                  });
+                  };
+                  if (!_.isEqual(data, newData)) 
+                    setData(newData);
                 }}
               />
             </div>

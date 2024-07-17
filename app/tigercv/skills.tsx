@@ -7,6 +7,8 @@ import { toast } from 'sonner';
 import AccordionHead from '../../components/ui/AccordionHead';
 import { Disclosure } from '@headlessui/react';
 import AccordionBody from '../../components/ui/AccordionBody';
+import _ from 'lodash';
+
 interface SkillsProps {
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -54,7 +56,9 @@ const Skills: React.FC<SkillsProps> = ({ data, setData }) => {
                       onChange={(e) => {
                         let arr = [...data.skills];
                         arr[i] = e;
-                        setData({ ...data, skills: arr })
+                        const newData = { ...data, skills: arr };
+                        if (!_.isEqual(data, newData)) 
+                          setData(newData);
                       }} />
                     <DeleteButton cb={() => { handleRemoveSkillLine(i) }} />
                   </div>

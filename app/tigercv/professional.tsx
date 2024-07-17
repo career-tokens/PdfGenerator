@@ -7,6 +7,8 @@ import { toast } from 'sonner';
 import AccordionBody from '../../components/ui/AccordionBody';
 import AccordionHead from '../../components/ui/AccordionHead';
 import { Disclosure } from '@headlessui/react';
+import _ from 'lodash';
+
 interface Props{
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -127,7 +129,9 @@ const ProfessionalExperience: React.FC<Props> = ({ data, setData }) => {
                                                                                 onChange={(e) => {
                                                                                     let arr = [...data.professionalExperience];
                                                                                     arr[i].tasks[j] = e;
-                                                                                    setData({ ...data, professionalExperience: arr })
+                                                                                    const newData = { ...data, professionalExperience: arr };
+                                                                                    if (!_.isEqual(data, newData)) 
+                                                                                        setData(newData);
                                                                                 }} />
                                                                             <DeleteButton cb={() => { handleRemoveTask(i, j) }} />
                                                                         </div>

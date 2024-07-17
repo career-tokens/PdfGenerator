@@ -6,6 +6,7 @@ import { Input } from '../../components/ui/input'
 import { CVData } from '../../dataModels/CVData'
 import AddButton from '../../components/ui/AddButton'
 import DeleteButton from '../../components/ui/DeleteButton'
+import _ from 'lodash';
 
 interface Props{
   data: CVData;
@@ -18,7 +19,9 @@ const AdditionalInfo:React.FC<Props> = ({ data, setData, handleAdd, handleRemove
   const handleAdditionalInfoChange = (index, field, value) => {
     const updatedAdditionalInfo = [...data.additionalInfo];
     updatedAdditionalInfo[index][field] = value;
-    setData({ ...data, additionalInfo: updatedAdditionalInfo });
+    const newData={ ...data, additionalInfo: updatedAdditionalInfo }
+    if (!_.isEqual(data, newData)) 
+      setData(newData);
   };
     
   return (

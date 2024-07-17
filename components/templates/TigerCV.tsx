@@ -28,7 +28,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
             {data.portfolio.needed&&
               <a href={data.portfolio.link}>
             <div className="flex items-center mr-4 mb-3">
-              <img alt="website" width="25" height="15" className="mr-1 dark:bg-white dark:p-[2px] rounded-full dark:w-[35px] dark:h-[35px]" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVR4nLXUsW0CQRAF0GecQIIbcODAsUuABpwTOKIHSnADxC7BsUN6sKAFMiTHFzHWSYdEgMTe3s1Ik/63Wu1fbs+D5PnGNBMI7PCUCbR7wHMmEDjiLRMI/GGRCQQarDKBwBmbTCC63WKSCcTQrpQAMaQrpUDUdqUPEDVd6QtE367UANGnK7VAlHal5uSH7ul+4gOzWuAXX90p3/GKx9K7vwdsa8JKgAbrMYJvAScsxwy/BvZ4GTv8AvxgnhHeTvvUBn3Hl/kH1sat3dDkRBYAAAAASUVORK5CYII=" />
+              <img alt="website" width="25" height="15" className="mr-1 dark:bg-white dark:p-[4px] rounded-full dark:w-[35px] dark:h-[35px]" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVR4nLXUsW0CQRAF0GecQIIbcODAsUuABpwTOKIHSnADxC7BsUN6sKAFMiTHFzHWSYdEgMTe3s1Ik/63Wu1fbs+D5PnGNBMI7PCUCbR7wHMmEDjiLRMI/GGRCQQarDKBwBmbTCC63WKSCcTQrpQAMaQrpUDUdqUPEDVd6QtE367UANGnK7VAlHal5uSH7ul+4gOzWuAXX90p3/GKx9K7vwdsa8JKgAbrMYJvAScsxwy/BvZ4GTv8AvxgnhHeTvvUBn3Hl/kH1sat3dDkRBYAAAAASUVORK5CYII=" />
               <span>Website</span>
             </div>
               </a>
@@ -37,7 +37,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
               data.twitter.needed &&
               <a href={data.twitter.link}>
               <div className="flex items-center mr-4 mb-3">
-              <img width="25" height="15" className="mr-1 dark:bg-white dark:p-[2px] rounded-full dark:w-[35px] dark:h-[35px]" src="https://img.icons8.com/ios-filled/50/twitter.png" alt="twitter"/>
+              <img width="25" height="15" className="mr-1 dark:bg-white dark:p-[4px] rounded-full dark:w-[35px] dark:h-[35px]" src="https://img.icons8.com/ios-filled/50/twitter.png" alt="twitter"/>
                 <span>Twitter</span>
               </div>
               </a>
@@ -55,7 +55,7 @@ export const TigerCV:React.FC<TigerCVDataProps> = ({data}) => {
               data.linkedin.needed &&
               <a href={data.linkedin.link}>
               <div className="flex items-center mr-4 mb-3">
-              <img width="25" height="15" className="mr-1 dark:bg-white dark:p-[2px] rounded-full dark:w-[35px] dark:h-[35px]" src="https://img.icons8.com/ios-filled/50/linkedin.png" alt="linkedin"/>
+              <img width="25" height="15" className="mr-1 dark:bg-white dark:p-[4px] rounded-full dark:w-[35px] dark:h-[35px]" src="https://img.icons8.com/ios-filled/50/linkedin.png" alt="linkedin"/>
                 <span>LinkedIn</span>
               </div>
               </a>

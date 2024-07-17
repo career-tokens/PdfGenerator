@@ -7,6 +7,8 @@ import AccordionBody from '../../components/ui/AccordionBody';
 import AccordionHead from '../../components/ui/AccordionHead';
 import { Disclosure } from '@headlessui/react';
 import { MLCVData } from '../../dataModels/MLCVData';
+import _ from 'lodash';
+
 interface Props{
     data: MLCVData;
     setData: React.Dispatch<React.SetStateAction<MLCVData>>;
@@ -76,7 +78,10 @@ const Skills: React.FC<Props> = ({ data, setData }) => {
                                                             <Input editor={true} value={skill.description} onChange={(e) => {
                                                                 let arr = [...data.skills];
                                                                 arr[i].description = e;
-                                                                setData({ ...data, skills: arr })
+                                                                const newData = { ...data, skills: arr };
+                                                                if (!_.isEqual(data, newData)) 
+                                                                    setData(newData);
+
                                                             }} />
                                                         </div>
                                                     </AccordionBody>

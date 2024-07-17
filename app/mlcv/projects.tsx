@@ -7,6 +7,8 @@ import AccordionBody from '../../components/ui/AccordionBody';
 import AccordionHead from '../../components/ui/AccordionHead';
 import { Disclosure } from '@headlessui/react';
 import { MLCVData } from '../../dataModels/MLCVData';
+import _ from 'lodash';
+
 interface Props{
     data: MLCVData;
     setData: React.Dispatch<React.SetStateAction<MLCVData>>;
@@ -135,7 +137,9 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                                                 onChange={(e) => {
                                                                                     let arr = [...data.projectsAndLeadership];
                                                                                     arr[i].tasks[j] = e;
-                                                                                    setData({ ...data, projectsAndLeadership: arr })
+                                                                                    const newData = { ...data, projectsAndLeadership: arr };
+                                                                                    if (!_.isEqual(data, newData)) 
+                                                                                        setData(newData);
                                                                                 }} />
                                                                             <DeleteButton cb={() => { handleRemoveTask(i, j) }} />
                                                                         </div>

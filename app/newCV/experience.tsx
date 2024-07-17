@@ -7,6 +7,7 @@ import { Input } from '../../components/ui/input';
 import DeleteButton from '../../components/ui/DeleteButton';
 import { NewCVData } from '../../dataModels/NewCVData';
 import { toast } from 'sonner';
+import _ from 'lodash';
 
 interface Props{
     data: NewCVData;
@@ -144,7 +145,9 @@ const Experience: React.FC<Props> = ({ data, setData, handleAdd, handleRemove })
 
                                             updatedExperiences[i].tasks[j] = e;
                       
-                                            setData({ ...data, experiences: updatedExperiences });
+                                            const newData={ ...data, experiences: updatedExperiences };
+                                            if (!_.isEqual(data, newData)) 
+                                              setData(newData);
                                           }} />
                                                         <DeleteButton
                     cb={() => {

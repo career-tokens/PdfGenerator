@@ -6,6 +6,7 @@ import { Input } from '../../components/ui/input'
 import { CVData } from '../../dataModels/CVData'
 import AddButton from '../../components/ui/AddButton'
 import DeleteButton from '../../components/ui/DeleteButton'
+import _ from 'lodash';
 
 interface Props{
   data: CVData;
@@ -18,7 +19,9 @@ const Education:React.FC<Props> = ({ data, setData, handleAdd, handleRemove }) =
     const handleEducationChange = (index, field, value) => {
         const updatedEducation = [...data.education];
         updatedEducation[index][field] = value;
-        setData({ ...data, education: updatedEducation });
+      const newData={ ...data, education: updatedEducation };
+      if (!_.isEqual(data, newData)) 
+        setData(newData);
     };
     
   return (

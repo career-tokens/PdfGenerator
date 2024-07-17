@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import AccordionBody from '../../components/ui/AccordionBody';
 import { Disclosure } from '@headlessui/react';
 import AccordionHead from '../../components/ui/AccordionHead';
+import _ from 'lodash';
 interface Props {
     data: TigerCVData;
     setData: React.Dispatch<React.SetStateAction<TigerCVData>>;
@@ -134,6 +135,10 @@ const Projects: React.FC<Props> = ({ data, setData }) => {
                                                                                 let arr = [...data.projects];
                                                                                 arr[i].features[j] = e;
                                                                                 setData({ ...data, projects: arr })
+                                                                                const newData = { ...data, projects: arr };
+                                                                                if (!_.isEqual(data, newData)) 
+                                                                                    setData(newData);
+                                                                                
                                                                             }} />
                                                                         <DeleteButton cb={() => { handleRemoveFeature(i, j) }} />
                                                                     </div>
