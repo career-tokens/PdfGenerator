@@ -1,6 +1,6 @@
 import React from 'react'
 import { MLCVData } from '../../dataModels/MLCVData'
-import { CSS } from '@onedoc/react-print'
+import { CSS } from '@fileforge/react-print'
 
 interface Props{
     data:MLCVData

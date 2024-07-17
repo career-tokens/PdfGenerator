@@ -1,6 +1,6 @@
 import React from 'react';
 import { Education, Experience, Language, NewCVData, PersonalInfo, Skill } from "../../dataModels/NewCVData";
-import { CSS } from '@onedoc/react-print';
+import { CSS } from '@fileforge/react-print';
 
 interface NewCVDataProps {
   personalInfo: PersonalInfo;

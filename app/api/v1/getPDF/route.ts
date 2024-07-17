@@ -1,6 +1,6 @@
 import { OneDocPdf } from "../../../../components/OneDocPdf"
 import { Onedoc } from "@onedoc/client";
-import { compile } from "@onedoc/react-print";
+import { compile } from "@fileforge/react-print";
 import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { JSXElementConstructor, ReactElement, ReactNode } from "react";

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { TigerCVData } from '../../dataModels/TigerCVData';
-import { CSS } from '@onedoc/react-print';
+import { CSS } from '@fileforge/react-print';
 
 interface TigerCVDataProps {
   data: TigerCVData;

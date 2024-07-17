@@ -1,4 +1,4 @@
-import { Tailwind } from '@onedoc/react-print';
+import { Tailwind } from '@fileforge/react-print';
 import React from 'react';
 import { CV } from './templates/CV';
 import { Payment } from './templates/Payment';
@@ -24,6 +24,7 @@ interface DataProps {
 
 export const OneDocPdf: React.FC<DataProps> = ({ data, template , theme }) => {
     return (
+        <html className={theme} style={{colorScheme:theme}}>
         <Tailwind config={{darkMode: "class"}}>
             {template === 'payment' && <Payment data={data as PaymentData} />}
             {template === 'cv' && <CV data={data as CVData} />}
@@ -33,6 +34,7 @@ export const OneDocPdf: React.FC<DataProps> = ({ data, template , theme }) => {
             {template === 'jd' && <JD data={data as JDData} />}
             {template === 'mlcv' && <MLCV data={data as MLCVData} />}
             {template === 'realestate' && <RealEstate data={data } />}
-        </Tailwind>
+            </Tailwind>
+            </html>
     );
 };
