@@ -59,7 +59,7 @@ const PersonalInfo:React.FC<PersonalInfoProps> = ({data,setData}) => {
               </div>
               <div className="blog">
                 <div className="firstline flex justify-between">
-                  <p>Blog:</p>
+                  <p>Hashnode:</p>
                   <label><input type="checkbox" checked={data.blog.needed} onChange={(e) => { setData({ ...data, blog: { ...data.blog, needed: !data.blog.needed } }) }} /></label>
                 </div>
                 <Input value={data.blog.link} onChange={(e) => { setData({ ...data, blog: { ...data.blog, link: e.target.value } }) }} />
