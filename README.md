@@ -9,7 +9,7 @@
 https://res.cloudinary.com/dxprcmmcz/video/upload/v1712950045/2024-04-12_12-03-27_hfsulv.mkv
 <br/><br/>
 <h2>😎 LinkedIn Post on how I made my own resume using my app:</h2>
-https://www.linkedin.com/feed/update/urn:li:activity:7184452354082025473/
+https://www.linkedin.com/posts/mainak-mukherjee1234_launching-pdfternity-v2-edit-there-activity-7219380702742536193-voZ_?utm_source=share&utm_medium=member_desktop
 <br/><br/>
 <h2>📦Project Screenshots:</h2><br/>
 
