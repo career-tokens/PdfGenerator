@@ -44,6 +44,8 @@ Here're some of the project's best features:
 *   Currently features three awesome PDF templates:Detailed CV, Airbnb, Receipt and Invoice
 *   Make as many changes as you want !
 *   Responsive app view the proper PDF layout even on mobile
+*   Use text editors to reproduce italics or bold text for highlighting key data
+*   Can generate both light and dark mode view of the pdf 
 *   Finally generate the PDF and download it!
 *   Built on top of Onedoc API a super cool tool to convert code to PDF.
 *   Uses Google Analytics for website tracking.<br/><br/>
